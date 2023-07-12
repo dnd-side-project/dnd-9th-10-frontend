@@ -3,9 +3,9 @@
 
 <p>Description</p>
 
-![build](https://github.com/BoBeenLee/nx-react-code-sharing/actions/workflows/ci-cd.yml/badge.svg)
-[![CodeFactor](https://www.codefactor.io/repository/github/bobeenlee/nx-react-code-sharing-starter/badge)](https://www.codefactor.io/repository/github/bobeenlee/nx-react-code-sharing-starter)
-![lastUpdated](https://img.shields.io/github/last-commit/BoBeenLee/nx-react-code-sharing-starter/master)
+![build](https://github.com/dnd-side-project/dnd-9th-10-frontend/actions/workflows/ci-cd.yml/badge.svg)
+[![CodeFactor](https://www.codefactor.io/repository/github/dnd-side-project/dnd-9th-10-frontend/badge)](https://www.codefactor.io/repository/github/dnd-side-project/dnd-9th-10-frontend)
+![lastUpdated](https://img.shields.io/github/last-commit/dnd-side-project/dnd-9th-10-frontend/master)
 
 </div>
 
@@ -34,11 +34,12 @@
     ├──── ui               # WIP
     ├─────── web
     ├────────── ui         # web ui components, styles (ex) Button, Text... )
-    ├──── utils            # shared utils (ex) string, datetime, object, uri ...)
-    ├──── stores           # shared state management (ex) Toast, Notification... )
-    ├──── apis             # initalize api setup, add api middleware
-    ├──── hooks            # shared hooks (ex) timer, debounce...)
-    ├──── libs          # primitive libs ex) logging, storage, analytics
+    ├──── shared
+    ├────── utils          # shared utils (ex) string, datetime, object, uri ...)
+    ├────── stores         # shared state management (ex) Toast, Notification... )
+    ├────── apis           # initalize api setup, add api middleware
+    ├────── hooks          # shared hooks (ex) timer, debounce...)
+    ├────── libs           # primitive libs ex) logging, storage, analytics
     └── README.md
 
 ## ⚡️ Getting Started
