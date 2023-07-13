@@ -22,7 +22,6 @@ jobs:
       - name: Build Project Artifacts
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy Project Artifacts to Vercel
-        working-directory: ./apps/web
         run: vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }}
 
   storybook-deploy:
