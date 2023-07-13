@@ -10,7 +10,9 @@
     "lint": "turbo run lint",
     "type-check": "turbo run type-check",
     "clean": "turbo clean && rm -rf node_modules",
-    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore"
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore",
+    "ui-components:new": "plop ui-components",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "husky": ">=6",

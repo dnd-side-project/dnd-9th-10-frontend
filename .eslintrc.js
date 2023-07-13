@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  extends: ["@bbl/eslint-config"],
+  extends: ["@dnd9-10/eslint-config"],
   settings: {
     next: {
       rootDir: ["apps/*/"],

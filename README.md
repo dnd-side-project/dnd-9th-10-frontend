@@ -47,7 +47,7 @@
 ### 1. Install dependencies
 
 ```bash
-yarn
+yarn --registry=https://registry.yarnpkg.com
 ```
 
 ### 2. Run the development server
