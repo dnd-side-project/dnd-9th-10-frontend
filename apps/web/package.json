@@ -8,23 +8,39 @@
     "start": "next start",
     "lint": "next lint",
     "test": "echo 'no test'",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "next": "^13.4.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-native-web": "^0.18.4",
-    "webui": "*",
-    "shared": "*"
+    "shared": "*",
+    "webui": "*"
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "^7.0.27",
+    "@storybook/addon-interactions": "^7.0.27",
+    "@storybook/addon-links": "^7.0.27",
+    "@storybook/blocks": "^7.0.27",
+    "@storybook/nextjs": "^7.0.27",
+    "@storybook/react": "^7.0.27",
+    "@storybook/testing-library": "^0.0.14-next.2",
     "@types/node": "^18.11.5",
     "@types/react": "^18.2.5",
     "@types/react-dom": "^18.2.4",
     "babel-plugin-react-native-web": "^0.18.4",
     "eslint": "^8.19.0",
+    "eslint-plugin-storybook": "^0.6.12",
+    "storybook": "^7.0.27",
     "tsconfig": "*",
     "typescript": "^4.7.4"
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:storybook/recommended"
+    ]
   }
 }
