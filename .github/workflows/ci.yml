@@ -18,5 +18,5 @@ jobs:
       - name: Install
         run: yarn install --frozen-lockfile
 
-      - name: Lint and test
+      - name: TypeCheck and Lint and test
         run: yarn turbo run type-check lint test
