@@ -1,0 +1,44 @@
+name: cd
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  production-deployment:
+    name: Vercel Deployment
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+      - name: Pull Vercel Environment Information
+        working-directory: ./apps/web
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Build Project Artifacts
+        working-directory: ./apps/web
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy Project Artifacts to Vercel
+        working-directory: ./apps/web
+        run: vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+  # storybook-deploy:
+  #   name: Storybook Deployment
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout the repository
+  #       uses: actions/checkout@v3
+  #     - name: Install Dependencies
+  #       run: yarn
+  #     - name: Storybook Build
+  #       run: npm run build-storybook
+  #     - name: Publish to Storybook
+  #       uses: peaceiris/actions-gh-pages@v3
+  #       with:
+  #         github_token: ${{ secrets.GITHUB_TOKEN }}
+  #         publish_dir: ./storybook-static/
