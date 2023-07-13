@@ -40,7 +40,6 @@ jobs:
         run: npm run build-storybook
       - name: Publish to Storybook
         uses: peaceiris/actions-gh-pages@v3
-        working-directory: ./apps/web
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./storybook-static/
+          publish_dir: ./apps/web/storybook-static/
