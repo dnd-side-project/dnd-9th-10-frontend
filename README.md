@@ -85,8 +85,10 @@ Find all texts with `nx-react-code-sharing`, then change the package name
 
 ## Deployment
 
-### Dev Deployment
-
 #### Zeit
 
+- https://dnd-9th-10-frontend.vercel.app/
+
 #### Storybook
+
+- https://dnd-side-project.github.io/dnd-9th-10-frontend/
