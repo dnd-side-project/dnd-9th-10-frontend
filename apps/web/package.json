@@ -17,8 +17,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-native-web": "^0.18.4",
-    "shared": "*",
-    "webui": "*"
+    "@dnd9-10/shared": "*",
+    "@dnd9-10/webui": "*"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.0.27",
@@ -35,7 +35,7 @@
     "eslint": "^8.19.0",
     "eslint-plugin-storybook": "^0.6.12",
     "storybook": "^7.0.27",
-    "tsconfig": "*",
+    "@dnd9-10/tsconfig": "*",
     "typescript": "^4.7.4"
   },
   "eslintConfig": {

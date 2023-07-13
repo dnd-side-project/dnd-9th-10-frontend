@@ -1,7 +1,7 @@
 "use client";
 
-import { Button } from "webui";
-import { getTest } from "shared";
+import { Button } from "@dnd9-10/webui";
+import { getTest } from "@dnd9-10/shared";
 
 import styles from "../styles/index.module.css";
 

@@ -1,5 +1,5 @@
 {
-  "name": "shared",
+  "name": "@dnd9-10/shared",
   "version": "0.0.0",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
