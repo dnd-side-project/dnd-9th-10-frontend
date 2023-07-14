@@ -4,7 +4,6 @@
   "extends": "./base.json",
   "compilerOptions": {
     "allowJs": true,
-    "jsx": "react",
     "lib": ["DOM", "ESNext"],
     "noEmit": true,
     "resolveJsonModule": true,
