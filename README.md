@@ -3,7 +3,7 @@
 
 <p>Description</p>
 
-![build](https://github.com/dnd-side-project/dnd-9th-10-frontend/actions/workflows/ci-cd.yml/badge.svg)
+![build](https://github.com/dnd-side-project/dnd-9th-10-frontend/actions/workflows/ci.yml/badge.svg)
 [![CodeFactor](https://www.codefactor.io/repository/github/dnd-side-project/dnd-9th-10-frontend/badge)](https://www.codefactor.io/repository/github/dnd-side-project/dnd-9th-10-frontend)
 ![lastUpdated](https://img.shields.io/github/last-commit/dnd-side-project/dnd-9th-10-frontend/master)
 
