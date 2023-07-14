@@ -1138,10 +1138,10 @@
     "@babel/helper-create-regexp-features-plugin" "^7.22.5"
     "@babel/helper-plugin-utils" "^7.22.5"
 
-"@babel/preset-env@^7.12.9", "@babel/preset-env@^7.20.2":
+"@babel/preset-env@^7.12.9", "@babel/preset-env@^7.20.2", "@babel/preset-env@^7.22.9":
   version "7.22.9"
-  resolved "https://registry.yarnpkg.com/@babel/preset-env/-/preset-env-7.22.9.tgz#57f17108eb5dfd4c5c25a44c1977eba1df310ac7"
-  integrity sha512-wNi5H/Emkhll/bqPjsjQorSykrlfY5OWakd6AulLvMEytpKasMVUpVy8RL4qBIBs5Ac6/5i0/Rv0b/Fg6Eag/g==
+  resolved "https://registry.navercorp.com:443/api/npm/npm-naver/@babel/preset-env/-/preset-env-7.22.9.tgz#57f17108eb5dfd4c5c25a44c1977eba1df310ac7"
+  integrity sha1-V/FxCOtd/UxcJaRMGXfrod8xCsc=
   dependencies:
     "@babel/compat-data" "^7.22.9"
     "@babel/helper-compilation-targets" "^7.22.9"
@@ -1326,10 +1326,10 @@
     "@babel/types" "^7.4.4"
     esutils "^2.0.2"
 
-"@babel/preset-react@^7.18.6":
+"@babel/preset-react@^7.18.6", "@babel/preset-react@^7.22.5":
   version "7.22.5"
-  resolved "https://registry.yarnpkg.com/@babel/preset-react/-/preset-react-7.22.5.tgz#c4d6058fbf80bccad02dd8c313a9aaa67e3c3dd6"
-  integrity sha512-M+Is3WikOpEJHgR385HbuCITPTaPRaNkibTEa9oiofmJvIsrceb4yp9RL9Kb+TE8LznmeyZqpP+Lopwcx59xPQ==
+  resolved "https://registry.navercorp.com:443/api/npm/npm-naver/@babel/preset-react/-/preset-react-7.22.5.tgz#c4d6058fbf80bccad02dd8c313a9aaa67e3c3dd6"
+  integrity sha1-xNYFj7+AvMrQLdjDE6mqpn48PdY=
   dependencies:
     "@babel/helper-plugin-utils" "^7.22.5"
     "@babel/helper-validator-option" "^7.22.5"
@@ -1338,10 +1338,10 @@
     "@babel/plugin-transform-react-jsx-development" "^7.22.5"
     "@babel/plugin-transform-react-pure-annotations" "^7.22.5"
 
-"@babel/preset-typescript@^7.13.0", "@babel/preset-typescript@^7.21.0":
+"@babel/preset-typescript@^7.13.0", "@babel/preset-typescript@^7.21.0", "@babel/preset-typescript@^7.22.5":
   version "7.22.5"
-  resolved "https://registry.yarnpkg.com/@babel/preset-typescript/-/preset-typescript-7.22.5.tgz#16367d8b01d640e9a507577ed4ee54e0101e51c8"
-  integrity sha512-YbPaal9LxztSGhmndR46FmAbkJ/1fAsw293tSU+I5E5h+cnJ3d4GTwyUgGYmOXJYdGA+uNePle4qbaRzj2NISQ==
+  resolved "https://registry.navercorp.com:443/api/npm/npm-naver/@babel/preset-typescript/-/preset-typescript-7.22.5.tgz#16367d8b01d640e9a507577ed4ee54e0101e51c8"
+  integrity sha1-FjZ9iwHWQOmlB1d+1O5U4BAeUcg=
   dependencies:
     "@babel/helper-plugin-utils" "^7.22.5"
     "@babel/helper-validator-option" "^7.22.5"
@@ -3361,6 +3361,16 @@
   version "7.0.27"
   resolved "https://registry.yarnpkg.com/@storybook/react-dom-shim/-/react-dom-shim-7.0.27.tgz#146457b872f7e9a58c6b7196b7e3752b8f9b8160"
   integrity sha512-KnyBrs9S8BIWIhNdT6cIpqmSE9CAxL8uGH/ev60OutKeM+rf3SC3AylIBSvMdjy4cykMasg16QiShK+MMbKl9g==
+
+"@storybook/react-webpack5@^7.0.27":
+  version "7.0.27"
+  resolved "https://registry.navercorp.com:443/api/npm/npm-naver/@storybook/react-webpack5/-/react-webpack5-7.0.27.tgz#2e63501c55e7026ecd99ac9775d838156e53535e"
+  integrity sha1-LmNQHFXnAm7NmayXddg4FW5TU14=
+  dependencies:
+    "@storybook/builder-webpack5" "7.0.27"
+    "@storybook/preset-react-webpack" "7.0.27"
+    "@storybook/react" "7.0.27"
+    "@types/node" "^16.0.0"
 
 "@storybook/react@7.0.27", "@storybook/react@^7.0.27":
   version "7.0.27"
