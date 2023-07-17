@@ -83,6 +83,11 @@ Find all texts with `nx-react-code-sharing`, then change the package name
 
 - This starter is using [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/), it is mandatory to use it to commit changes.
 
+## Gitflow
+
+- git flow release start, finish 2.0.16
+- git flow hotfix start, finish 2.0.16-hotfix.0
+
 ## Deployment
 
 #### Zeit
