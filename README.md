@@ -16,6 +16,7 @@
 - 📱 React Native(WIP)
 - ✨ TypeScript
 - 📚 Storybook - Build component driven UIs faster
+- 🚀 PWA - Native app experience
 - 🏗 TurboRepo - Smart, Fast and Extensible Build System
 - 🃏 Jest — Configured for unit testing
 - 📈 Absolute Import and Path Alias — Import components using @nx-react-code-sharing/ prefix (rename prefix)
