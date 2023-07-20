@@ -1,8 +1,0 @@
-{
-  "extends": "@dnd9-10/tsconfig/react-native-library",
-  "include": ["."],
-  "exclude": ["dist", "build", "node_modules"],
-  "compilerOptions": {
-    "strict": true
-  }
-}
