@@ -1,8 +1,18 @@
+import { svgIcons, reactIcons } from "./svg";
 
-export interface IconProps {}
+type SvgType = keyof typeof svgIcons;
+type ReactIconType = keyof typeof reactIcons;
+export type IconType = SvgType | ReactIconType;
 
-export function Icon(props: IconProps) {
-  return <div>hello world</div>;
+export interface IconProps {
+  name: IconType;
+  size?: number;
+  color?: string;
 }
 
-export default Icon;
+export const Icon = (props: IconProps) => {
+  const { name, color, size } = props;
+
+  const TargetComponent = svgIcons[name];
+  return <TargetComponent />;
+};
