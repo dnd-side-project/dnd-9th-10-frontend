@@ -16,3 +16,5 @@ export const Icon = (props: IconProps) => {
   const TargetComponent = svgIcons[name];
   return <TargetComponent />;
 };
+
+export default Icon;
