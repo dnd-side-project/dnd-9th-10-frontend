@@ -1,6 +1,7 @@
 import Head from "next/head";
 
 import { Metadata } from "next";
+import "../styles/global.css";
 
 const TITLE = "DND 9-10";
 const DESCRIPTION = "DND 9-10";
