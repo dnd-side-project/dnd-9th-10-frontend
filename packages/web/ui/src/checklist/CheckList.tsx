@@ -1,6 +1,6 @@
 import cn from "classnames";
 import styles from "./CheckList.modules.css";
-import { CheckListItemProps } from "./CheckListItem";
+import CheckListItem, { CheckListItemProps } from "./CheckListItem";
 
 export interface CheckListProps {
   className?: string;
@@ -12,7 +12,8 @@ export function CheckList(props: CheckListProps) {
   return (
     <div className={cn(styles.wrap, className)}>
       {data.map((item, index) => {
-        return <div key={index}>test</div>;
+        const { name } = item;
+        return <CheckListItem key={index} name={name} />;
       })}
     </div>
   );
