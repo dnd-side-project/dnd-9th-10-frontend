@@ -3,3 +3,8 @@
   flex-direction: column;
   justify-content: center;
 }
+
+.content {
+  display: flex;
+  flex: 1;
+}
