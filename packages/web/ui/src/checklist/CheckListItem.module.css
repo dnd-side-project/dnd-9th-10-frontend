@@ -6,6 +6,7 @@
   padding: 20px;
   border: 2px solid var(--gray-15, rgba(225, 225, 225, 0.88));
   background: var(--gray-0, #fff);
+  cursor: pointer;
 }
 
 .label {

@@ -4,7 +4,7 @@ import IconButton from "../button/IconButton";
 
 export interface TopbarProps {
   className?: string;
-  title: React.ReactNode;
+  title?: React.ReactNode;
   onBackClick?: (e: React.MouseEvent) => void;
   RightComponent?: React.ReactNode;
 }
@@ -13,7 +13,7 @@ export function Topbar(props: TopbarProps) {
   const { className, title, RightComponent, onBackClick } = props;
   return (
     <div className={cn(styles.wrap, className)}>
-      <div className={cn(styles["title"])}>{title}</div>
+      {title && <div className={cn(styles["title"])}>{title}</div>}
       {onBackClick ? (
         <IconButton
           className={cn(styles["back_button"])}

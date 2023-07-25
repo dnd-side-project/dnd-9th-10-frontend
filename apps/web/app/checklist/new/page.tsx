@@ -21,7 +21,7 @@ export default function Page() {
 
   return (
     <div className={styles.wrap}>
-      <Topbar title="test" onBackClick={handleBackOrHome} />
+      <Topbar onBackClick={handleBackOrHome} />
       <div className={styles.header}>
         <StepIndicator
           className={styles.indicator}
