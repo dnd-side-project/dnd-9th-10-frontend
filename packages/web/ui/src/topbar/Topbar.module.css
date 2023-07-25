@@ -6,14 +6,14 @@
   justify-content: center;
   width: 100%;
   height: 56px;
-  padding: 0px 16px;
 }
 
 .back_button {
   position: absolute;
   top: 12px;
-  left: 16px;
-  padding: 2px;
+  left: 0px;
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 
 .title {

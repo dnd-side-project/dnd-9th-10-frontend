@@ -23,15 +23,25 @@ export default function Page() {
     <div className={styles.wrap}>
       <Topbar title="test" onBackClick={handleBackOrHome} />
       <div className={styles.header}>
-        <StepIndicator current={1} totalCount={2} />
+        <StepIndicator
+          className={styles.indicator}
+          current={1}
+          totalCount={2}
+        />
         <Bold22 className={styles.title}>{`내 기준에서 벗어난
 친구 유형을 알려주세요`}</Bold22>
         <Normal14 className={styles.subtitle}>{`최대 5개 선택 가능`}</Normal14>
       </div>
       <div className={styles.content}>
-        <CheckList data={[{ name: "test" }]} />
+        <CheckList
+          data={[
+            { name: "나를 깎아내리는 친구" },
+            { name: "나를 깎아내리는 친구" },
+            { name: "나를 깎아내리는 친구" },
+          ]}
+        />
       </div>
-      <SubmitButton name="작성완료" />
+      <SubmitButton className={styles.bottom} name="작성완료" />
     </div>
   );
 }
