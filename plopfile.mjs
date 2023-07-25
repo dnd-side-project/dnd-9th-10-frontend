@@ -46,7 +46,7 @@ export default function doPlop(plop) {
       const layerDir = `packages/web/ui/src/${layerFolder}`;
       const filesToAlwaysCopyOver = [
         // 'component.spec.txt',
-        'component.modules.css.txt',
+        'component.modules.css',
         'component.stories.txt',
         'component.txt',
       ];

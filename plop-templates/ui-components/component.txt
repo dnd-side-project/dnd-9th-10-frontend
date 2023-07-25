@@ -1,8 +1,13 @@
+import cn from 'classnames'
+import styles from './-- PLOP COMPONENT NAME HERE --.modules.css';
 
-export interface -- PLOP COMPONENT NAME HERE --Props {}
+export interface -- PLOP COMPONENT NAME HERE --Props {
+  className?: string
+}
 
 export function -- PLOP COMPONENT NAME HERE --(props: -- PLOP COMPONENT NAME HERE --Props) {
-  return <div>hello world</div>;
+  const { className } = props
+  return <div className={cn(styles.wrap, className)}>hello world</div>;
 }
 
 export default -- PLOP COMPONENT NAME HERE --;
