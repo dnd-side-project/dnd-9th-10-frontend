@@ -5,12 +5,13 @@ import Icon, { IconType } from "../icon/Icon";
 export interface IconButtonProps {
   className?: string;
   name: IconType;
+  onClick?: (e: React.MouseEvent) => void;
 }
 
 export function IconButton(props: IconButtonProps) {
-  const { className, name } = props;
+  const { className, name, onClick } = props;
   return (
-    <button className={cn(styles.wrap, className)}>
+    <button className={cn(styles.wrap, className)} onClick={onClick}>
       <Icon name={name} />
     </button>
   );
