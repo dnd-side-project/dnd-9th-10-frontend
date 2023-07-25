@@ -1,5 +1,5 @@
 import cn from "classnames";
-import styles from "./Topbar.modules.css";
+import styles from "./Topbar.module.css";
 import IconButton from "../button/IconButton";
 
 export interface TopbarProps {

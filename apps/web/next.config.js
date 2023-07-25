@@ -7,6 +7,7 @@ const withPWA = require('next-pwa')({
  */
 module.exports = withPWA({
   reactStrictMode: true,
+  transpilePackages: ['@dnd9-10/webui', '@dnd9-10/shared'],
   webpack: (config) => {
     config.resolve.alias = {
       ...(config.resolve.alias || {}),

@@ -1,5 +1,5 @@
 import cn from "classnames";
-import styles from "./CheckList.modules.css";
+import styles from "./CheckList.module.css";
 import CheckListItem, { CheckListItemProps } from "./CheckListItem";
 
 export interface CheckListProps {

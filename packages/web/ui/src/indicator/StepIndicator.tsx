@@ -1,5 +1,5 @@
 import cn from "classnames";
-import styles from "./StepIndicator.modules.css";
+import styles from "./StepIndicator.module.css";
 
 export interface StepIndicatorProps {
   className?: string;

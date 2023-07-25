@@ -1,5 +1,5 @@
 import cn from "classnames";
-import styles from "./CheckListItem.modules.css";
+import styles from "./CheckListItem.module.css";
 import * as Checkbox from "@radix-ui/react-checkbox";
 import { CheckIcon } from "@radix-ui/react-icons";
 import * as Label from "@radix-ui/react-label";

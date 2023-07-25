@@ -1,5 +1,5 @@
 import cn from "classnames";
-import styles from "./IconButton.modules.css";
+import styles from "./IconButton.module.css";
 import Icon, { IconType } from "../icon/Icon";
 
 export interface IconButtonProps {

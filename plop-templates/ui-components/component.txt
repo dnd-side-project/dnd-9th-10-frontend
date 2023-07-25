@@ -1,5 +1,5 @@
 import cn from 'classnames'
-import styles from './-- PLOP COMPONENT NAME HERE --.modules.css';
+import styles from './-- PLOP COMPONENT NAME HERE --.module.css';
 
 export interface -- PLOP COMPONENT NAME HERE --Props {
   className?: string
