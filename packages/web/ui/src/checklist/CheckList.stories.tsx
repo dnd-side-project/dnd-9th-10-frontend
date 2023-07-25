@@ -9,7 +9,10 @@ export default {
 } as Meta;
 
 const Template: StoryFn<CheckListProps> = (args) => (
-  <CheckList {...args} data={[{ name: "test" }]} />
+  <CheckList
+    {...args}
+    data={[{ name: "test" }, { name: "test2" }, { name: "test3" }]}
+  />
 );
 
 export const Primary = Template.bind({});

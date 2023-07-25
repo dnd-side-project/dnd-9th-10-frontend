@@ -8,6 +8,14 @@
 .header {
 }
 
+.title {
+  margin: 3px 0px 0px 10px;
+}
+
+.subtitle {
+  
+}
+
 .content {
   display: flex;
   flex: 1;

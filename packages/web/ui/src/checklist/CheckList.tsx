@@ -13,7 +13,7 @@ export function CheckList(props: CheckListProps) {
     <div className={cn(styles.wrap, className)}>
       {data.map((item, index) => {
         const { name } = item;
-        return <CheckListItem key={index} name={name} />;
+        return <CheckListItem key={index} className={cn(styles.item)} name={name} />;
       })}
     </div>
   );

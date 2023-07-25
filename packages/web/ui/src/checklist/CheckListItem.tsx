@@ -5,14 +5,15 @@ import { CheckIcon } from "@radix-ui/react-icons";
 import * as Label from "@radix-ui/react-label";
 
 export interface CheckListItemProps {
+  className?: string;
   name: string;
 }
 
 export function CheckListItem(props: CheckListItemProps) {
-  const { name } = props;
+  const { className, name } = props;
   return (
-    <form className={cn(styles.wrap)}>
-      <Label.Root className="LabelRoot" htmlFor="firstName">
+    <form className={cn(styles.wrap, className)}>
+      <Label.Root className={cn(styles.label)} htmlFor="firstName">
         {name}
       </Label.Root>
       <Checkbox.Root className="CheckboxRoot" defaultChecked id="c1">
