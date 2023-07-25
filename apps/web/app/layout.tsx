@@ -2,6 +2,7 @@ import Head from "next/head";
 
 import { Metadata } from "next";
 import "../styles/global.css";
+import { ClientProvider } from "../providers/ClientProvider";
 
 const TITLE = "DND 9-10";
 const DESCRIPTION = "DND 9-10";
@@ -110,7 +111,9 @@ export default function RootLayout({
           content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <ClientProvider>{children}</ClientProvider>
+      </body>
     </html>
   );
 }
