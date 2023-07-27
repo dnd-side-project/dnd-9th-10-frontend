@@ -12,7 +12,7 @@
     "clean": "turbo clean && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore",
     "ui-components:new": "plop ui-components",
-    "codegen": "java -jar ./scripts/openapi-generator-cli-6.2.1.jar generate -i http://example.com -g typescript-axios -o ./apps/web/__generate__ --type-mappings Date=string --skip-validate-spec --config ./codegenConfig.json",
+    "codegen": "java -jar ./scripts/openapi-generator-cli-6.2.1.jar generate -i https://bbok.kro.kr/v3/api-docs -g typescript-axios -o ./apps/web/__generate__ --type-mappings Date=string --skip-validate-spec --config ./codegenConfig.json",
     "prepare": "husky install"
   },
   "devDependencies": {
