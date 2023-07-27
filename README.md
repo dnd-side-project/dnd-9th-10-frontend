@@ -70,7 +70,7 @@ Find all texts with `nx-react-code-sharing`, then change the package name
 ### Naming Convention
 
 - 파일 이름 네이밍
-  - 하이픈 형식 ex) z-index.ts, login-modal.tsx ...
+  - 카멜케이스 형식 ex) zIndex.ts, LoginModal.tsx ...
 - 컴포넌트명 네이밍
   - ex) const LoginModal = () => { ... }
 - 패키지, 폴더명 단수or복수 네이밍

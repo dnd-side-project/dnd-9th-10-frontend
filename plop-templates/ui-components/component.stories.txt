@@ -1,4 +1,4 @@
-import { Story, Meta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { within } from '@storybook/testing-library';
 import { -- PLOP COMPONENT NAME HERE --, -- PLOP COMPONENT NAME HERE --Props } from './-- PLOP COMPONENT FOLDER NAME HERE --';
 
@@ -8,7 +8,7 @@ export default {
   argTypes: {},
 } as Meta;
 
-const Template: Story<-- PLOP COMPONENT NAME HERE --Props> = (args) => <-- PLOP COMPONENT NAME HERE -- {...args} />;
+const Template: StoryFn<-- PLOP COMPONENT NAME HERE --Props> = (args) => <-- PLOP COMPONENT NAME HERE -- {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {};

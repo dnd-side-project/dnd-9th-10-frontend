@@ -1,6 +1,8 @@
 import Head from "next/head";
 
 import { Metadata } from "next";
+import "../styles/global.css";
+import { ClientProvider } from "../providers/ClientProvider";
 
 const TITLE = "DND 9-10";
 const DESCRIPTION = "DND 9-10";
@@ -103,13 +105,19 @@ export default function RootLayout({
 <link rel='apple-touch-startup-image' href='/images/apple_splash_1242.png' sizes='1242x2208' />
 <link rel='apple-touch-startup-image' href='/images/apple_splash_750.png' sizes='750x1334' />
 <link rel='apple-touch-startup-image' href='/images/apple_splash_640.png' sizes='640x1136' /> */}
-
+        <link
+          rel="stylesheet"
+          as="style"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard-dynamic-subset.css"
+        />
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <ClientProvider>{children}</ClientProvider>
+      </body>
     </html>
   );
 }

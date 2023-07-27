@@ -1,0 +1,20 @@
+{
+  "folders": [
+    {
+      "name": "root",
+      "path": "."
+    },
+    {
+      "name": "web",
+      "path": "apps/web"
+    },
+    {
+      "name": "web/ui",
+      "path": "packages/web/ui"
+    }
+  ],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "root",
+    "search.useIgnoreFiles": false
+  }
+}

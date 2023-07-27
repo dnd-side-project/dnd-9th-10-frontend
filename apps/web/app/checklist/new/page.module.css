@@ -1,0 +1,33 @@
+.wrap {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 100%;
+}
+
+.header {
+}
+
+.indicator {
+  margin-top: 24px;
+}
+
+.title {
+  margin: 3px 0px 10px 0px;
+  color: var(--gray-80, #2f2f2f);
+}
+
+.subtitle {
+  color: var(--gray-40, #959595);
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding-top: 33px;
+}
+
+.bottom {
+  margin-bottom: 23px;
+}

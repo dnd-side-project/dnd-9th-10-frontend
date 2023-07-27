@@ -42,10 +42,11 @@ export default function doPlop(plop) {
       const componentFolder = data.componentFolder;
       const layerFolder = data.layerFolder;
 
-      const componentDir = `packages/web/ui/src/${componentName}`;
+      const componentDir = `packages/web/ui/src/${layerFolder}`;
       const layerDir = `packages/web/ui/src/${layerFolder}`;
       const filesToAlwaysCopyOver = [
         // 'component.spec.txt',
+        'component.module.css',
         'component.stories.txt',
         'component.txt',
       ];

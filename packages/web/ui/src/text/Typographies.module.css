@@ -1,0 +1,37 @@
+.wrap {
+}
+
+.bold16 {
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%; /* 16px */
+  letter-spacing: -0.16px;
+}
+
+.bold22 {
+  font-family: Pretendard;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%; /* 30.8px */
+  letter-spacing: -0.22px;
+}
+
+.normal14 {
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%; /* 14px */
+  letter-spacing: -0.14px;
+}
+
+.normal16 {
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 135%; /* 21.6px */
+}

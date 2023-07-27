@@ -1,0 +1,8 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.wrap > .item {
+  margin: 12px 0 0 12px;
+}
