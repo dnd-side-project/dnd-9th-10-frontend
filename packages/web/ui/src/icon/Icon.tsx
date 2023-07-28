@@ -1,8 +1,8 @@
-import { svgIcons, reactIcons } from "./svg";
+import { reactIcons, emojiIcons, svgIcons } from "./svg";
 
 type SvgType = keyof typeof svgIcons;
-type ReactIconType = keyof typeof reactIcons;
-export type IconType = SvgType | ReactIconType;
+type EmojiIconType = keyof typeof emojiIcons;
+export type IconType = SvgType | EmojiIconType;
 
 export interface IconProps {
   name: IconType;
@@ -13,7 +13,7 @@ export interface IconProps {
 export const Icon = (props: IconProps) => {
   const { name, color, size } = props;
 
-  const TargetComponent = svgIcons[name];
+  const TargetComponent = reactIcons[name];
   return <TargetComponent />;
 };
 
