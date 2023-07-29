@@ -1,0 +1,15 @@
+.wrap {
+  position: relative;
+  padding-top: 16px;
+  padding-left: 22px;
+  padding-right: 22px;
+}
+
+.tooltip {
+  width: 212px;
+  height: 55px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
