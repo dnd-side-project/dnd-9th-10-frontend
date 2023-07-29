@@ -4,8 +4,8 @@ import { Metadata } from "next";
 import "../styles/global.css";
 import { ClientProvider } from "../providers/ClientProvider";
 
-const TITLE = "DND 9-10";
-const DESCRIPTION = "DND 9-10";
+const TITLE = "BBOK";
+const DESCRIPTION = "BBOK";
 
 export const metadata: Metadata = {
   title: TITLE,

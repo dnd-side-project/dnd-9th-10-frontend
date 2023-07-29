@@ -1,6 +1,6 @@
 {
-  "name": "DND 9-10",
-  "short_name": "DND 9-10",
+  "name": "BBOK",
+  "short_name": "BBOK",
   "icons": [
     {
       "src": "/icons/android-chrome-192x192.png",
@@ -19,8 +19,8 @@
       "type": "image/png"
     }
   ],
-  "theme_color": "#FFFFFF",
-  "background_color": "#FFFFFF",
+  "theme_color": "#da532c",
+  "background_color": "#da532c",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait"
