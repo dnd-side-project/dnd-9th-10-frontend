@@ -13,9 +13,11 @@ export interface IconProps {
 
 export const Icon = (props: IconProps) => {
   const { className, name, color, size } = props;
+  const fillProps = color ? { fill: color } : {}
+  const sizeProps = size ? { width: size, height: size } : {}
 
   const TargetComponent = reactIcons[name];
-  return <TargetComponent className={className} />;
+  return <TargetComponent className={className} {...fillProps} {...sizeProps} />;
 };
 
 export default Icon;

@@ -28,6 +28,14 @@
   letter-spacing: -0.35px;
 }
 
+.medium12 {
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%; /* 16.8px */
+}
+
 .medium16 {
   font-family: Pretendard;
   font-size: 16px;
