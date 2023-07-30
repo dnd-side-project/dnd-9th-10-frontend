@@ -19,6 +19,16 @@ export function Bold22(props: TypographiesProps) {
   );
 }
 
+export function Bold20(props: TypographiesProps) {
+  const { as = "div", className, children, ...restProps } = props;
+  const TargetComponent = as;
+  return (
+    <TargetComponent className={cn(styles["bold20"], className)} {...restProps}>
+      {children}
+    </TargetComponent>
+  );
+}
+
 export function Bold16(props: TypographiesProps) {
   const { as = "div", className, children, ...restProps } = props;
   const TargetComponent = as;
@@ -100,6 +110,19 @@ export function Regular14(props: TypographiesProps) {
   return (
     <TargetComponent
       className={cn(styles["regular14"], className)}
+      {...restProps}
+    >
+      {children}
+    </TargetComponent>
+  );
+}
+
+export function Regular15(props: TypographiesProps) {
+  const { as = "div", className, children, ...restProps } = props;
+  const TargetComponent = as;
+  return (
+    <TargetComponent
+      className={cn(styles["regular15"], className)}
       {...restProps}
     >
       {children}

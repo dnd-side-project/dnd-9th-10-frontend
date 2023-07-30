@@ -5,4 +5,5 @@ export const images = {
   ONBOARDING1: BASE_URL + "/onboarding1.png",
   ONBOARDING2: BASE_URL + "/onboarding2.png",
   ONBOARDING3: BASE_URL + "/onboarding3.png",
+  FRIEND_EMPTY: BASE_URL + '/friend_empty.png'
 };
