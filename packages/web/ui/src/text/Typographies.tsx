@@ -90,6 +90,18 @@ export function Medium14(props: TypographiesProps) {
     </TargetComponent>
   );
 }
+export function Medium15(props: TypographiesProps) {
+  const { as = "div", className, children, ...restProps } = props;
+  const TargetComponent = as;
+  return (
+    <TargetComponent
+      className={cn(styles["medium15"], className)}
+      {...restProps}
+    >
+      {children}
+    </TargetComponent>
+  );
+}
 
 export function Medium16(props: TypographiesProps) {
   const { as = "div", className, children, ...restProps } = props;
