@@ -3,9 +3,9 @@ import { CSSProperties } from "react";
 import styles from "./Typographies.module.css";
 
 export interface TypographiesProps {
-  as?: "div" | "span";
+  as?: "div" | "span" | "pre" | 'p';
   className?: string;
-  style?: CSSProperties
+  style?: CSSProperties;
   children: React.ReactNode;
 }
 
