@@ -25,7 +25,8 @@
     "next-pwa": "5.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-native-web": "^0.18.4"
+    "react-native-web": "^0.18.4",
+    "@egjs/react-flicking": "4.10.10"
   },
   "devDependencies": {
     "@dnd9-10/tsconfig": "*",

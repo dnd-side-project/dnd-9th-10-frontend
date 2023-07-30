@@ -1,0 +1,15 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  width: 100%;
+}
+
+.title {
+}
+
+.indicator {
+  margin: 52px auto 56px auto;
+}
