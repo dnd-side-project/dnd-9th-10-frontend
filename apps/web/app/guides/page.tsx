@@ -16,8 +16,12 @@ export default function Page() {
 
   return (
     <div className={styles.wrap}>
-      <GuideCarousel />
-      <SubmitButton name="시작하기" onClick={handleNext} />
+      <div className={styles.content}>
+        <GuideCarousel itemClassName={styles.item} />
+      </div>
+      <div className={styles.bottom}>
+        <SubmitButton name="시작하기" onClick={handleNext} />
+      </div>
     </div>
   );
 }

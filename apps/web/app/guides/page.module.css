@@ -4,3 +4,17 @@
   flex-direction: column;
   height: 100%;
 }
+
+.content {
+  padding-top: 88px;
+}
+
+.item {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.bottom {
+  padding-left: 20px;
+  padding-right: 20px;
+}
