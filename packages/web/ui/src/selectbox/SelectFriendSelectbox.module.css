@@ -32,6 +32,7 @@
   height: 129px;
   border-radius: 12px;
   background: var(--gray-7, #f2f4f5);
+  border: 2px solid var(--gray-40, #f2f4f5);
 }
 
 .active-item {

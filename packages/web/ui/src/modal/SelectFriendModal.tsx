@@ -14,7 +14,7 @@ export interface SelectFriendModalProps {
 
 export function SelectFriendModal(props: SelectFriendModalProps) {
   const { className } = props;
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
   const handleSelected = useCallback((index: number) => {
     setSelectedIndex(index);

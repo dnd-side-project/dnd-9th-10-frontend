@@ -5,6 +5,7 @@ import Image from "next/image";
 import { images } from "@dnd9-10/shared/src/libs/images";
 import { Medium15 } from "../text/Typographies";
 import { useCallback } from "react";
+import Radiobox from "../checkbox/Radiobox";
 
 export interface SelectFriendSelectboxProps {
   className?: string;
@@ -32,7 +33,9 @@ export function SelectFriendSelectbox(props: SelectFriendSelectboxProps) {
             })}
           >
             <Image width={109} height={78} alt="item" src={images.FIREND1} />
-            <div className={styles["check-group"]}>test</div>
+            <div className={styles["check-group"]}>
+              <Radiobox checked={selectedIndex === 0} />
+            </div>
           </div>
           <Medium15 className={styles["item-title"]}>뾰족뾰족 고스미</Medium15>
         </div>
@@ -43,7 +46,9 @@ export function SelectFriendSelectbox(props: SelectFriendSelectboxProps) {
             })}
           >
             <Image width={109} height={78} alt="item" src={images.FIREND2} />
-            <div className={styles["check-group"]}>test</div>
+            <div className={styles["check-group"]}>
+              <Radiobox checked={selectedIndex === 1} />
+            </div>
           </div>
           <Medium15 className={styles["item-title"]}>삐쭉삐쭉 인장이</Medium15>
         </div>
