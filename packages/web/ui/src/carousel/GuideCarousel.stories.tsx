@@ -10,7 +10,7 @@ export default {
 } as Meta;
 
 const Template: StoryFn<GuideCarouselProps> = (args) => (
-  <GuideCarousel {...args} onNext={action("onNext")} />
+  <GuideCarousel {...args} />
 );
 
 export const Primary = Template.bind({});

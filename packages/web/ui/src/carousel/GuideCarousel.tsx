@@ -12,11 +12,10 @@ import onboarding3 from "./images/onboarding3.png";
 
 export interface GuideCarouselProps {
   className?: string;
-  onNext: () => void;
 }
 
 export function GuideCarousel(props: GuideCarouselProps) {
-  const { className, onNext } = props;
+  const { className } = props;
   const carouselRef = useRef<Flicking>();
   const [page, setPage] = useState(0);
   const totalCount = 3;
@@ -24,14 +23,6 @@ export function GuideCarousel(props: GuideCarouselProps) {
   const handlePagination = useCallback((page: number) => {
     setPage(page);
   }, []);
-
-  const handleNext = useCallback(() => {
-    if (page === totalCount - 1) {
-      onNext();
-      return;
-    }
-    carouselRef.current?.next();
-  }, [onNext, page]);
 
   return (
     <div className={cn(styles.wrap, className)}>
