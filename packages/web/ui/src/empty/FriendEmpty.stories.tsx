@@ -4,7 +4,7 @@ import { FriendEmpty, FriendEmptyProps } from './FriendEmpty';
 
 export default {
   component: FriendEmpty,
-  title: 'friend/FriendEmpty',
+  title: 'empty/FriendEmpty',
   argTypes: {},
 } as Meta;
 

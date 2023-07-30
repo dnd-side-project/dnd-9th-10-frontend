@@ -4,7 +4,6 @@ import styles from "./FriendEmpty.module.css";
 import Image from "next/image";
 import { images } from "@dnd9-10/shared/src/libs/images";
 import { Bold20, Regular15 } from "../text/Typographies";
-import SubmitButton from "../button/SubmitButton";
 import { Button } from "../button/Button";
 
 export interface FriendEmptyProps {
