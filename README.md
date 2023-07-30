@@ -93,7 +93,7 @@ Find all texts with `nx-react-code-sharing`, then change the package name
 
 #### Zeit
 
-- https://dnd-9th-10-frontend.vercel.app/
+- https://bbok.vercel.app/
 
 #### Storybook
 
