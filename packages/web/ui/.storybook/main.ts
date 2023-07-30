@@ -14,5 +14,20 @@ const config: StorybookConfig = {
   docs: {
     autodocs: "tag",
   },
+  staticDirs: ["../../../../apps/web/public"],
+  webpackFinal: async (config) => {
+    if (config?.resolve?.alias) {
+      config.resolve.alias[`next/router`] = require.resolve(
+        `./__mocks__/next/router.js`
+      );
+      config.resolve.alias[`next/link`] = require.resolve(
+        `./__mocks__/next/link.js`
+      );
+      config.resolve.alias[`next/image`] = require.resolve(
+        `./__mocks__/next/image.js`
+      );
+    }
+    return config;
+  },
 };
 export default config;

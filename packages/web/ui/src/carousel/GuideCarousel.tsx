@@ -1,14 +1,13 @@
 import Flicking, { FlickingProps } from "@egjs/react-flicking";
 import cn from "classnames";
 import { useCallback, useRef, useState } from "react";
-import SubmitButton from "../button/SubmitButton";
+import Image from "next/image";
+
 import CircularIndicator from "../indicator/CircularIndicator";
 import { Bold22 } from "../text/Typographies";
 import { Carousel } from "./Carousel";
 import styles from "./GuideCarousel.module.css";
-import onboarding1 from "./images/onboarding1.png";
-import onboarding2 from "./images/onboarding2.png";
-import onboarding3 from "./images/onboarding3.png";
+import { images } from '@dnd9-10/shared/src/libs/images'
 
 export interface GuideCarouselProps {
   className?: string;
@@ -30,19 +29,19 @@ export function GuideCarousel(props: GuideCarouselProps) {
         <div className={styles.item}>
           <Bold22 as="pre" className={styles.title}>{`거리를 두고 싶은 친구를
 등록하고 일화를 작성하세요`}</Bold22>
-          <img width={320} src={onboarding1} />
+          <Image alt="onboarding1" width={320} height={340} src={images.ONBOARDING1} />
         </div>
         <div className={styles.item}>
           <Bold22 as="pre" className={styles.title}>{`나만의 친구 기준을 정하여
 나와 친구의 거리를 확인해요`}</Bold22>
-          <img width={320} src={onboarding2} />
+          <Image alt="onboarding2" width={320} height={340} src={images.ONBOARDING2} />
         </div>
         <div className={styles.item}>
           <Bold22
             as="pre"
             className={styles.title}
           >{`일화마다 나의 감정을 기록해요`}</Bold22>
-          <img width={320} src={onboarding3} />
+          <Image alt="onboarding3" width={320} height={340} src={images.ONBOARDING3} />
         </div>
       </Carousel>
       <CircularIndicator
@@ -50,7 +49,6 @@ export function GuideCarousel(props: GuideCarouselProps) {
         current={page}
         totalCount={totalCount}
       />
-      <SubmitButton name="시작하기" onSubmit={handleNext} />
     </div>
   );
 }
