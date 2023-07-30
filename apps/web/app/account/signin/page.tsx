@@ -25,10 +25,13 @@ export default function Page() {
   return (
     <div className={styles.wrap}>
       <div className={styles.content}>
-        <Semibold20 className={styles.title}>
-          나를 아프게 하는 가시 뽑기
-        </Semibold20>
-        <Icon name="logo" />
+        <div className={styles['content-header']}>
+          <Semibold20 className={styles.title}>
+            나를 아프게 하는 가시 뽑기
+          </Semibold20>
+          <Icon name="logo" />
+        </div>
+
         <Image
           className={styles["signin-bg"]}
           alt="signin"

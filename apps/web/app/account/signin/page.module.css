@@ -7,8 +7,13 @@
 
 .content {
   position: relative;
-  height: 664px;
+  height: 634px;
   padding-top: 80px;
+}
+
+.content-header {
+  padding-top: 80px;
+  padding-left: 33px;
 }
 
 .title {
@@ -30,8 +35,8 @@
 .bottom {
   padding-left: 20px;
   padding-right: 20px;
+  margin-bottom: 23px;
 }
 
 .guest-button {
-  margin-bottom: 23px;
 }
