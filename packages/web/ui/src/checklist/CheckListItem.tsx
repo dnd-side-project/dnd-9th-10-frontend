@@ -1,9 +1,8 @@
 import cn from "classnames";
 import styles from "./CheckListItem.module.css";
-import * as Checkbox from "@radix-ui/react-checkbox";
-import { CheckIcon } from "@radix-ui/react-icons";
 import * as Label from "@radix-ui/react-label";
 import { useCallback, useState } from "react";
+import { Checkbox } from "../checkbox/Checkbox";
 
 export interface CheckListItemProps {
   className?: string;
@@ -26,11 +25,7 @@ export function CheckListItem(props: CheckListItemProps) {
   return (
     <div className={cn(styles.wrap, className)} onClick={handleToggle}>
       <Label.Root className={cn(styles.label)}>{name}</Label.Root>
-      <Checkbox.Root checked={checked}>
-        <Checkbox.Indicator>
-          <CheckIcon />
-        </Checkbox.Indicator>
-      </Checkbox.Root>
+      <Checkbox checked={checked} />
     </div>
   );
 }

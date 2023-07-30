@@ -21,14 +21,14 @@ export default function Page() {
 
   return (
     <div className={styles.wrap}>
-      <Topbar onBackClick={handleBackOrHome} />
+      <Topbar className={styles.topbar} onBackClick={handleBackOrHome} />
       <div className={styles.header}>
         <StepIndicator
           className={styles.indicator}
           current={1}
           totalCount={2}
         />
-        <Bold22 className={styles.title}>{`내 기준에서 벗어난
+        <Bold22 className={styles.title} as="pre">{`내 기준에서 벗어난
 친구 유형을 알려주세요`}</Bold22>
         <Medium16 className={styles.subtitle}>{`최대 5개 선택 가능`}</Medium16>
       </div>
@@ -41,7 +41,9 @@ export default function Page() {
           ]}
         />
       </div>
-      <SubmitButton className={styles.bottom} name="작성완료" />
+      <div className={styles.bottom}>
+        <SubmitButton className={styles.bottom} name="작성완료" />
+      </div>
     </div>
   );
 }

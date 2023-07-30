@@ -19,13 +19,13 @@ export default function Page() {
   const router = useRouter();
 
   const handleNext = useCallback(() => {
-    router.replace("signin");
+    router.replace("/checklist/new");
   }, [router]);
 
   return (
     <div className={styles.wrap}>
       <div className={styles.content}>
-        <div className={styles['content-header']}>
+        <div className={styles["content-header"]}>
           <Semibold20 className={styles.title}>
             나를 아프게 하는 가시 뽑기
           </Semibold20>

@@ -5,7 +5,12 @@
   height: 100%;
 }
 
+.topbar {
+}
+
 .header {
+  padding-left: 32px;
+  padding-right: 32px;
 }
 
 .indicator {
@@ -26,8 +31,12 @@
   flex: 1;
   flex-direction: column;
   padding-top: 33px;
+  padding-left: 32px;
+  padding-right: 32px;
 }
 
 .bottom {
+  padding-left: 20px;
+  padding-right: 20px;
   margin-bottom: 23px;
 }
