@@ -44,7 +44,7 @@ export default function Page() {
         <SubmitButton
           className={styles["guest-button"]}
           name="시작하기"
-          onSubmit={handleNext}
+          onClick={handleNext}
         />
       </div>
     </div>

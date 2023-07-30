@@ -7,8 +7,12 @@ export interface ButtonProps {
 }
 
 export function Button(props: ButtonProps) {
-  const { className, children } = props;
-  return <button className={cn(styles.wrap, className)}>{children}</button>;
+  const { className, children, ...restProps } = props;
+  return (
+    <button {...restProps} className={cn(styles.wrap, className)}>
+      {children}
+    </button>
+  );
 }
 
 export default Button;

@@ -9,9 +9,13 @@ export interface IconButtonProps {
 }
 
 export function IconButton(props: IconButtonProps) {
-  const { className, name, onClick } = props;
+  const { className, name, onClick, ...restProps } = props;
   return (
-    <button className={cn(styles.wrap, className)} onClick={onClick}>
+    <button
+      {...restProps}
+      className={cn(styles.wrap, className)}
+      onClick={onClick}
+    >
       <Icon name={name} />
     </button>
   );

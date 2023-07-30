@@ -17,7 +17,7 @@ export default function Page() {
   return (
     <div className={styles.wrap}>
       <GuideCarousel />
-      <SubmitButton name="시작하기" onSubmit={handleNext} />
+      <SubmitButton name="시작하기" onClick={handleNext} />
     </div>
   );
 }

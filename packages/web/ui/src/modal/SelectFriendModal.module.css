@@ -1,6 +1,15 @@
 .wrap {
 }
 
+.trigger-button {
+  width: 92px;
+  height: 36px;
+  border-radius: 39px;
+  border: 1.6px solid var(--gray-30, #aeaeae);
+  background: #fff;
+  color: var(--gray-50, #626262);
+}
+
 .content {
   padding-top: 60px;
   padding-bottom: 117px;
