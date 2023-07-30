@@ -17,6 +17,7 @@ import Search from "./search";
 import Setting from "./setting";
 import Sticker from "./sticker";
 import Tooltip from "./tooltip";
+import Logo from "./logo";
 import Emoji1 from "./emoji/icon1";
 import Emoji2 from "./emoji/icon2";
 import Emoji3 from "./emoji/icon3";
@@ -53,6 +54,7 @@ export const svgIcons = {
   setting: Setting,
   sticker: Sticker,
   tooltip: Tooltip,
+  logo: Logo,
 } as const;
 
 export const reactIcons = { ...emojiIcons, ...svgIcons } as const;

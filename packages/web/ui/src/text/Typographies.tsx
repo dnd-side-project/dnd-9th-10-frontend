@@ -42,12 +42,38 @@ export function Semibold14(props: TypographiesProps) {
   );
 }
 
+export function Semibold20(props: TypographiesProps) {
+  const { as = "div", className, children, ...restProps } = props;
+  const TargetComponent = as;
+  return (
+    <TargetComponent
+      className={cn(styles["semibold20"], className)}
+      {...restProps}
+    >
+      {children}
+    </TargetComponent>
+  );
+}
+
 export function Medium12(props: TypographiesProps) {
   const { as = "div", className, children, ...restProps } = props;
   const TargetComponent = as;
   return (
     <TargetComponent
       className={cn(styles["medium12"], className)}
+      {...restProps}
+    >
+      {children}
+    </TargetComponent>
+  );
+}
+
+export function Medium14(props: TypographiesProps) {
+  const { as = "div", className, children, ...restProps } = props;
+  const TargetComponent = as;
+  return (
+    <TargetComponent
+      className={cn(styles["medium14"], className)}
       {...restProps}
     >
       {children}
