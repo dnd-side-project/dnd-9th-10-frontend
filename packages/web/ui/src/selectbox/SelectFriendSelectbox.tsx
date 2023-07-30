@@ -4,6 +4,7 @@ import styles from "./SelectFriendSelectbox.module.css";
 import Image from "next/image";
 import { images } from "@dnd9-10/shared/src/libs/images";
 import { Medium15 } from "../text/Typographies";
+import { useCallback } from "react";
 
 export interface SelectFriendSelectboxProps {
   className?: string;
@@ -13,10 +14,18 @@ export interface SelectFriendSelectboxProps {
 
 export function SelectFriendSelectbox(props: SelectFriendSelectboxProps) {
   const { className, selectedIndex, onSelected } = props;
+
+  const handleSelected = useCallback(
+    (index: number) => () => {
+      onSelected(index);
+    },
+    [onSelected]
+  );
+
   return (
     <div className={cn(styles.wrap, className)}>
       <div className={styles.content}>
-        <div className={styles["item-group"]}>
+        <div className={styles["item-group"]} onClick={handleSelected(0)}>
           <div
             className={cn(styles.item, {
               [styles["active-item"]]: selectedIndex === 0,
@@ -27,7 +36,7 @@ export function SelectFriendSelectbox(props: SelectFriendSelectboxProps) {
           </div>
           <Medium15 className={styles["item-title"]}>뾰족뾰족 고스미</Medium15>
         </div>
-        <div className={styles["item-group"]}>
+        <div className={styles["item-group"]} onClick={handleSelected(1)}>
           <div
             className={cn(styles.item, {
               [styles["active-item"]]: selectedIndex === 1,
