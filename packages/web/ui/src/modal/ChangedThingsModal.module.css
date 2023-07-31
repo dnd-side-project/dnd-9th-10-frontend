@@ -1,0 +1,38 @@
+.wrap {
+  width: 312px;
+  min-height: 214px;
+  padding-left: 14px;
+  padding-right: 14px;
+  padding-bottom: 16px;
+  padding-top: 16px;
+}
+
+.title {
+  color: var(--gray-70, #484848);
+  margin-top: 48px;
+  text-align: center;
+}
+
+.content {
+  color: var(--gray-50, #626262);
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 16px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.bottom {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.bottom-button {
+  width: 138px;
+  max-height: 52px;
+}

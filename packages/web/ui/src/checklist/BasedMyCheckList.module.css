@@ -2,6 +2,10 @@
   width: 335px;
   border-radius: 12px;
   background: var(--gray-7, #f2f4f5);
+  padding-left: 15px;
+  padding-right: 12px;
+  padding-top: 12px;
+  padding-bottom: 22px;
 }
 
 .header {

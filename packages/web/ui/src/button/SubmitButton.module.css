@@ -8,3 +8,15 @@
 .content {
   color: var(--gray-10, #eee);
 }
+
+.disabled {
+  color: var(--gray-30, #aeaeae);
+  border-radius: 10px;
+  background: var(--gray-15, #e1e1e1);
+}
+
+.warn {
+  color: var(--gray-5, #fdfdfd);
+  border-radius: 10px;
+  background: #e34848;
+}

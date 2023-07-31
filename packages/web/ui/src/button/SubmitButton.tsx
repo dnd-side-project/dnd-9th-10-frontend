@@ -4,17 +4,20 @@ import { Bold16 } from "../text/Typographies";
 import { useCallback } from "react";
 export interface SubmitButtonProps {
   className?: string;
+  type?: '' | 'disabled' | 'warn'
   name: string;
   onClick?: (e: React.MouseEvent) => void;
 }
 
 export function SubmitButton(props: SubmitButtonProps) {
-  const { className, name, onClick, ...restProps } = props;
+  const { className, type = '', name, onClick, ...restProps } = props;
 
   return (
     <button
       {...restProps}
-      className={cn(className, styles.wrap)}
+      className={cn(className, styles.wrap, {
+        [styles[type]]: true,
+      })}
       onClick={onClick}
     >
       <Bold16 className={cn(styles.content)}>{name}</Bold16>
