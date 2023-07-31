@@ -1,4 +1,6 @@
 import cn from "classnames";
+import Icon from "../icon/Icon";
+import TagText from "../text/TagText";
 import styles from "./DiaryCard.module.css";
 
 export interface DiaryCardProps {
@@ -10,15 +12,22 @@ export interface DiaryCardProps {
 }
 
 export function DiaryCard(props: DiaryCardProps) {
-  const { className } = props;
+  const { className, date, description, tags } = props;
   return (
     <div className={cn(styles.wrap, className)}>
       <div className={styles.content}>
-        <div className={styles.date}>date</div>
-        <div className={styles.description}>test</div>
+        <div className={styles.date}>{date}</div>
+        <p className={styles.description}>{description}</p>
         <div className={styles.tags}>
-          <div>test</div>
+          {tags?.map((tag, index) => {
+            return (
+              <TagText key={index} className={styles.tag} size={"small"}>{tag}</TagText>
+            )
+          })}
         </div>
+      </div>
+      <div className="emoji-group">
+        <Icon name="emoji1" />
       </div>
     </div>
   );

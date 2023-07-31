@@ -3,7 +3,7 @@ import styles from "./TagText.module.css";
 
 export interface TagTextProps {
   className?: string;
-  active: boolean;
+  active?: boolean;
   size: "small" | "medium";
   children: React.ReactNode;
 }
