@@ -33,10 +33,10 @@ jobs:
       - name: Install Dependencies
         run: yarn
       - name: Storybook Build
-        working-directory: ./apps/web
+        working-directory: ./packages/web/ui
         run: npm run build-storybook
       - name: Publish to Storybook
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./apps/web/storybook-static/
+          publish_dir: ./packages/web/ui/storybook-static/
