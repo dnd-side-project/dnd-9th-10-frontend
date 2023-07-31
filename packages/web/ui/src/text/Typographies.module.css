@@ -1,13 +1,31 @@
 .wrap {
 }
 
-.bold22 {
+.bold16 {
   font-family: Pretendard;
-  font-size: 22px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 700;
-  line-height: 140%; /* 30.8px */
-  letter-spacing: -0.22px;
+  line-height: 100%; /* 16px */
+  letter-spacing: -0.16px;
+}
+
+.bold18 {
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 136%; /* 24.48px */
+  letter-spacing: -0.18px;
+}
+
+.bold19 {
+  font-family: Pretendard;
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%; /* 19px */
+  letter-spacing: -0.19px;
 }
 
 .bold20 {
@@ -19,13 +37,13 @@
   letter-spacing: -0.2px;
 }
 
-.bold16 {
+.bold22 {
   font-family: Pretendard;
-  font-size: 16px;
+  font-size: 22px;
   font-style: normal;
   font-weight: 700;
-  line-height: 100%; /* 16px */
-  letter-spacing: -0.16px;
+  line-height: 140%; /* 30.8px */
+  letter-spacing: -0.22px;
 }
 
 .semibold14 {
@@ -52,6 +70,13 @@
   font-style: normal;
   font-weight: 500;
   line-height: 140%; /* 16.8px */
+}
+.medium15 {
+  font-family: Pretendard;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%; /* 16.9px */
 }
 
 .medium14 {

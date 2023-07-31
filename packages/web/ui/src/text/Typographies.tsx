@@ -3,17 +3,37 @@ import { CSSProperties } from "react";
 import styles from "./Typographies.module.css";
 
 export interface TypographiesProps {
-  as?: "div" | "span" | "pre" | 'p';
+  as?: "div" | "span" | "pre" | "p";
   className?: string;
   style?: CSSProperties;
   children: React.ReactNode;
 }
 
-export function Bold22(props: TypographiesProps) {
+export function Bold16(props: TypographiesProps) {
   const { as = "div", className, children, ...restProps } = props;
   const TargetComponent = as;
   return (
-    <TargetComponent className={cn(styles["bold22"], className)} {...restProps}>
+    <TargetComponent className={cn(styles["bold16"], className)} {...restProps}>
+      {children}
+    </TargetComponent>
+  );
+}
+
+export function Bold18(props: TypographiesProps) {
+  const { as = "div", className, children, ...restProps } = props;
+  const TargetComponent = as;
+  return (
+    <TargetComponent className={cn(styles["bold18"], className)} {...restProps}>
+      {children}
+    </TargetComponent>
+  );
+}
+
+export function Bold19(props: TypographiesProps) {
+  const { as = "div", className, children, ...restProps } = props;
+  const TargetComponent = as;
+  return (
+    <TargetComponent className={cn(styles["bold19"], className)} {...restProps}>
       {children}
     </TargetComponent>
   );
@@ -29,11 +49,11 @@ export function Bold20(props: TypographiesProps) {
   );
 }
 
-export function Bold16(props: TypographiesProps) {
+export function Bold22(props: TypographiesProps) {
   const { as = "div", className, children, ...restProps } = props;
   const TargetComponent = as;
   return (
-    <TargetComponent className={cn(styles["bold16"], className)} {...restProps}>
+    <TargetComponent className={cn(styles["bold22"], className)} {...restProps}>
       {children}
     </TargetComponent>
   );
@@ -78,6 +98,19 @@ export function Medium12(props: TypographiesProps) {
   );
 }
 
+export function Medium13(props: TypographiesProps) {
+  const { as = "div", className, children, ...restProps } = props;
+  const TargetComponent = as;
+  return (
+    <TargetComponent
+      className={cn(styles["medium13"], className)}
+      {...restProps}
+    >
+      {children}
+    </TargetComponent>
+  );
+}
+
 export function Medium14(props: TypographiesProps) {
   const { as = "div", className, children, ...restProps } = props;
   const TargetComponent = as;
@@ -90,6 +123,7 @@ export function Medium14(props: TypographiesProps) {
     </TargetComponent>
   );
 }
+
 export function Medium15(props: TypographiesProps) {
   const { as = "div", className, children, ...restProps } = props;
   const TargetComponent = as;
