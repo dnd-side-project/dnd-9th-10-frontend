@@ -1,0 +1,16 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  margin-top: 20px;
+  margin-bottom: 16px;
+}
+
+.subtitle {
+  color: var(--gray-40, #959595);
+  text-align: center;
+}

@@ -50,3 +50,7 @@ ul {
   margin: 0;
   list-style: none;
 }
+
+pre {
+  margin: 0;
+}

@@ -4,3 +4,31 @@
   flex-direction: column;
   height: 100%;
 }
+
+.topbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.search-input {
+  width: 100%;
+  margin-left: 63px;
+  margin-right: 24px;
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.empty {
+  padding-top: 85px;
+}
+
+.bottom {
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 23px;
+}

@@ -1,0 +1,10 @@
+.wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: var(--gray-30, #aeaeae);
+}
+
+.info-icon {
+  margin-right: 4px;
+}

@@ -6,8 +6,8 @@ import "@egjs/react-flicking/dist/flicking.css";
 
 export interface CarouselProps {
   className?: string;
-  children: React.ReactNode[];
-  onPagination: (page: number) => void;
+  children: React.ReactNode;
+  onPagination?: (page: number) => void;
 }
 
 export const Carousel = React.forwardRef(function CarouselRef(
@@ -23,12 +23,10 @@ export const Carousel = React.forwardRef(function CarouselRef(
       horizontal={true}
       moveType={["strict", { count: 1 }]}
       onChanged={(e) => {
-        onPagination(e.index);
+        onPagination?.(e.index);
       }}
     >
-      {children.map((itemChildren) => {
-        return itemChildren
-      })}
+      {children}
     </Flicking>
   );
 });

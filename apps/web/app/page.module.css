@@ -16,7 +16,7 @@
 }
 
 .section + .section {
-  margin-top: 53px;
+  margin-top: 24px;
 }
 
 .section-title {
@@ -24,6 +24,21 @@
   display: flex;
   flex-direction: column;
   padding-bottom: 24px;
+}
+
+.friend-item {
+  width: 100%;
+  height: 337px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.friend-indicator {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 16px;
 }
 
 .bottom {

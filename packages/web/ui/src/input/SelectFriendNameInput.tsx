@@ -5,6 +5,7 @@ import TextInput from "./TextInput";
 import { Regular13 } from "../text/Typographies";
 import Image from "next/image";
 import Icon from "../icon/Icon";
+import InfoText from "../text/InfoText";
 
 export interface SelectFriendNameInputProps {
   className?: string;
@@ -23,10 +24,7 @@ export function SelectFriendNameInput(props: SelectFriendNameInputProps) {
           placeholder: "이름을 입력하세요.",
         }}
       />
-      <Regular13 className={styles.info}>
-        <Icon className={styles["info-icon"]} name="warn" size={16} />
-        한글 또는 영문, 숫자의 조합으로 12자 이내
-      </Regular13>
+      <InfoText>한글 또는 영문, 숫자의 조합으로 12자 이내</InfoText>
     </div>
   );
 }
