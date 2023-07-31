@@ -1,0 +1,33 @@
+.wrap {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 100%;
+}
+
+.content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-top: 50px;
+  padding-left: 22px;
+  padding-right: 22px;
+}
+
+.section + .section {
+  margin-top: 53px;
+}
+
+.section-title {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 24px;
+}
+
+.bottom {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
