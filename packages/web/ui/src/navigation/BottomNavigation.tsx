@@ -5,7 +5,7 @@ import Icon from "../icon/Icon";
 import { Medium12 } from "../text/Typographies";
 import styles from "./BottomNavigation.module.css";
 
-type BottomTabs = "home" | "my";
+export type BottomTabs = "home" | "my";
 
 export interface BottomNavigationProps {
   className?: string;
