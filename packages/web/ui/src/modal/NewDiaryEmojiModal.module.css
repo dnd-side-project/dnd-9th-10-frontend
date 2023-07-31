@@ -1,0 +1,32 @@
+.wrap {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 100%;
+}
+
+.topbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding-top: 120px;
+  padding-bottom: 257px;
+}
+
+.bottom {
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 23px;
+}

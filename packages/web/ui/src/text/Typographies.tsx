@@ -72,6 +72,32 @@ export function Semibold14(props: TypographiesProps) {
   );
 }
 
+export function Semibold15(props: TypographiesProps) {
+  const { as = "div", className, children, ...restProps } = props;
+  const TargetComponent = as;
+  return (
+    <TargetComponent
+      className={cn(styles["semibold15"], className)}
+      {...restProps}
+    >
+      {children}
+    </TargetComponent>
+  );
+}
+
+export function Semibold18(props: TypographiesProps) {
+  const { as = "div", className, children, ...restProps } = props;
+  const TargetComponent = as;
+  return (
+    <TargetComponent
+      className={cn(styles["semibold18"], className)}
+      {...restProps}
+    >
+      {children}
+    </TargetComponent>
+  );
+}
+
 export function Semibold20(props: TypographiesProps) {
   const { as = "div", className, children, ...restProps } = props;
   const TargetComponent = as;

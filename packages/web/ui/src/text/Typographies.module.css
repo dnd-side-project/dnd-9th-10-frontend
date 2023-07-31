@@ -55,6 +55,23 @@
   letter-spacing: -0.35px;
 }
 
+.semibold15 {
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%; /* 22.5px */
+  letter-spacing: -0.15px;
+}
+
+.semibold18 {
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%; /* 18px */
+}
+
 .semibold20 {
   font-family: Pretendard;
   font-size: 20px;
@@ -71,7 +88,8 @@
   font-weight: 500;
   line-height: 140%; /* 16.8px */
 }
-.medium15 {
+
+.medium13 {
   font-family: Pretendard;
   font-size: 13px;
   font-style: normal;
