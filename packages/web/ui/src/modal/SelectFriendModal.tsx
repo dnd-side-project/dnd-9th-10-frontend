@@ -36,7 +36,9 @@ export function SelectFriendModal(props: SelectFriendModalProps) {
           />
         </div>
         <Dialog.Close asChild>
-          <SubmitButton name="확인" />
+          <div className={styles.bottom}>
+            <SubmitButton name="확인" />
+          </div>
         </Dialog.Close>
       </>
     </Modal>

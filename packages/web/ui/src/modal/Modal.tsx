@@ -16,8 +16,8 @@ export function Modal(props: ModalProps) {
       <Dialog.Root>
         <Dialog.Trigger asChild>{TriggerComponent}</Dialog.Trigger>
         <Dialog.Portal>
-          <Dialog.Overlay className="DialogOverlay" />
-          <Dialog.Content className="DialogContent">
+          <Dialog.Overlay className={styles.DialogOverlay} />
+          <Dialog.Content className={styles.DialogContent}>
             <div className={cn(styles.wrap, className)}>
               <Dialog.Close asChild>
                 <IconButton className={styles["close-button"]} name="close" />
