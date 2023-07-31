@@ -150,6 +150,18 @@ export function Medium16(props: TypographiesProps) {
   );
 }
 
+export function Regular13(props: TypographiesProps) {
+  const { as = "div", className, children, ...restProps } = props;
+  const TargetComponent = as;
+  return (
+    <TargetComponent
+      className={cn(styles["regular13"], className)}
+      {...restProps}
+    >
+      {children}
+    </TargetComponent>
+  );
+}
 export function Regular14(props: TypographiesProps) {
   const { as = "div", className, children, ...restProps } = props;
   const TargetComponent = as;
