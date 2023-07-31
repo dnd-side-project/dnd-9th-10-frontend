@@ -5,6 +5,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  height: 336px;
 }
 
 .content {
@@ -56,10 +57,9 @@
 
 .bottom {
   display: flex;
+  flex: 1;
   flex-direction: row;
   align-items: center;
-  padding-top: 24px;
-  padding-bottom: 24px;
   padding-left: 26px;
   padding-right: 26px;
   background: #424242;

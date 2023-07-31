@@ -10,7 +10,7 @@ export default {
 } as Meta;
 
 const Template: StoryFn<ProfileImageProps> = (args) => (
-  <ProfileImage {...args} alt="image" src={images.FIREND_PROFILE1} size={102} />
+  <ProfileImage {...args} alt="image" src={images.FRIEND_PROFILE1} size={102} />
 );
 
 export const Primary = Template.bind({});

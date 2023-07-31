@@ -32,7 +32,7 @@ export function SelectFriendSelectbox(props: SelectFriendSelectboxProps) {
               [styles["active-item"]]: selectedIndex === 0,
             })}
           >
-            <Image width={109} height={78} alt="item" src={images.FIREND1} />
+            <Image width={109} height={78} alt="item" src={images.FRIEND1} />
             <div className={styles["check-group"]}>
               <Radiobox checked={selectedIndex === 0} />
             </div>
@@ -45,7 +45,7 @@ export function SelectFriendSelectbox(props: SelectFriendSelectboxProps) {
               [styles["active-item"]]: selectedIndex === 1,
             })}
           >
-            <Image width={109} height={78} alt="item" src={images.FIREND2} />
+            <Image width={109} height={78} alt="item" src={images.FRIEND2} />
             <div className={styles["check-group"]}>
               <Radiobox checked={selectedIndex === 1} />
             </div>

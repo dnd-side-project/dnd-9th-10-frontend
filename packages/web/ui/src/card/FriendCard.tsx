@@ -22,7 +22,7 @@ export function FriendCard(props: FriendCardProps) {
           <ProfileImage
             className={styles["profile-image"]}
             alt="profile"
-            src={images.FIREND_PROFILE1}
+            src={images.FRIEND_PROFILE1}
             size={102}
           />
           <div className={styles["profile-textgroup"]}>
