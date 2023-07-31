@@ -1,0 +1,33 @@
+.wrap {
+  width: 335px;
+  border-radius: 12px;
+  background: var(--gray-7, #f2f4f5);
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.icon {
+  margin-right: 7px;
+}
+
+.title {
+  color: var(--gray-80, #2f2f2f);
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%; /* 18px */
+}
+
+.item {
+  color: var(--gray-40, #959595);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 180%; /* 28.8px */
+}
