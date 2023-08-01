@@ -2,8 +2,9 @@
 
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
-import { SubmitButton } from "@dnd9-10/webui/src/button/SubmitButton";
+import { TagText } from "@dnd9-10/webui/src/text/TagText";
 import {
+  Bold18,
   Bold22,
   Medium14,
   Medium16,
@@ -25,11 +26,22 @@ export default function Page() {
 
   return (
     <div className={styles.wrap}>
-      <Topbar title={"23.07.18"} onBackClick={handleBackClick} />
+      <Topbar
+        className={styles.topbar}
+        title={"23.07.18"}
+        onBackClick={handleBackClick}
+      />
       <div className={styles.content}>
-        <Icon name="emoji1" />
-        <DiaryContentCard />
-        <div className={styles.tags}>tags</div>
+        <Icon className={styles.emoji} name="emoji1" />
+        <DiaryContentCard content="testtes" />
+        <div className={styles["tag-section"]}>
+          <Bold18 className={styles["section-title"]}>태그</Bold18>
+          <div className={styles.tags}>
+            <TagText className={styles.tag} size={"medium"}>
+              test
+            </TagText>
+          </div>
+        </div>
       </div>
     </div>
   );

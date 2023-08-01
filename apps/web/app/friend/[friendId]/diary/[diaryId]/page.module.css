@@ -2,16 +2,51 @@
   display: flex;
   flex: 1;
   flex-direction: column;
+  align-items: center;
   height: 100%;
   background: var(--gray-15, #e1e1e1);
 }
 
+.topbar {
+  color: var(--gray-80, #2f2f2f);
+}
+
+.emoji {
+  margin-top: 24px;
+  margin-bottom: 24px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .content {
   display: flex;
+  width: 100%;
   flex-direction: column;
   justify-content: center;
+  padding-left: 22px;
+  padding-right: 20px;
+}
+
+.tag-section {
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+}
+
+.section-title {
+  color: var(--gray-80, #2f2f2f);
+  padding-bottom: 12px;
 }
 
 .tags {
-  
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+}
+
+.tag {
+  color: var(--blue-4, #5e6e96);
+  border: 2px solid var(--blue-3, #92a0c3);
+  background: var(--blue-1, #dee4f5);
 }
