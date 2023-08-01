@@ -1,14 +1,14 @@
 import { StoryFn, Meta } from '@storybook/react';
 import { within } from '@storybook/testing-library';
-import { Loading, LoadingProps } from './Loading';
+import { Success, SuccessProps } from './Success';
 
 export default {
-  component: Loading,
-  title: 'loading/Loading',
+  component: Success,
+  title: 'icon/Success',
   argTypes: {},
 } as Meta;
 
-const Template: StoryFn<LoadingProps> = (args) => <Loading {...args} />;
+const Template: StoryFn<SuccessProps> = (args) => <Success {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {};
