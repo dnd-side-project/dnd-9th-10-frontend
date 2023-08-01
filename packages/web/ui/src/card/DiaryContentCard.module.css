@@ -1,0 +1,10 @@
+.wrap {
+  width: 335px;
+  height: 382px;
+  border-radius: 10px;
+  background: var(--gray-7, #f2f4f5);
+}
+
+.toolbox {
+  /* radix */
+}
