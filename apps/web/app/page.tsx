@@ -31,7 +31,9 @@ export default function Page() {
     setPage(page);
   }, []);
 
-  const handleAdd = useCallback(() => {}, []);
+  const handleAdd = useCallback(() => {
+    router.push(`/friends/${1}/diaries/new`);
+  }, [router]);
 
   const handleSelected = useCallback(() => {}, []);
 
@@ -61,7 +63,7 @@ export default function Page() {
               </div>
             </Carousel>
             <CircularIndicator
-              className={styles['friend-indicator']}
+              className={styles["friend-indicator"]}
               current={page}
               totalCount={totalCount}
             />
