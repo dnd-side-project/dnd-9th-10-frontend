@@ -24,7 +24,7 @@ export default function Page() {
   }, [router]);
 
   const handleNewDiary = useCallback(() => {
-    router.push("/friends/" + friendId + "/diaries/new");
+    router.push("/friend/" + friendId + "/diary/new");
   }, [router]);
 
   return (

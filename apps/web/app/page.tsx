@@ -32,7 +32,7 @@ export default function Page() {
   }, []);
 
   const handleAdd = useCallback(() => {
-    router.push(`/friends/${1}/diaries/new`);
+    router.push(`/friend/${1}/diary/new`);
   }, [router]);
 
   const handleSelected = useCallback(() => {}, []);
