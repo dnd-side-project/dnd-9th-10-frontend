@@ -1,8 +1,10 @@
 .wrap {
   position: relative;
+  color: var(--gray-5, #fdfdfd);
   padding-top: 16px;
   padding-left: 22px;
   padding-right: 22px;
+  height: 3.4375rem;
 }
 
 .tooltip {

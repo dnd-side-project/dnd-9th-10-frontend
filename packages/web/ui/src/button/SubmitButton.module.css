@@ -1,22 +1,27 @@
 .wrap {
   width: 100%;
-  height: 60px;
+  height: 3.75rem;
   border-radius: 10px;
-  background: var(--gray-75, #3b3b3b);
+  border-radius: 0.625rem;
+  background: #135b5b;
+}
+
+.wrap:hover {
+  background: #0c3131;
 }
 
 .content {
-  color: var(--gray-10, #eee);
+  color: var(--gray-0, #fff);
 }
 
 .disabled {
-  color: var(--gray-30, #aeaeae);
+  color: var(--gray-30, #aeb7b7);
   border-radius: 10px;
-  background: var(--gray-15, #e1e1e1);
+  background: var(--gray-15, #e4e7e7);
 }
 
 .warn {
-  color: var(--gray-5, #fdfdfd);
+  color: var(--gray-10, #f2f3f3);
   border-radius: 10px;
-  background: #e34848;
+  background: #d14b4b;
 }

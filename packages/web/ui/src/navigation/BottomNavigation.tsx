@@ -11,16 +11,16 @@ export interface BottomNavigationProps {
   className?: string;
   active?: BottomTabs;
   onSelected: (tab: BottomTabs) => void;
-  onAdd: () => void
+  onAdd: () => void;
 }
 
 const activeStyles = {
-  iconColor: "#5E6E96",
-  textColor: "#484848",
+  iconColor: "#135B5B",
+  textColor: "#135B5B",
 };
 const inactiveStyles = {
-  iconColor: "#AEAEAE",
-  textColor: "#AEAEAE",
+  iconColor: "#AEB7B7",
+  textColor: "#AEB7B7",
 };
 
 export function BottomNavigation(props: BottomNavigationProps) {
@@ -41,7 +41,7 @@ export function BottomNavigation(props: BottomNavigationProps) {
         <IconButton className={cn(styles["add"])} name="plus" onClick={onAdd} />
       </div>
       <div className={cn(styles["item-group"])}>
-        <div className={cn(styles["item"])} onClick={handleSelected('home')}>
+        <div className={cn(styles["item"])} onClick={handleSelected("home")}>
           <Icon
             className={cn(styles["item-icon"])}
             name="home"
@@ -61,7 +61,7 @@ export function BottomNavigation(props: BottomNavigationProps) {
         </div>
       </div>
       <div className={cn(styles["item-group"])}>
-        <div className={cn(styles["item"])} onClick={handleSelected('my')}>
+        <div className={cn(styles["item"])} onClick={handleSelected("my")}>
           <Icon
             className={cn(styles["item-icon"])}
             name="my"

@@ -14,7 +14,13 @@ const config: StorybookConfig = {
   docs: {
     autodocs: "tag",
   },
-  staticDirs: ["../../../../apps/web/public"],
+  staticDirs: [
+    "../../../../apps/web/public",
+    {
+      from: "../../../../apps/web/public",
+      to: ".",
+    },
+  ],
   webpackFinal: async (config) => {
     if (config?.resolve?.alias) {
       config.resolve.alias[`next/router`] = require.resolve(
