@@ -3,3 +3,7 @@
   flex-direction: row;
   align-items: center;
 }
+
+.active {
+  color: #6ab9b9;
+}

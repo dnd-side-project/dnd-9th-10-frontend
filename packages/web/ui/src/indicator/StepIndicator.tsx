@@ -1,18 +1,26 @@
 import cn from "classnames";
+import { Semibold17 } from "../text/Typographies";
 import styles from "./StepIndicator.module.css";
 
 export interface StepIndicatorProps {
   className?: string;
+  active?: boolean;
   current: number;
   totalCount: number;
 }
 
 export function StepIndicator(props: StepIndicatorProps) {
-  const { className, current, totalCount } = props;
+  const { className, active = false, current, totalCount } = props;
   return (
-    <div
-      className={cn(styles.wrap, className)}
-    >{`${current}/${totalCount}`}</div>
+    <Semibold17
+      className={cn(
+        styles.wrap,
+        {
+          [styles.active]: active,
+        },
+        className
+      )}
+    >{`${current}/${totalCount}`}</Semibold17>
   );
 }
 

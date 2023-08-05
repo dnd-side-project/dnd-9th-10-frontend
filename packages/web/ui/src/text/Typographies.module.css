@@ -64,6 +64,14 @@
   letter-spacing: -0.15px;
 }
 
+.semibold17 {
+  font-family: Pretendard;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%; /* 23.8px */
+}
+
 .semibold18 {
   font-family: Pretendard;
   font-size: 18px;

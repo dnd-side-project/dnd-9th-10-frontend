@@ -13,6 +13,7 @@
 .subtitle {
   color: var(--gray-40, #959595);
   text-align: center;
+  margin-bottom: 16px;
 }
 
 .button {
