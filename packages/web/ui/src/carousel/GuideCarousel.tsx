@@ -31,6 +31,7 @@ export function GuideCarousel(props: GuideCarouselProps) {
           <Bold22 as="pre" className={styles.title}>{`거리를 두고 싶은 친구를
 등록하고 일화를 작성하세요`}</Bold22>
           <Image
+            className={styles.image}
             alt="onboarding1"
             width={320}
             height={340}
@@ -51,7 +52,8 @@ export function GuideCarousel(props: GuideCarouselProps) {
           <Bold22
             as="pre"
             className={styles.title}
-          >{`일화마다 나의 감정을 기록해요`}</Bold22>
+          >{`일화마다 감정을 기록하고
+생각을 정리해보세요`}</Bold22>
           <Image
             alt="onboarding3"
             width={320}

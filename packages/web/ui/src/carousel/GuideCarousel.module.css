@@ -7,7 +7,10 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+}
+
+.image {
+  margin: auto;
 }
 
 .title {
@@ -15,5 +18,5 @@
 }
 
 .indicator {
-  margin: 52px auto 56px auto;
+  margin: 22px auto 44px auto;
 }
