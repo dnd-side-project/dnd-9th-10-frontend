@@ -11,8 +11,11 @@
   color: var(--gray-80, #2f2f2f);
 }
 
+.title {
+  color: var(--gray-80, #303636);
+}
+
 .emoji {
-  margin-top: 24px;
   margin-bottom: 24px;
   margin-left: auto;
   margin-right: auto;
@@ -46,7 +49,7 @@
 }
 
 .tag {
-  color: var(--blue-4, #5e6e96);
-  border: 2px solid var(--blue-3, #92a0c3);
-  background: var(--blue-1, #dee4f5);
+  color: #299a9a;
+  border: 2px solid #299a9a;
+  background: #e9fafa;
 }

@@ -8,6 +8,7 @@ import {
   Bold22,
   Medium14,
   Medium16,
+  Semibold18,
   Semibold20,
 } from "@dnd9-10/webui/src/text/Typographies";
 
@@ -28,7 +29,7 @@ export default function Page() {
     <div className={styles.wrap}>
       <Topbar
         className={styles.topbar}
-        title={"23.07.18"}
+        title={<Semibold18 className={styles.title}>{"23.07.18"}</Semibold18>}
         onBackClick={handleBackClick}
       />
       <div className={styles.content}>
