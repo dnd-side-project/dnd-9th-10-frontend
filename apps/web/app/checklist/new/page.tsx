@@ -12,6 +12,7 @@ import styles from "./page.module.css";
 
 export default function Page() {
   const router = useRouter();
+  
   const handleBackOrHome = useCallback(
     (e: React.MouseEvent) => {
       router.replace("/");
