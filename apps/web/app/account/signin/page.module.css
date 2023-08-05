@@ -8,11 +8,10 @@
 .content {
   position: relative;
   height: 634px;
-  padding-top: 80px;
+  padding-top: 60px;
 }
 
 .content-header {
-  padding-top: 80px;
   padding-left: 33px;
 }
 
@@ -20,10 +19,16 @@
   margin-bottom: 20px;
 }
 
+.signin-bg-wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: 113px;
+}
+
 .signin-bg {
-  position: absolute;
-  right: 0;
-  bottom: 73px;
 }
 
 .other-account {
@@ -32,11 +37,16 @@
   cursor: pointer;
 }
 
-.bottom {
-  padding-left: 20px;
-  padding-right: 20px;
-  margin-bottom: 23px;
+.kakao-button {
+  margin-bottom: 12px;
 }
 
 .guest-button {
+}
+
+.bottom {
+  margin-top: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 23px;
 }

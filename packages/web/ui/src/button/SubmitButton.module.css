@@ -9,8 +9,16 @@
   background: #0c3131;
 }
 
-.content {
+.text {
   color: var(--gray-0, #fff);
+}
+
+.kakao {
+  background: #fee500;
+}
+
+.kakao-text {
+  color: #000;
 }
 
 .disabled {
