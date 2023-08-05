@@ -13,8 +13,13 @@
   padding-right: 32px;
 }
 
+.highlight {
+  color: #299a9a;
+}
+
 .indicator {
-  margin-top: 24px;
+  margin-top: 6px;
+  color: var(--gray-40, #949f9f);
 }
 
 .title {
@@ -30,12 +35,19 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-  padding-top: 33px;
+  padding-top: 14px;
   padding-left: 32px;
   padding-right: 32px;
 }
 
+.add-button {
+  height: 52px;
+  background: #303636;
+  margin-top: 16px;
+}
+
 .bottom {
+  margin-top: auto;
   padding-left: 20px;
   padding-right: 20px;
   margin-bottom: 23px;

@@ -5,13 +5,15 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 56px;
+  height: 76px;
+  padding-top: 22px;
+  padding-bottom: 22px;
 }
 
 .back_button {
   position: absolute;
-  top: 12px;
-  left: 26px;
+  top: 22px;
+  left: 24px;
   padding-top: 2px;
   padding-bottom: 2px;
 }
