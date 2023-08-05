@@ -23,9 +23,12 @@
 }
 
 .disabled {
-  color: var(--gray-30, #aeb7b7);
   border-radius: 10px;
   background: var(--gray-15, #e4e7e7);
+}
+
+.disabled-text {
+  color: var(--gray-50, #798787);
 }
 
 .warn {
