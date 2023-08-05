@@ -45,9 +45,9 @@ export default function ChecklistNewPage(props: Props) {
       <div className={styles.content}>
         <CheckList
           data={[
-            ...(data.data?.badChecklist?.map?.((name) => ({ name: name })) ??
+            ...(data?.badChecklist?.map?.((name) => ({ name: name })) ??
               []),
-            ...(data.data?.goodChecklist?.map?.((name) => ({ name: name })) ??
+            ...(data?.goodChecklist?.map?.((name) => ({ name: name })) ??
               []),
           ]}
         />
