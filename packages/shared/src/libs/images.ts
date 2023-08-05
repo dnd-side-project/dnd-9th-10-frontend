@@ -13,4 +13,5 @@ export const images = {
   FRIEND_PROFILE1: BASE_URL + "/friend_profile1.png",
   NEW_FRIEND_BG: BASE_URL + "/new_friend_bg.png",
   NEW_DIARY_EMPTY: BASE_URL + "/new_diary_empty.png",
+  NEW_DIARY_ANALYSIS: BASE_URL + "/new_diary_analysis.png",
 };

@@ -1,0 +1,28 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  margin: auto;
+  margin-bottom: 21px;
+}
+
+.highlight {
+  color: var(--green-2, #299a9a);
+}
+
+.description {
+  width: 228px;
+  text-align: center;
+  color: var(--gray-70, #485151);
+}
+
+.caption {
+  width: 154px;
+  text-align: center;
+  color: var(--gray-30, #aeb7b7);
+  margin-top: 10px;
+}

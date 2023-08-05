@@ -1,0 +1,25 @@
+.wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.profile-group {
+  width: 62px;
+  height: 62px;
+  margin-right: 12px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  color: var(--gray-70, #485151);
+  margin-bottom: 9px;
+}
+
+.type {
+  color: var(--gray-30, #aeb7b7);
+}

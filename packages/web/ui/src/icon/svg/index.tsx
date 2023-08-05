@@ -19,6 +19,7 @@ import Sticker from "./sticker";
 import Tooltip from "./tooltip";
 import Logo from "./logo";
 import Warn from "./warn";
+import Profile from "./profile";
 import Emoji1 from "./emoji/icon1";
 import Emoji2 from "./emoji/icon2";
 import Emoji3 from "./emoji/icon3";
@@ -56,7 +57,8 @@ export const svgIcons = {
   sticker: Sticker,
   tooltip: Tooltip,
   logo: Logo,
-  warn: Warn
+  warn: Warn,
+  profile: Profile
 } as const;
 
 export const reactIcons = { ...emojiIcons, ...svgIcons } as const;
