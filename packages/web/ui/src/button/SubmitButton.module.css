@@ -3,6 +3,7 @@
   height: 60px;
   border-radius: 10px;
   background: #135b5b;
+  transform: all;
 }
 
 .default:hover {

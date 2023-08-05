@@ -1,6 +1,16 @@
 .wrap {
+  position: relative;
   display: flex;
   flex: 1;
   flex-direction: column;
   height: 100%;
+}
+
+.new-emoji-modal {
+  position: absolute;
+  width: 100%;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
 }

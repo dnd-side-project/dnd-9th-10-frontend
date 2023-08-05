@@ -12,6 +12,7 @@ import {
 
 import styles from "./page.module.css";
 import Topbar from "@dnd9-10/webui/src/topbar/Topbar";
+import NewDiaryEmojiModal from "@dnd9-10/webui/src/modal/NewDiaryEmojiModal";
 
 export default function Page() {
   const router = useRouter();
@@ -19,6 +20,7 @@ export default function Page() {
   return (
     <div className={styles.wrap}>
       <Topbar />
+      <NewDiaryEmojiModal className={styles["new-emoji-modal"]} />
     </div>
   );
 }

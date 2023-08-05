@@ -30,11 +30,15 @@ export default function Page() {
     setPage(page);
   }, []);
 
+  const handleSelectedItem = useCallback(() => {
+    router.push("/friend/1/diaries");
+  }, [router]);
+
   const handleAdd = useCallback(() => {
     router.push(`/friend/${1}/diary/new`);
   }, [router]);
 
-  const handleSelected = useCallback(
+  const handleSelectedTab = useCallback(
     (tab: BottomTabs) => {
       if (tab === "home") {
         router.replace("/");
@@ -64,6 +68,7 @@ export default function Page() {
                   statusText="12일째 작성 중"
                   name="김도리"
                   diaryCount={10}
+                  onClick={handleSelectedItem}
                 />
               </div>
               <div className={styles["friend-item"]}>
@@ -80,12 +85,15 @@ export default function Page() {
         <div className={styles.section}>
           <Bold22 className={styles["section-title"]}>나의 친구 기준</Bold22>
           <div className={styles["section-content"]}>
-            <Button className={styles['based-friend-button']} onClick={handleBasedFriend}>
+            <Button
+              className={styles["based-friend-button"]}
+              onClick={handleBasedFriend}
+            >
               <Image
                 alt="based friend"
                 fill={true}
                 src={images.BASED_FRIEND}
-                objectFit={'contain'}
+                objectFit={"contain"}
               />
             </Button>
           </div>
@@ -95,7 +103,7 @@ export default function Page() {
         <BottomNavigation
           active="home"
           onAdd={handleAdd}
-          onSelected={handleSelected}
+          onSelected={handleSelectedTab}
         />
       </div>
     </div>

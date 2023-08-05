@@ -11,12 +11,17 @@ export interface FriendCardProps {
   statusText: string;
   name: string;
   diaryCount: number;
+  onClick?: () => void;
 }
 
 export function FriendCard(props: FriendCardProps) {
-  const { className, statusText, name, diaryCount } = props;
+  const { className, statusText, name, diaryCount, onClick } = props;
   return (
-    <div className={cn(styles.wrap, className)}>
+    <div
+      className={cn(styles.wrap, className)}
+      rel="presentation"
+      onClick={onClick}
+    >
       <div className={styles.content}>
         <div className={styles["profile-group"]}>
           <ProfileImage
