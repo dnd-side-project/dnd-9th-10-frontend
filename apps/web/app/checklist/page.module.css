@@ -4,3 +4,11 @@
   flex-direction: column;
   height: 100%;
 }
+
+.content {
+  padding: 20px 20px;
+}
+
+.bad-checklist {
+  margin-bottom: 24px;
+}
