@@ -17,10 +17,18 @@ import NewDiaryEmojiModal from "@dnd9-10/webui/src/modal/NewDiaryEmojiModal";
 export default function Page() {
   const router = useRouter();
 
+  const handleEmojiModalClose = useCallback(() => {}, []);
+
+  const handleEmojiModalSubmit = useCallback(() => {}, []);
+
   return (
     <div className={styles.wrap}>
       <Topbar />
-      <NewDiaryEmojiModal className={styles["new-emoji-modal"]} />
+      <NewDiaryEmojiModal
+        className={styles["new-emoji-modal"]}
+        onClose={handleEmojiModalClose}
+        onSubmit={handleEmojiModalSubmit}
+      />
     </div>
   );
 }
