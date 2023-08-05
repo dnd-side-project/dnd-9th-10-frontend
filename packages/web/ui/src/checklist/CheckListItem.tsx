@@ -23,9 +23,14 @@ export function CheckListItem(props: CheckListItemProps) {
   );
 
   return (
-    <div className={cn(styles.wrap, className)} onClick={handleToggle}>
-      <Label.Root className={cn(styles.label)}>{name}</Label.Root>
+    <div
+      className={cn(styles.wrap, className, {
+        [styles.checked]: checked,
+      })}
+      onClick={handleToggle}
+    >
       <Checkbox checked={checked} />
+      <Label.Root className={cn(styles.label)}>{name}</Label.Root>
     </div>
   );
 }
