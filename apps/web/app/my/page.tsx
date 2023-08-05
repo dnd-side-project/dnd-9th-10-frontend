@@ -7,7 +7,7 @@ import {
 } from "@dnd9-10/webui/src/navigation/BottomNavigation";
 import { FriendEmpty } from "@dnd9-10/webui/src/empty/FriendEmpty";
 import styles from "./page.module.css";
-import { Bold22 } from "@dnd9-10/webui/src/text/Typographies";
+import { Bold22, Medium15 } from "@dnd9-10/webui/src/text/Typographies";
 import Image from "next/image";
 import { images } from "@dnd9-10/shared/src/libs/images";
 import { Button } from "@dnd9-10/webui/src/button/Button";
@@ -40,9 +40,9 @@ export default function Page() {
           </div>
         </div>
         <ul className={styles.list}>
-          <li>글귀/명언 북마크</li>
-          <li>회원가입/로그인</li>
-          <li>서비스 문의</li>
+          <Medium15 as="li">글귀/명언 북마크</Medium15>
+          <Medium15 as="li">회원가입/로그인</Medium15>
+          <Medium15 as="li">서비스 문의</Medium15>
         </ul>
       </div>
       <div className={styles.bottom}>

@@ -34,16 +34,19 @@ export default function Page() {
     router.push(`/friend/${1}/diary/new`);
   }, [router]);
 
-  const handleSelected = useCallback((tab: BottomTabs) => {
-    if (tab === "home") {
-      router.replace("/");
-      return;
-    }
-    router.replace("/my");
-  }, [router]);
+  const handleSelected = useCallback(
+    (tab: BottomTabs) => {
+      if (tab === "home") {
+        router.replace("/");
+        return;
+      }
+      router.replace("/my");
+    },
+    [router]
+  );
 
   const handleBasedFriend = useCallback(() => {
-    router.replace("/checklist");
+    router.push("/checklist");
   }, [router]);
 
   return (
@@ -76,17 +79,16 @@ export default function Page() {
         </div>
         <div className={styles.section}>
           <Bold22 className={styles["section-title"]}>나의 친구 기준</Bold22>
-          <Button
-            className={styles["section-content"]}
-            onClick={handleBasedFriend}
-          >
-            <Image
-              alt="based friend"
-              width={335}
-              height={96}
-              src={images.BASED_FRIEND}
-            />
-          </Button>
+          <div className={styles["section-content"]}>
+            <Button className={styles['based-friend-button']} onClick={handleBasedFriend}>
+              <Image
+                alt="based friend"
+                fill={true}
+                src={images.BASED_FRIEND}
+                objectFit={'contain'}
+              />
+            </Button>
+          </div>
         </div>
       </div>
       <div className={styles.bottom}>
