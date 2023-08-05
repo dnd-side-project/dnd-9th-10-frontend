@@ -3,13 +3,13 @@ import styles from "./SubmitButton.module.css";
 import { Bold16 } from "../text/Typographies";
 export interface SubmitButtonProps {
   className?: string;
-  type?: "" | "disabled" | "warn" | "kakao";
+  type?: "default" | "disabled" | "warn" | "kakao";
   name: string;
   onClick?: (e: React.MouseEvent) => void;
 }
 
 export function SubmitButton(props: SubmitButtonProps) {
-  const { className, type = "", name, onClick, ...restProps } = props;
+  const { className, type = "default", name, onClick, ...restProps } = props;
 
   return (
     <button

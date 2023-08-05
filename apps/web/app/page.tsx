@@ -21,7 +21,6 @@ import CircularIndicator from "@dnd9-10/webui/src/indicator/CircularIndicator";
 export default function Page() {
   const router = useRouter();
   const searchParam = useSearchParams();
-  const tab = (searchParam.get("tab") as BottomTabs) ?? "home";
   const [page, setPage] = useState(0);
   const totalCount = 3;
 
@@ -35,10 +34,16 @@ export default function Page() {
     router.push(`/friend/${1}/diary/new`);
   }, [router]);
 
-  const handleSelected = useCallback(() => {}, []);
+  const handleSelected = useCallback((tab: BottomTabs) => {
+    if (tab === "home") {
+      router.replace("/");
+      return;
+    }
+    router.replace("/my");
+  }, [router]);
 
   const handleBasedFriend = useCallback(() => {
-    router.replace("/guides");
+    router.replace("/checklist");
   }, [router]);
 
   return (
@@ -86,7 +91,7 @@ export default function Page() {
       </div>
       <div className={styles.bottom}>
         <BottomNavigation
-          active={tab}
+          active="home"
           onAdd={handleAdd}
           onSelected={handleSelected}
         />
