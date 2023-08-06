@@ -188,6 +188,19 @@ export function Medium16(props: TypographiesProps) {
   );
 }
 
+export function Medium17(props: TypographiesProps) {
+  const { as = "div", className, children, ...restProps } = props;
+  const TargetComponent = as;
+  return (
+    <TargetComponent
+      className={cn(styles["medium17"], className)}
+      {...restProps}
+    >
+      {children}
+    </TargetComponent>
+  );
+}
+
 export function Regular13(props: TypographiesProps) {
   const { as = "div", className, children, ...restProps } = props;
   const TargetComponent = as;

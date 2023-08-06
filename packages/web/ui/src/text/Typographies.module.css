@@ -130,6 +130,14 @@
   line-height: 135%; /* 21.6px */
 }
 
+.medium17 {
+  font-family: Pretendard;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%; /* 17px */
+}
+
 .regular13 {
   font-family: Pretendard;
   font-size: 13px;

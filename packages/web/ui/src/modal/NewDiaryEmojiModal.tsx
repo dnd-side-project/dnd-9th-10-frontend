@@ -11,7 +11,7 @@ import { useCallback, useState } from "react";
 export interface NewDiaryEmojiModalProps {
   className?: string;
   onClose: () => void;
-  onSubmit: (selected: EmojiType) => void;
+  onSubmit: (selected?: EmojiType) => void;
 }
 
 export function NewDiaryEmojiModal(props: NewDiaryEmojiModalProps) {
@@ -21,6 +21,10 @@ export function NewDiaryEmojiModal(props: NewDiaryEmojiModalProps) {
   const handleSelected = useCallback((selected: EmojiType) => {
     setSelected(selected);
   }, []);
+
+  const handleSubmit = useCallback(() => {
+    onSubmit?.(selected);
+  }, [onSubmit, selected]);
 
   return (
     <div className={cn(styles.wrap, className)}>
@@ -40,7 +44,7 @@ export function NewDiaryEmojiModal(props: NewDiaryEmojiModalProps) {
         />
       </div>
       <div className={styles.bottom}>
-        <SubmitButton name="다음" />
+        <SubmitButton name="다음" onClick={handleSubmit} />
       </div>
     </div>
   );

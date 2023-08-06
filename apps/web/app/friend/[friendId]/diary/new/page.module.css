@@ -6,6 +6,46 @@
   height: 100%;
 }
 
+.topbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  color: var(--gray-80, #303636);
+}
+
+.submit-button {
+  width: 30px;
+}
+
+.submit-button-text {
+  color: var(--gray-50, #798787);
+}
+
+.content {
+}
+
+.content > .section {
+  margin-bottom: 24px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 22px;
+}
+
+.section-title {
+  color: var(--gray-80, #303636);
+  margin-bottom: 12px;
+}
+
+.section-content {
+}
+
 .new-emoji-modal {
   position: absolute;
   width: 100%;
