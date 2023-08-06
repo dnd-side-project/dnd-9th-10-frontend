@@ -3,4 +3,10 @@
   flex: 1;
   flex-direction: column;
   height: 100%;
+  background: var(--gray-15, #E4E7E7);
+}
+
+.content {
+  margin-left: 20px;
+  margin-right: 20px;
 }
