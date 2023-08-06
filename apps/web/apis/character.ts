@@ -6,7 +6,7 @@ import {
   FriendRequestDto,
   MemberChecklistRequestDto,
   MockApiFactory,
-} from "../__generate__/api";
+} from "@dnd9-10/shared/src/__generate__/api";
 
 const factory = MockApiFactory(undefined, undefined, axiosInstance);
 
