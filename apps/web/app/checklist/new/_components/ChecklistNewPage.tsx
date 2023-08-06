@@ -9,7 +9,7 @@ import { StepIndicator } from "@dnd9-10/webui/src/indicator/StepIndicator";
 import { Bold22, Medium16 } from "@dnd9-10/webui/src/text/Typographies";
 
 import styles from "./page.module.css";
-import { BasicChecklistDto } from "../../../../__generate__/api";
+import { BasicChecklistDto } from "@dnd9-10/shared/src/__generate__/api";
 
 interface Props {
   data: BasicChecklistDto;
