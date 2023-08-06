@@ -47,8 +47,6 @@ export default function ChecklistNewPage(props: Props) {
           data={[
             ...(data?.badChecklist?.map?.((name) => ({ name: name })) ??
               []),
-            ...(data?.goodChecklist?.map?.((name) => ({ name: name })) ??
-              []),
           ]}
         />
         <SubmitButton className={styles["add-button"]} name="+ 기준 추가하기" />

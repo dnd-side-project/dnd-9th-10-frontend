@@ -30,6 +30,15 @@ export default function Page() {
     router.replace("/my");
   }, [router]);
 
+  const handleBookmark = useCallback(() => {
+    router.push("/bookmarks");
+  }, [router])
+
+  const handleSignIn = useCallback(() => {
+    router.push("/account/signin");
+  }, [router])
+
+
   return (
     <div className={styles.wrap}>
       <div className={styles.content}>
@@ -40,9 +49,21 @@ export default function Page() {
           </div>
         </div>
         <ul className={styles.list}>
-          <Medium15 as="li">글귀/명언 북마크</Medium15>
-          <Medium15 as="li">회원가입/로그인</Medium15>
-          <Medium15 as="li">서비스 문의</Medium15>
+          <li>
+            <Button onClick={handleBookmark}>
+              <Medium15>글귀/명언 북마크</Medium15>
+            </Button>
+          </li>
+          <li>
+            <Button onClick={handleSignIn}>
+              <Medium15>회원가입/로그인</Medium15>
+            </Button>
+          </li>
+          <li>
+            <Button>
+              <Medium15>서비스 문의</Medium15>
+            </Button>
+          </li>
         </ul>
       </div>
       <div className={styles.bottom}>
