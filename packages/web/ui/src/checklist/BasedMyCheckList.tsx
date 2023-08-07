@@ -1,6 +1,6 @@
 import cn from "classnames";
 import Icon from "../icon/Icon";
-import { Semibold18 } from "../text/Typographies";
+import { Regular16, Semibold18 } from "../text/Typographies";
 import styles from "./BasedMyCheckList.module.css";
 
 type BasedMyCheckListType = "good" | "bad";
@@ -11,7 +11,7 @@ export interface BasedMyCheckListProps {
 }
 
 export function BasedMyCheckList(props: BasedMyCheckListProps) {
-  const { className, type = 'bad', data } = props;
+  const { className, type = "bad", data } = props;
   const byType: Record<
     BasedMyCheckListType,
     {
@@ -35,9 +35,13 @@ export function BasedMyCheckList(props: BasedMyCheckListProps) {
         <Icon className={styles.icon} name={byType[type].icon} />
         <Semibold18 className={styles.title}>{byType[type].title}</Semibold18>
       </div>
-      <ul className={styles.content}>
+      <ul className={cn(styles.content, styles.list)}>
         {data?.map((item, index) => {
-          return <li key={index}>{item}</li>;
+          return (
+            <Regular16 key={index} as="li" className={styles.item}>
+              {item}
+            </Regular16>
+          );
         })}
       </ul>
     </div>

@@ -8,7 +8,7 @@ export default {
   argTypes: {},
 } as Meta;
 
-const Template: StoryFn<SelectFriendModalProps> = (args) => <SelectFriendModal {...args} />;
+const Template: StoryFn<SelectFriendModalProps> = (args) => <SelectFriendModal {...args} characters={[]} />;
 
 export const Primary = Template.bind({});
 Primary.args = {};

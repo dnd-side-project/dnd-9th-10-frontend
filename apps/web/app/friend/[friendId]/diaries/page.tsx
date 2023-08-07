@@ -19,9 +19,12 @@ export default function Page() {
   const router = useRouter();
   const friendId = 1;
 
-  const handleBackClick = useCallback(() => {
-    router.back();
-  }, [router]);
+  const handleBackOrHome = useCallback(
+    (e: React.MouseEvent) => {
+      router.replace("/");
+    },
+    [router]
+  );
 
   const handleNewDiary = useCallback(() => {
     router.push("/friend/" + friendId + "/diary/new");
@@ -31,7 +34,7 @@ export default function Page() {
     <div className={styles.wrap}>
       <Topbar
         className={styles.topbar}
-        onBackClick={handleBackClick}
+        onBackClick={handleBackOrHome}
         RightComponent={
           <SearchTextInput
             className={styles["search-input"]}

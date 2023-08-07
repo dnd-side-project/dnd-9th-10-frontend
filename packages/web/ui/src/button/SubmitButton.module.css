@@ -1,23 +1,34 @@
 .wrap {
   width: 100%;
-  height: 3.75rem;
+  height: 60px;
   border-radius: 10px;
-  border-radius: 0.625rem;
   background: #135b5b;
+  transform: all;
 }
 
-.wrap:hover {
+.default:hover {
   background: #0c3131;
 }
 
-.content {
+.text {
   color: var(--gray-0, #fff);
 }
 
+.kakao {
+  background: #fee500;
+}
+
+.kakao-text {
+  color: #000;
+}
+
 .disabled {
-  color: var(--gray-30, #aeb7b7);
   border-radius: 10px;
   background: var(--gray-15, #e4e7e7);
+}
+
+.disabled-text {
+  color: var(--gray-50, #798787);
 }
 
 .warn {

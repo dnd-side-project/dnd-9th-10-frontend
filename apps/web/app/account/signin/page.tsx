@@ -31,19 +31,23 @@ export default function Page() {
           </Semibold20>
           <Icon name="logo" />
         </div>
-
-        <Image
-          className={styles["signin-bg"]}
-          alt="signin"
-          width={258}
-          height={200}
-          src={images.SIGN_IN_BACKGROUND}
-        />
+        <div className={styles["signin-bg-wrap"]}>
+          <Image
+            className={styles["signin-bg"]}
+            alt="signin"
+            width={258}
+            height={200}
+            src={images.SIGN_IN_BACKGROUND}
+          />
+        </div>
       </div>
-      <Medium14 className={styles["other-account"]}>
-        이미 계정이 있으신가요?
-      </Medium14>
       <div className={styles["bottom"]}>
+        <SubmitButton
+          className={styles["kakao-button"]}
+          type='kakao'
+          name="카카오 로그인"
+          onClick={handleNext}
+        />
         <SubmitButton
           className={styles["guest-button"]}
           name="시작하기"

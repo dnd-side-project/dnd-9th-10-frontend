@@ -8,15 +8,17 @@ import Modal from "./Modal";
 
 export interface DeleteThingsModalProps {
   className?: string;
+  description: string;
+  TriggerComponent: React.ReactNode;
+  onClose?: () => void
+  onSubmit?: () => void
 }
 
 export function DeleteThingsModal(props: DeleteThingsModalProps) {
-  const { className } = props;
+  const { className, TriggerComponent, description, onClose, onSubmit } = props;
   return (
     <Modal
-      TriggerComponent={
-        <Button className={styles["trigger-button"]}>친구생성</Button>
-      }
+      TriggerComponent={TriggerComponent}
       className={cn(styles.wrap, className)}
       useClose={false}
     >
@@ -25,15 +27,21 @@ export function DeleteThingsModal(props: DeleteThingsModalProps) {
         <Medium14
           className={styles["content"]}
           as="pre"
-        >{`ㄹㄴㄹㄴㄹㄴㄹㄹㄹ`}</Medium14>
+        >{description}</Medium14>
         <Dialog.Close asChild>
           <div className={styles.bottom}>
             <SubmitButton
               className={styles["bottom-button"]}
               type="disabled"
               name="취소"
+              onClick={onClose}
             />
-            <SubmitButton className={styles["bottom-button"]} type="warn" name="그만두기" />
+            <SubmitButton
+              className={styles["bottom-button"]}
+              type="warn"
+              name="삭제"
+              onClick={onSubmit}
+            />
           </div>
         </Dialog.Close>
       </>

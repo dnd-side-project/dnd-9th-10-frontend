@@ -1,5 +1,4 @@
 .wrap {
-  position: relative;
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -10,13 +9,14 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  padding-top: 50px;
-  padding-left: 22px;
-  padding-right: 22px;
 }
 
-.section + .section {
-  margin-top: 24px;
+.section {
+  background: #f2f4f5;
+  padding-top: 41px;
+  padding-bottom: 72px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .section-title {
@@ -26,19 +26,18 @@
   padding-bottom: 24px;
 }
 
-.friend-item {
-  width: 100%;
-  height: 337px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.list {
 }
 
-.friend-indicator {
+.list li {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  margin-top: 16px;
+  align-items: center;
+  height: 49px;
+  padding: 0px 20px;
+  background: var(--gray-5, #fdfdfd);
+  border-bottom: 1px solid var(--gray-15, #e4e7e7);
+  cursor: pointer;
 }
 
 .bottom {

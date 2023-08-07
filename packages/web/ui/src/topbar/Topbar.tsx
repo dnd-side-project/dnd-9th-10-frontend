@@ -18,6 +18,7 @@ export function Topbar(props: TopbarProps) {
         <IconButton
           className={cn(styles["back_button"])}
           name="icon_back"
+          size={32}
           onClick={onBackClick}
         />
       ) : null}

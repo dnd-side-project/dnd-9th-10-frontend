@@ -1,17 +1,15 @@
 .wrap {
   width: 335px;
   border-radius: 12px;
-  background: var(--gray-7, #f2f4f5);
-  padding-left: 15px;
-  padding-right: 12px;
-  padding-top: 12px;
-  padding-bottom: 22px;
+  background: var(--gray-7, #f3f5f5);
+  padding: 22px;
 }
 
 .header {
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-bottom: 13px;
 }
 
 .icon {
@@ -27,11 +25,14 @@
   line-height: 100%; /* 18px */
 }
 
+.content {
+  padding: 0px 13px;
+}
+
+.list {
+  list-style-type: disc;
+}
+
 .item {
-  color: var(--gray-40, #959595);
-  font-family: Pretendard;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 180%; /* 28.8px */
+  color: var(--gray-50, #798787);
 }

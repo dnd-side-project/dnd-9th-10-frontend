@@ -3,7 +3,7 @@ import { CSSProperties } from "react";
 import styles from "./Typographies.module.css";
 
 export interface TypographiesProps {
-  as?: "div" | "span" | "pre" | "p";
+  as?: "div" | "span" | "pre" | "p" | 'li';
   className?: string;
   style?: CSSProperties;
   children: React.ReactNode;
@@ -85,6 +85,18 @@ export function Semibold15(props: TypographiesProps) {
   );
 }
 
+export function Semibold17(props: TypographiesProps) {
+  const { as = "div", className, children, ...restProps } = props;
+  const TargetComponent = as;
+  return (
+    <TargetComponent
+      className={cn(styles["semibold17"], className)}
+      {...restProps}
+    >
+      {children}
+    </TargetComponent>
+  );
+}
 export function Semibold18(props: TypographiesProps) {
   const { as = "div", className, children, ...restProps } = props;
   const TargetComponent = as;
@@ -176,6 +188,19 @@ export function Medium16(props: TypographiesProps) {
   );
 }
 
+export function Medium17(props: TypographiesProps) {
+  const { as = "div", className, children, ...restProps } = props;
+  const TargetComponent = as;
+  return (
+    <TargetComponent
+      className={cn(styles["medium17"], className)}
+      {...restProps}
+    >
+      {children}
+    </TargetComponent>
+  );
+}
+
 export function Regular13(props: TypographiesProps) {
   const { as = "div", className, children, ...restProps } = props;
   const TargetComponent = as;
@@ -207,6 +232,19 @@ export function Regular15(props: TypographiesProps) {
   return (
     <TargetComponent
       className={cn(styles["regular15"], className)}
+      {...restProps}
+    >
+      {children}
+    </TargetComponent>
+  );
+}
+
+export function Regular16(props: TypographiesProps) {
+  const { as = "div", className, children, ...restProps } = props;
+  const TargetComponent = as;
+  return (
+    <TargetComponent
+      className={cn(styles["regular16"], className)}
       {...restProps}
     >
       {children}

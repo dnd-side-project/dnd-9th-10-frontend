@@ -7,31 +7,17 @@ import Icon from "../icon/Icon";
 export interface DiaryContentCardProps {
   className?: string;
   content: string;
-  onSticker?: () => void;
-  onEdit?: () => void;
-  onChecked?: () => void;
-  onDelete?: () => void;
+  TooltipComponent: React.ReactNode
 }
 
 export function DiaryContentCard(props: DiaryContentCardProps) {
-  const { className, content, onSticker, onEdit, onChecked, onDelete } = props;
+  const { className, content, TooltipComponent } = props;
   return (
     <div className={cn(styles.wrap, className)}>
       <Medium14 className={styles.content}>{content}</Medium14>
-      <Toolbar.Root className={styles.toolbar}>
-        <Toolbar.Button onClick={onSticker}>
-          <Icon name="sticker" />
-        </Toolbar.Button>
-        <Toolbar.Button onClick={onEdit}>
-          <Icon name="modify" />
-        </Toolbar.Button>
-        <Toolbar.Button onClick={onChecked}>
-          <Icon name="checked" />
-        </Toolbar.Button>
-        <Toolbar.Button onClick={onDelete}>
-          <Icon name="remove" />
-        </Toolbar.Button>
-      </Toolbar.Root>
+      <div className={styles.toolbar}>
+        {TooltipComponent}
+      </div>
     </div>
   );
 }

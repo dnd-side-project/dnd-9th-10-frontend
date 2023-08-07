@@ -19,12 +19,20 @@ import Sticker from "./sticker";
 import Tooltip from "./tooltip";
 import Logo from "./logo";
 import Warn from "./warn";
+import Profile from "./profile";
 import Emoji1 from "./emoji/icon1";
 import Emoji2 from "./emoji/icon2";
 import Emoji3 from "./emoji/icon3";
 import Emoji4 from "./emoji/icon4";
 import Emoji5 from "./emoji/icon5";
 import Emoji6 from "./emoji/icon6";
+
+import Emoji1Disabled from "./emoji/icon1_disabled";
+import Emoji2Disabled from "./emoji/icon2_disabled";
+import Emoji3Disabled from "./emoji/icon3_disabled";
+import Emoji4Disabled from "./emoji/icon4_disabled";
+import Emoji5Disabled from "./emoji/icon5_disabled";
+import Emoji6Disabled from "./emoji/icon6_disabled";
 
 export const emojiIcons = {
   emoji1: Emoji1,
@@ -33,6 +41,12 @@ export const emojiIcons = {
   emoji4: Emoji4,
   emoji5: Emoji5,
   emoji6: Emoji6,
+  emoji1_disabled: Emoji1Disabled,
+  emoji2_disabled: Emoji2Disabled,
+  emoji3_disabled: Emoji3Disabled,
+  emoji4_disabled: Emoji4Disabled,
+  emoji5_disabled: Emoji5Disabled,
+  emoji6_disabled: Emoji6Disabled,
 } as const;
 
 export const svgIcons = {
@@ -56,7 +70,8 @@ export const svgIcons = {
   sticker: Sticker,
   tooltip: Tooltip,
   logo: Logo,
-  warn: Warn
+  warn: Warn,
+  profile: Profile
 } as const;
 
 export const reactIcons = { ...emojiIcons, ...svgIcons } as const;

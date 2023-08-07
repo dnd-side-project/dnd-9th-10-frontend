@@ -24,7 +24,7 @@
   font-size: 19px;
   font-style: normal;
   font-weight: 700;
-  line-height: 100%; /* 19px */
+  line-height: 145%; /* 27.55px */
   letter-spacing: -0.19px;
 }
 
@@ -62,6 +62,14 @@
   font-weight: 600;
   line-height: 150%; /* 22.5px */
   letter-spacing: -0.15px;
+}
+
+.semibold17 {
+  font-family: Pretendard;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%; /* 23.8px */
 }
 
 .semibold18 {
@@ -122,6 +130,14 @@
   line-height: 135%; /* 21.6px */
 }
 
+.medium17 {
+  font-family: Pretendard;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%; /* 17px */
+}
+
 .regular13 {
   font-family: Pretendard;
   font-size: 13px;
@@ -145,4 +161,12 @@
   font-style: normal;
   font-weight: 400;
   line-height: 135%; /* 20.25px */
+}
+
+.regular16 {
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 180%; /* 28.8px */
 }
