@@ -1,0 +1,13 @@
+.wrap {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 12px;
+    background: var(--gray-7, #F3F5F5);
+    padding: 13px;
+}
+
+.name {
+    color: var(--gray-50, #798787);
+}

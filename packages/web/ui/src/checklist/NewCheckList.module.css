@@ -1,0 +1,10 @@
+.wrap {
+}
+
+.wrap > .item {
+    margin-bottom: 12px;
+}
+
+.item {
+
+}

@@ -1,5 +1,4 @@
 .wrap {
-  position: relative;
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -18,8 +17,8 @@
 }
 
 .submit-button {
-  width: 30px;
   position: absolute;
+  width: 30px;
   right: 20px;
 }
 
@@ -28,6 +27,17 @@
 }
 
 .content {
+
+}
+
+.description {
+  padding: 0px 22px;
+  margin-top: 6px;
+  margin-bottom: 32px;
+}
+
+.highlight {
+  color: #299A9A;
 }
 
 .content > .section {
@@ -41,18 +51,16 @@
 }
 
 .section-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   color: var(--gray-80, #303636);
-  margin-bottom: 12px;
+  margin-bottom: 20px;
+}
+
+.icon {
+  margin-right: 4px;
 }
 
 .section-content {
-}
-
-.new-emoji-modal {
-  position: absolute;
-  width: 100%;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
 }
