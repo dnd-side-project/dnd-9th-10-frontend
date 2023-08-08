@@ -4,7 +4,7 @@ import { BookmarkCard, BookmarkCardProps } from "./BookmarkCard";
 
 export default {
   component: BookmarkCard,
-  title: "card/BookmarkCard",
+  title: "bookmarks/BookmarkCard",
   argTypes: {},
 } as Meta;
 
