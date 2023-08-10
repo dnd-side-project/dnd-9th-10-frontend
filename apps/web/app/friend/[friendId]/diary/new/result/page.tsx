@@ -12,7 +12,7 @@ import {
 
 import styles from "./page.module.css";
 import Topbar from "@dnd9-10/webui/src/topbar/Topbar";
-import BookmarkCard from "packages/web/ui/src/bookmarks/BookmarkCard";
+import BookmarkCard from "@dnd9-10/webui/src/bookmarks/BookmarkCard";
 
 export default function Page() {
   const router = useRouter();
