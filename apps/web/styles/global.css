@@ -54,3 +54,7 @@ ul {
 pre {
   margin: 0;
 }
+
+body > div {
+  overflow: auto;
+}
