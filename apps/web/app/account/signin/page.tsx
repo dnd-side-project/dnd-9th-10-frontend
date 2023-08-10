@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { SubmitButton } from "@dnd9-10/webui/src/button/SubmitButton";
 import {
   Bold22,
@@ -14,13 +14,22 @@ import styles from "./page.module.css";
 import Icon from "@dnd9-10/webui/src/icon/Icon";
 import { images } from "@dnd9-10/shared/src/libs/images";
 import Image from "next/image";
+import { initKakao, loginWithKakao } from "../../../libs/kakao";
 
 export default function Page() {
   const router = useRouter();
 
+  useEffect(() => {
+    initKakao();
+  }, []);
+
   const handleNext = useCallback(() => {
     router.replace("/checklist/new");
   }, [router]);
+
+  const handleKakao = useCallback(() => {
+    loginWithKakao();
+  }, []);
 
   return (
     <div className={styles.wrap}>
@@ -44,9 +53,9 @@ export default function Page() {
       <div className={styles["bottom"]}>
         <SubmitButton
           className={styles["kakao-button"]}
-          type='kakao'
+          type="kakao"
           name="카카오 로그인"
-          onClick={handleNext}
+          onClick={handleKakao}
         />
         <SubmitButton
           className={styles["guest-button"]}

@@ -11,11 +11,7 @@ export default {
 const Template: StoryFn<CheckListProps> = (args) => (
   <CheckList
     {...args}
-    data={[
-      { id: "1", name: "test" },
-      { id: "2", name: "test2" },
-      { id: "3", name: "test3" },
-    ]}
+    data={[{ name: "test" }, { name: "test2" }, { name: "test3" }]}
   />
 );
 

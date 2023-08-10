@@ -114,6 +114,10 @@ export default function RootLayout({
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
         />
+        <script
+          async
+          src="https://developers.kakao.com/sdk/js/kakao.js"
+        ></script>
       </head>
       <body>
         <ClientProvider>{children}</ClientProvider>

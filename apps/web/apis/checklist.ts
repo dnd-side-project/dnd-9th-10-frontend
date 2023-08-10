@@ -4,7 +4,7 @@ import {
   ChecklistInfoRequestDto,
   MemberChecklistRequestDto,
   MockApiFactory,
-} from "@dnd9-10/shared/src/__generate__/api";
+} from "@dnd9-10/shared/src/__generate__/api/api";
 
 const factory = MockApiFactory(undefined, undefined, axiosInstance);
 
