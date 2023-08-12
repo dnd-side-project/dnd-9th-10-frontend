@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { use, useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { Topbar } from "@dnd9-10/webui/src/topbar/Topbar";
 import { CheckList } from "@dnd9-10/webui/src/checklist/CheckList";
 import { SubmitButton } from "@dnd9-10/webui/src/button/SubmitButton";
@@ -21,12 +21,46 @@ export default function ChecklistNewPage(props: Props) {
   const { data } = props;
   const router = useRouter();
   const [checklist, setChecklist] = useState(data?.badChecklist ?? []);
+  const [selected, setSelected] = useState([]);
 
   const handleBackOrHome = useCallback(
     (e: React.MouseEvent) => {
       router.replace("/");
     },
     [router]
+  );
+
+  const handleCheckedByIndex = useCallback(
+    (params: { index: number; checked: boolean }) => {
+      const { index, checked } = params;
+      if (checked) {
+        setSelected((prev) => {
+          return [...prev, checklist[index]];
+        });
+        return;
+      }
+      setSelected((prev) => {
+        return prev.filter((name) => name === checklist[index]);
+      });
+    },
+    [checklist]
+  );
+
+  const handleChangeNameByIndex = useCallback(
+    (params: { index: number; name: string }) => {
+      const { index, name } = params;
+      const newChecklist = [...checklist];
+      newChecklist[index] = name;
+      setChecklist(newChecklist);
+    },
+    [checklist]
+  );
+
+  const handleDeleteByIndex = useCallback(
+    (index: number) => {
+      setChecklist(checklist.filter((_, itemIndex) => itemIndex !== index));
+    },
+    [checklist]
   );
 
   const handleAddItem = useCallback(() => {
@@ -38,13 +72,13 @@ export default function ChecklistNewPage(props: Props) {
   const handleSubmit = useCallback(async () => {
     try {
       await createChecklist({
-        badChecklist: checklist,
+        badChecklist: selected,
       });
       router.replace("/");
     } catch (error) {
       console.error(error);
     }
-  }, [checklist, router]);
+  }, [router, selected]);
 
   return (
     <div className={styles.wrap}>
@@ -63,7 +97,12 @@ export default function ChecklistNewPage(props: Props) {
         />
       </div>
       <div className={styles.content}>
-        <CheckList data={[...(checklist?.map?.((name) => ({ name })) ?? [])]} />
+        <CheckList
+          data={[...(checklist?.map?.((name) => ({ name })) ?? [])]}
+          onCheckedByIndex={handleCheckedByIndex}
+          onChangeNameByIndex={handleChangeNameByIndex}
+          onDeleteByIndex={handleDeleteByIndex}
+        />
         <SubmitButton
           className={styles["add-button"]}
           name="+ 기준 추가하기"

@@ -2,15 +2,16 @@ import cn from "classnames";
 import styles from "./Checkbox.module.css";
 import * as RadixCheckbox from "@radix-ui/react-checkbox";
 import { CheckIcon } from "@radix-ui/react-icons";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export interface CheckboxProps {
   className?: string;
   checked: boolean;
+  onClick?: (e: React.MouseEvent) => void
 }
 
 export function Checkbox(props: CheckboxProps) {
-  const { className } = props;
+  const { className, onClick } = props;
   const [checked, setChecked] =
     useState<RadixCheckbox.CheckedState>("indeterminate");
 
@@ -23,6 +24,7 @@ export function Checkbox(props: CheckboxProps) {
       className={cn(styles.wrap, className)}
       checked={checked}
       onCheckedChange={setChecked}
+      onClick={onClick}
     >
       <RadixCheckbox.Indicator className="CheckboxIndicator">
         {checked === true && <CheckIcon color="#fff" />}
