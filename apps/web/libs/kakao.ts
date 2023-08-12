@@ -1,3 +1,5 @@
+import { env } from "./env";
+
 export const initKakao = () => {
   const jsKey = "77b55322759c73e5f5a9dacf781cfa2c";
 
@@ -8,6 +10,6 @@ export const initKakao = () => {
 
 export const loginWithKakao = () => {
   window.Kakao.Auth.authorize({
-    redirectUri: "/account/kakao/result",
+    redirectUri: env.URL + "/account/kakao/result",
   });
 };

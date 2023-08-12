@@ -1,22 +1,26 @@
-"use client";
+import { redirect } from "next/navigation";
+import { kakaoLogin } from "../../../../apis/account";
 
-import { useRouter } from "next/navigation";
-import { useCallback } from "react";
-import { SubmitButton } from "@dnd9-10/webui/src/button/SubmitButton";
-import {
-  Bold22,
-  Medium14,
-  Medium16,
-  Semibold20,
-} from "@dnd9-10/webui/src/text/Typographies";
+type Props = {
+  searchParams?: {
+    code?: string;
+  };
+};
 
-import styles from "./page.module.css";
-import Icon from "@dnd9-10/webui/src/icon/Icon";
-import { images } from "@dnd9-10/shared/src/libs/images";
-import Image from "next/image";
 
-export default function Page() {
-  const router = useRouter();
+export default async function Page(props: Props) {
+  const { searchParams } = props
+  console.log(props)
+  const code = searchParams?.code
 
-  return <div className={styles.wrap}>result</div>;
+  try {
+    const response = await kakaoLogin(code)
+    if(response.data?.memberId) {
+      redirect('/')
+    }
+    redirect('/account/signin?error_code=401')
+  } catch(error) {
+    console.error(error)
+    redirect('/account/signin?error_message=' + error.message)
+  }
 }

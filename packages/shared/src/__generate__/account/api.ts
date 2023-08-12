@@ -59,6 +59,25 @@ export interface MemberSimpleInfoResponse {
      */
     'memberId'?: string;
 }
+/**
+ * 
+ * @export
+ * @interface MessageResponse
+ */
+export interface MessageResponse {
+    /**
+     * 응답 메시지
+     * @type {string}
+     * @memberof MessageResponse
+     */
+    'message'?: string;
+    /**
+     * 응답 코드
+     * @type {number}
+     * @memberof MessageResponse
+     */
+    'status'?: number;
+}
 
 /**
  * DefaultApi - axios parameter creator
@@ -163,6 +182,41 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Jwt를 재발급 할 수 있습니다.
+         * @summary Jwt 재발급
+         * @param {string} [refreshToken] refreshToken
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        reIssueTokenUsingGET: async (refreshToken?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v1/jwt/refresh`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (refreshToken !== undefined) {
+                localVarQueryParameter['refreshToken'] = refreshToken;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -204,6 +258,17 @@ export const DefaultApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.kakaoLoginUsingPOST(code, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
+        /**
+         * Jwt를 재발급 할 수 있습니다.
+         * @summary Jwt 재발급
+         * @param {string} [refreshToken] refreshToken
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async reIssueTokenUsingGET(refreshToken?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.reIssueTokenUsingGET(refreshToken, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
     }
 };
 
@@ -241,6 +306,16 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          */
         kakaoLoginUsingPOST(code: string, options?: any): AxiosPromise<DataResponseMemberSimpleInfoResponse> {
             return localVarFp.kakaoLoginUsingPOST(code, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Jwt를 재발급 할 수 있습니다.
+         * @summary Jwt 재발급
+         * @param {string} [refreshToken] refreshToken
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        reIssueTokenUsingGET(refreshToken?: string, options?: any): AxiosPromise<MessageResponse> {
+            return localVarFp.reIssueTokenUsingGET(refreshToken, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -284,6 +359,18 @@ export class DefaultApi extends BaseAPI {
      */
     public kakaoLoginUsingPOST(code: string, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).kakaoLoginUsingPOST(code, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Jwt를 재발급 할 수 있습니다.
+     * @summary Jwt 재발급
+     * @param {string} [refreshToken] refreshToken
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public reIssueTokenUsingGET(refreshToken?: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).reIssueTokenUsingGET(refreshToken, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

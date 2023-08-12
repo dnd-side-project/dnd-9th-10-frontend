@@ -9,10 +9,10 @@ import { StepIndicator } from "@dnd9-10/webui/src/indicator/StepIndicator";
 import { Bold22, Medium16 } from "@dnd9-10/webui/src/text/Typographies";
 
 import styles from "./page.module.css";
-import { BasicChecklistDto } from "@dnd9-10/shared/src/__generate__/api";
+import { MyChecklistDto } from "@dnd9-10/shared/src/__generate__/api";
 
 interface Props {
-  data: BasicChecklistDto;
+  data: MyChecklistDto;
 }
 
 export default function ChecklistNewPage(props: Props) {
@@ -45,7 +45,7 @@ export default function ChecklistNewPage(props: Props) {
       <div className={styles.content}>
         <CheckList
           data={[
-            ...(data?.badChecklist?.map?.((name) => ({ name: name })) ??
+            ...(data?.badChecklist?.map?.((item) => ({ name: item.criteria })) ??
               []),
           ]}
         />

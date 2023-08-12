@@ -24,25 +24,6 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 /**
  * 
  * @export
- * @interface BasicChecklistDto
- */
-export interface BasicChecklistDto {
-    /**
-     * 기본 이상적인 체크리스트
-     * @type {Array<string>}
-     * @memberof BasicChecklistDto
-     */
-    'badChecklist'?: Array<string>;
-    /**
-     * 기본 이상적인 체크리스트
-     * @type {Array<string>}
-     * @memberof BasicChecklistDto
-     */
-    'goodChecklist'?: Array<string>;
-}
-/**
- * 
- * @export
  * @interface BbokCharacterDto
  */
 export interface BbokCharacterDto {
@@ -149,31 +130,6 @@ export interface ChecklistInfoRequestDto {
      * @memberof ChecklistInfoRequestDto
      */
     'id'?: number;
-}
-/**
- * 
- * @export
- * @interface DataResponseBasicChecklistDto
- */
-export interface DataResponseBasicChecklistDto {
-    /**
-     * 
-     * @type {BasicChecklistDto}
-     * @memberof DataResponseBasicChecklistDto
-     */
-    'data'?: BasicChecklistDto;
-    /**
-     * 응답 메시지
-     * @type {string}
-     * @memberof DataResponseBasicChecklistDto
-     */
-    'message'?: string;
-    /**
-     * 응답 코드
-     * @type {number}
-     * @memberof DataResponseBasicChecklistDto
-     */
-    'status'?: number;
 }
 /**
  * 
@@ -762,25 +718,6 @@ export interface FriendsDto {
 /**
  * 
  * @export
- * @interface MemberChecklistRequestDto
- */
-export interface MemberChecklistRequestDto {
-    /**
-     * 사용자 정의 기피하는 기준 리스트
-     * @type {Array<string>}
-     * @memberof MemberChecklistRequestDto
-     */
-    'badChecklist'?: Array<string>;
-    /**
-     * 사용자 정의 이상적인 기준 리스트
-     * @type {Array<string>}
-     * @memberof MemberChecklistRequestDto
-     */
-    'goodChecklist'?: Array<string>;
-}
-/**
- * 
- * @export
  * @interface MessageResponse
  */
 export interface MessageResponse {
@@ -936,40 +873,6 @@ export const MockApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * 
-         * @summary 사용자 정의 체크리스트 추가
-         * @param {MemberChecklistRequestDto} [memberChecklistRequestDto] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        createChecklistUsingPOST: async (memberChecklistRequestDto?: MemberChecklistRequestDto, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/v1/checklist`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(memberChecklistRequestDto, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
          * @summary 일기 등록
          * @param {number} id 친구 id
          * @param {DiaryRequestDto} [diaryRequestDto] 
@@ -1094,36 +997,6 @@ export const MockApiAxiosParamCreator = function (configuration?: Configuration)
             }
 
             const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary 기본 체크리스트 제공
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getBasicChecklistUsingGET: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/v1/checklist`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -1501,17 +1374,6 @@ export const MockApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary 사용자 정의 체크리스트 추가
-         * @param {MemberChecklistRequestDto} [memberChecklistRequestDto] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async createChecklistUsingPOST(memberChecklistRequestDto?: MemberChecklistRequestDto, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createChecklistUsingPOST(memberChecklistRequestDto, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
          * @summary 일기 등록
          * @param {number} id 친구 id
          * @param {DiaryRequestDto} [diaryRequestDto] 
@@ -1553,16 +1415,6 @@ export const MockApiFp = function(configuration?: Configuration) {
          */
         async deleteDiaryUsingDELETE(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteDiaryUsingDELETE(id, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @summary 기본 체크리스트 제공
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getBasicChecklistUsingGET(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataResponseBasicChecklistDto>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getBasicChecklistUsingGET(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -1696,16 +1548,6 @@ export const MockApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * 
-         * @summary 사용자 정의 체크리스트 추가
-         * @param {MemberChecklistRequestDto} [memberChecklistRequestDto] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        createChecklistUsingPOST(memberChecklistRequestDto?: MemberChecklistRequestDto, options?: any): AxiosPromise<MessageResponse> {
-            return localVarFp.createChecklistUsingPOST(memberChecklistRequestDto, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
          * @summary 일기 등록
          * @param {number} id 친구 id
          * @param {DiaryRequestDto} [diaryRequestDto] 
@@ -1744,15 +1586,6 @@ export const MockApiFactory = function (configuration?: Configuration, basePath?
          */
         deleteDiaryUsingDELETE(id: number, options?: any): AxiosPromise<MessageResponse> {
             return localVarFp.deleteDiaryUsingDELETE(id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary 기본 체크리스트 제공
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getBasicChecklistUsingGET(options?: any): AxiosPromise<DataResponseBasicChecklistDto> {
-            return localVarFp.getBasicChecklistUsingGET(options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1877,18 +1710,6 @@ export class MockApi extends BaseAPI {
 
     /**
      * 
-     * @summary 사용자 정의 체크리스트 추가
-     * @param {MemberChecklistRequestDto} [memberChecklistRequestDto] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof MockApi
-     */
-    public createChecklistUsingPOST(memberChecklistRequestDto?: MemberChecklistRequestDto, options?: AxiosRequestConfig) {
-        return MockApiFp(this.configuration).createChecklistUsingPOST(memberChecklistRequestDto, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
      * @summary 일기 등록
      * @param {number} id 친구 id
      * @param {DiaryRequestDto} [diaryRequestDto] 
@@ -1934,17 +1755,6 @@ export class MockApi extends BaseAPI {
      */
     public deleteDiaryUsingDELETE(id: number, options?: AxiosRequestConfig) {
         return MockApiFp(this.configuration).deleteDiaryUsingDELETE(id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary 기본 체크리스트 제공
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof MockApi
-     */
-    public getBasicChecklistUsingGET(options?: AxiosRequestConfig) {
-        return MockApiFp(this.configuration).getBasicChecklistUsingGET(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
