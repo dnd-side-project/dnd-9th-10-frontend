@@ -24,52 +24,6 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 /**
  * 
  * @export
- * @interface BbokCharacterDto
- */
-export interface BbokCharacterDto {
-    /**
-     * 캐릭터 아이콘 Url
-     * @type {string}
-     * @memberof BbokCharacterDto
-     */
-    'iconUrl'?: string;
-    /**
-     * 캐릭터 이름
-     * @type {string}
-     * @memberof BbokCharacterDto
-     */
-    'name'?: string;
-    /**
-     * 캐릭터 타입(인장이, 고스미)
-     * @type {string}
-     * @memberof BbokCharacterDto
-     */
-    'type'?: BbokCharacterDtoTypeEnum;
-}
-
-export const BbokCharacterDtoTypeEnum = {
-    Cactus: 'CACTUS',
-    Hedgehog: 'HEDGEHOG'
-} as const;
-
-export type BbokCharacterDtoTypeEnum = typeof BbokCharacterDtoTypeEnum[keyof typeof BbokCharacterDtoTypeEnum];
-
-/**
- * 
- * @export
- * @interface BbokCharactersDto
- */
-export interface BbokCharactersDto {
-    /**
-     * 캐릭터 목록
-     * @type {Array<BbokCharacterDto>}
-     * @memberof BbokCharactersDto
-     */
-    'characters'?: Array<BbokCharacterDto>;
-}
-/**
- * 
- * @export
  * @interface BookmarkInfoDto
  */
 export interface BookmarkInfoDto {
@@ -134,31 +88,6 @@ export interface ChecklistInfoRequestDto {
 /**
  * 
  * @export
- * @interface DataResponseBbokCharactersDto
- */
-export interface DataResponseBbokCharactersDto {
-    /**
-     * 
-     * @type {BbokCharactersDto}
-     * @memberof DataResponseBbokCharactersDto
-     */
-    'data'?: BbokCharactersDto;
-    /**
-     * 응답 메시지
-     * @type {string}
-     * @memberof DataResponseBbokCharactersDto
-     */
-    'message'?: string;
-    /**
-     * 응답 코드
-     * @type {number}
-     * @memberof DataResponseBbokCharactersDto
-     */
-    'status'?: number;
-}
-/**
- * 
- * @export
  * @interface DataResponseBookmarkInfoDto
  */
 export interface DataResponseBookmarkInfoDto {
@@ -203,31 +132,6 @@ export interface DataResponseDiariesDto {
      * 응답 코드
      * @type {number}
      * @memberof DataResponseDiariesDto
-     */
-    'status'?: number;
-}
-/**
- * 
- * @export
- * @interface DataResponseDiaryCreateDto
- */
-export interface DataResponseDiaryCreateDto {
-    /**
-     * 
-     * @type {DiaryCreateDto}
-     * @memberof DataResponseDiaryCreateDto
-     */
-    'data'?: DiaryCreateDto;
-    /**
-     * 응답 메시지
-     * @type {string}
-     * @memberof DataResponseDiaryCreateDto
-     */
-    'message'?: string;
-    /**
-     * 응답 코드
-     * @type {number}
-     * @memberof DataResponseDiaryCreateDto
      */
     'status'?: number;
 }
@@ -525,61 +429,6 @@ export type DiaryDtoEmojiEnum = typeof DiaryDtoEmojiEnum[keyof typeof DiaryDtoEm
 /**
  * 
  * @export
- * @interface DiaryRequestDto
- */
-export interface DiaryRequestDto {
-    /**
-     * 체크한 부적합 체크리스트 id 배열
-     * @type {Array<string>}
-     * @memberof DiaryRequestDto
-     */
-    'badChecklist'?: Array<string>;
-    /**
-     * 일기 내용
-     * @type {string}
-     * @memberof DiaryRequestDto
-     */
-    'content'?: string;
-    /**
-     * 일기 날짜
-     * @type {string}
-     * @memberof DiaryRequestDto
-     */
-    'date'?: string;
-    /**
-     * 사용한 이모지
-     * @type {string}
-     * @memberof DiaryRequestDto
-     */
-    'emoji'?: DiaryRequestDtoEmojiEnum;
-    /**
-     * 체크한 적합 체크리스트 id 배열
-     * @type {Array<string>}
-     * @memberof DiaryRequestDto
-     */
-    'goodChecklist'?: Array<string>;
-    /**
-     * 태그 목록
-     * @type {Array<string>}
-     * @memberof DiaryRequestDto
-     */
-    'tags'?: Array<string>;
-}
-
-export const DiaryRequestDtoEmojiEnum = {
-    Angry: 'ANGRY',
-    Calm: 'CALM',
-    Displeased: 'DISPLEASED',
-    Happy: 'HAPPY',
-    Panic: 'PANIC',
-    Sad: 'SAD'
-} as const;
-
-export type DiaryRequestDtoEmojiEnum = typeof DiaryRequestDtoEmojiEnum[keyof typeof DiaryRequestDtoEmojiEnum];
-
-/**
- * 
- * @export
  * @interface DiarySayingDto
  */
 export interface DiarySayingDto {
@@ -682,25 +531,6 @@ export interface FriendDto {
      * @memberof FriendDto
      */
     'status'?: boolean;
-}
-/**
- * 
- * @export
- * @interface FriendRequestDto
- */
-export interface FriendRequestDto {
-    /**
-     * 친구 캐릭터
-     * @type {string}
-     * @memberof FriendRequestDto
-     */
-    'character'?: string;
-    /**
-     * 친구 이름
-     * @type {string}
-     * @memberof FriendRequestDto
-     */
-    'name'?: string;
 }
 /**
  * 
@@ -873,78 +703,6 @@ export const MockApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * 
-         * @summary 일기 등록
-         * @param {number} id 친구 id
-         * @param {DiaryRequestDto} [diaryRequestDto] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        createDiaryUsingPOST: async (id: number, diaryRequestDto?: DiaryRequestDto, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('createDiaryUsingPOST', 'id', id)
-            const localVarPath = `/api/v1/friend/{id}/diary`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(diaryRequestDto, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary 친구 등록
-         * @param {FriendRequestDto} [friendRequestDto] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        createFriendUsingPOST: async (friendRequestDto?: FriendRequestDto, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/v1/friend`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(friendRequestDto, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
          * @summary 북마크 삭제
          * @param {number} id id
          * @param {*} [options] Override http request option.
@@ -997,36 +755,6 @@ export const MockApiAxiosParamCreator = function (configuration?: Configuration)
             }
 
             const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary 캐릭터 정보 제공
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getBbokCharacterUsingGET: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/v1/character`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -1374,29 +1102,6 @@ export const MockApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary 일기 등록
-         * @param {number} id 친구 id
-         * @param {DiaryRequestDto} [diaryRequestDto] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async createDiaryUsingPOST(id: number, diaryRequestDto?: DiaryRequestDto, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataResponseDiaryCreateDto>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createDiaryUsingPOST(id, diaryRequestDto, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @summary 친구 등록
-         * @param {FriendRequestDto} [friendRequestDto] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async createFriendUsingPOST(friendRequestDto?: FriendRequestDto, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createFriendUsingPOST(friendRequestDto, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
          * @summary 북마크 삭제
          * @param {number} id id
          * @param {*} [options] Override http request option.
@@ -1415,16 +1120,6 @@ export const MockApiFp = function(configuration?: Configuration) {
          */
         async deleteDiaryUsingDELETE(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteDiaryUsingDELETE(id, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @summary 캐릭터 정보 제공
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getBbokCharacterUsingGET(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataResponseBbokCharactersDto>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getBbokCharacterUsingGET(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -1548,27 +1243,6 @@ export const MockApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * 
-         * @summary 일기 등록
-         * @param {number} id 친구 id
-         * @param {DiaryRequestDto} [diaryRequestDto] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        createDiaryUsingPOST(id: number, diaryRequestDto?: DiaryRequestDto, options?: any): AxiosPromise<DataResponseDiaryCreateDto> {
-            return localVarFp.createDiaryUsingPOST(id, diaryRequestDto, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary 친구 등록
-         * @param {FriendRequestDto} [friendRequestDto] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        createFriendUsingPOST(friendRequestDto?: FriendRequestDto, options?: any): AxiosPromise<MessageResponse> {
-            return localVarFp.createFriendUsingPOST(friendRequestDto, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
          * @summary 북마크 삭제
          * @param {number} id id
          * @param {*} [options] Override http request option.
@@ -1586,15 +1260,6 @@ export const MockApiFactory = function (configuration?: Configuration, basePath?
          */
         deleteDiaryUsingDELETE(id: number, options?: any): AxiosPromise<MessageResponse> {
             return localVarFp.deleteDiaryUsingDELETE(id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary 캐릭터 정보 제공
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getBbokCharacterUsingGET(options?: any): AxiosPromise<DataResponseBbokCharactersDto> {
-            return localVarFp.getBbokCharacterUsingGET(options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1710,31 +1375,6 @@ export class MockApi extends BaseAPI {
 
     /**
      * 
-     * @summary 일기 등록
-     * @param {number} id 친구 id
-     * @param {DiaryRequestDto} [diaryRequestDto] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof MockApi
-     */
-    public createDiaryUsingPOST(id: number, diaryRequestDto?: DiaryRequestDto, options?: AxiosRequestConfig) {
-        return MockApiFp(this.configuration).createDiaryUsingPOST(id, diaryRequestDto, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary 친구 등록
-     * @param {FriendRequestDto} [friendRequestDto] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof MockApi
-     */
-    public createFriendUsingPOST(friendRequestDto?: FriendRequestDto, options?: AxiosRequestConfig) {
-        return MockApiFp(this.configuration).createFriendUsingPOST(friendRequestDto, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
      * @summary 북마크 삭제
      * @param {number} id id
      * @param {*} [options] Override http request option.
@@ -1755,17 +1395,6 @@ export class MockApi extends BaseAPI {
      */
     public deleteDiaryUsingDELETE(id: number, options?: AxiosRequestConfig) {
         return MockApiFp(this.configuration).deleteDiaryUsingDELETE(id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary 캐릭터 정보 제공
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof MockApi
-     */
-    public getBbokCharacterUsingGET(options?: AxiosRequestConfig) {
-        return MockApiFp(this.configuration).getBbokCharacterUsingGET(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

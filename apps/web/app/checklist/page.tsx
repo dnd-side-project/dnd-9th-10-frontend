@@ -1,8 +1,8 @@
-import { getChecklist } from "../../apis/checklist";
+import { getFriendChecklist } from "../../apis/checklist";
 import ChecklistPage from "./_components/ChecklistPage";
 
 export default async function Page() {
-  const checklist = await getChecklist();
+  const checklist = await getFriendChecklist();
 
   return (
     <ChecklistPage data={checklist} />

@@ -1,10 +1,8 @@
 import { axiosInstance } from "../libs/axios";
 
-import {
-  MockApiFactory,
-} from "@dnd9-10/shared/src/__generate__/api/api";
+import { DefaultApiFactory } from "@dnd9-10/shared/src/__generate__/member/api";
 
-const factory = MockApiFactory(undefined, undefined, axiosInstance);
+const factory = DefaultApiFactory(undefined, undefined, axiosInstance);
 
 export const getBbokCharacters = async () => {
   const response = await factory.getBbokCharacterUsingGET();

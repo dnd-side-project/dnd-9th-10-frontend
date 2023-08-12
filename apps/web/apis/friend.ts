@@ -1,9 +1,12 @@
 import { axiosInstance } from "../libs/axios";
 
+import { MockApiFactory } from "@dnd9-10/shared/src/__generate__/api/api";
 import {
   FriendRequestDto,
-  MockApiFactory,
-} from "@dnd9-10/shared/src/__generate__/api/api";
+  DefaultApiFactory,
+} from "@dnd9-10/shared/src/__generate__/member/api";
+
+const memberFactory = DefaultApiFactory(undefined, undefined, axiosInstance);
 
 const factory = MockApiFactory(undefined, undefined, axiosInstance);
 
@@ -13,6 +16,6 @@ export const getFriends = async () => {
 };
 
 export const createFriend = async (payload: FriendRequestDto) => {
-  const response = await factory.createFriendUsingPOST(payload);
+  const response = await memberFactory.createFriendUsingPOST(payload);
   return response.data;
 };

@@ -24,40 +24,52 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 /**
  * 
  * @export
- * @interface DataResponseMemberSimpleInfoResponse
+ * @interface DataResponseLoginResponseDto
  */
-export interface DataResponseMemberSimpleInfoResponse {
+export interface DataResponseLoginResponseDto {
     /**
      * 
-     * @type {MemberSimpleInfoResponse}
-     * @memberof DataResponseMemberSimpleInfoResponse
+     * @type {LoginResponseDto}
+     * @memberof DataResponseLoginResponseDto
      */
-    'data'?: MemberSimpleInfoResponse;
+    'data'?: LoginResponseDto;
     /**
      * 응답 메시지
      * @type {string}
-     * @memberof DataResponseMemberSimpleInfoResponse
+     * @memberof DataResponseLoginResponseDto
      */
     'message'?: string;
     /**
      * 응답 코드
      * @type {number}
-     * @memberof DataResponseMemberSimpleInfoResponse
+     * @memberof DataResponseLoginResponseDto
      */
     'status'?: number;
 }
 /**
  * 
  * @export
- * @interface MemberSimpleInfoResponse
+ * @interface LoginResponseDto
  */
-export interface MemberSimpleInfoResponse {
+export interface LoginResponseDto {
     /**
-     * member의 고유 Id
+     * 발급된 액세스 토큰
      * @type {string}
-     * @memberof MemberSimpleInfoResponse
+     * @memberof LoginResponseDto
+     */
+    'accessToken'?: string;
+    /**
+     * 멤버의 id
+     * @type {string}
+     * @memberof LoginResponseDto
      */
     'memberId'?: string;
+    /**
+     * 발급된 리프레쉬 토큰
+     * @type {string}
+     * @memberof LoginResponseDto
+     */
+    'refreshToken'?: string;
 }
 /**
  * 
@@ -243,7 +255,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async guestLoginUsingPOST(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataResponseMemberSimpleInfoResponse>> {
+        async guestLoginUsingPOST(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataResponseLoginResponseDto>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.guestLoginUsingPOST(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -254,7 +266,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async kakaoLoginUsingPOST(code: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataResponseMemberSimpleInfoResponse>> {
+        async kakaoLoginUsingPOST(code: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataResponseLoginResponseDto>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.kakaoLoginUsingPOST(code, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -294,7 +306,7 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        guestLoginUsingPOST(options?: any): AxiosPromise<DataResponseMemberSimpleInfoResponse> {
+        guestLoginUsingPOST(options?: any): AxiosPromise<DataResponseLoginResponseDto> {
             return localVarFp.guestLoginUsingPOST(options).then((request) => request(axios, basePath));
         },
         /**
@@ -304,7 +316,7 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        kakaoLoginUsingPOST(code: string, options?: any): AxiosPromise<DataResponseMemberSimpleInfoResponse> {
+        kakaoLoginUsingPOST(code: string, options?: any): AxiosPromise<DataResponseLoginResponseDto> {
             return localVarFp.kakaoLoginUsingPOST(code, options).then((request) => request(axios, basePath));
         },
         /**

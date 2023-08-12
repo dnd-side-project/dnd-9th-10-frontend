@@ -17,8 +17,17 @@ import { Carousel } from "@dnd9-10/webui/src/carousel/Carousel";
 import { FriendCard } from "@dnd9-10/webui/src/card/FriendCard";
 import { NewFriendCard } from "@dnd9-10/webui/src/card/NewFriendCard";
 import CircularIndicator from "@dnd9-10/webui/src/indicator/CircularIndicator";
+import { FriendDto } from "@dnd9-10/shared/src/__generate__/api";
+import { BbokCharacterDto } from "@dnd9-10/shared/src/__generate__/member/api";
 
-export default function MainPage() {
+interface Props {
+  friends: FriendDto[]
+  characters: BbokCharacterDto[]
+}
+
+export default function MainPage(props: Props) {
+
+  console.log(props)
   const router = useRouter();
   const searchParam = useSearchParams();
   const [page, setPage] = useState(0);
