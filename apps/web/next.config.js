@@ -6,6 +6,9 @@ const withPWA = require('next-pwa')({
  * @type {import('next').NextConfig}
  */
 module.exports = withPWA({
+  experimental: {
+    typedRoutes: true,
+  },
   reactStrictMode: true,
   transpilePackages: ['@dnd9-10/webui', '@dnd9-10/shared'],
   webpack: (config) => {
