@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { use, useCallback, useEffect } from "react";
+import { use, useCallback, useEffect, useState } from "react";
 import { Topbar } from "@dnd9-10/webui/src/topbar/Topbar";
 import { CheckList } from "@dnd9-10/webui/src/checklist/CheckList";
 import { SubmitButton } from "@dnd9-10/webui/src/button/SubmitButton";
@@ -9,15 +9,18 @@ import { StepIndicator } from "@dnd9-10/webui/src/indicator/StepIndicator";
 import { Bold22, Medium16 } from "@dnd9-10/webui/src/text/Typographies";
 
 import styles from "./page.module.css";
-import { MyChecklistDto } from "@dnd9-10/shared/src/__generate__/api";
+import { BasicChecklistDto } from "@dnd9-10/shared/src/__generate__/member/api";
+import { createChecklist } from "../../../../apis/checklist";
+import { storage } from "../../../../libs/localStorage";
 
 interface Props {
-  data: MyChecklistDto;
+  data: BasicChecklistDto;
 }
 
 export default function ChecklistNewPage(props: Props) {
   const { data } = props;
   const router = useRouter();
+  const [checklist, setChecklist] = useState(data?.badChecklist ?? []);
 
   const handleBackOrHome = useCallback(
     (e: React.MouseEvent) => {
@@ -25,6 +28,23 @@ export default function ChecklistNewPage(props: Props) {
     },
     [router]
   );
+
+  const handleAddItem = useCallback(() => {
+    setChecklist((prev) => {
+      return [...prev, ""];
+    });
+  }, []);
+
+  const handleSubmit = useCallback(async () => {
+    try {
+      await createChecklist({
+        badChecklist: checklist,
+      });
+      router.replace("/");
+    } catch (error) {
+      console.error(error);
+    }
+  }, [checklist, router]);
 
   return (
     <div className={styles.wrap}>
@@ -43,16 +63,19 @@ export default function ChecklistNewPage(props: Props) {
         />
       </div>
       <div className={styles.content}>
-        <CheckList
-          data={[
-            ...(data?.badChecklist?.map?.((item) => ({ name: item.criteria })) ??
-              []),
-          ]}
+        <CheckList data={[...(checklist?.map?.((name) => ({ name })) ?? [])]} />
+        <SubmitButton
+          className={styles["add-button"]}
+          name="+ 기준 추가하기"
+          onClick={handleAddItem}
         />
-        <SubmitButton className={styles["add-button"]} name="+ 기준 추가하기" />
       </div>
       <div className={styles.bottom}>
-        <SubmitButton className={styles.bottom} name="선택 완료" />
+        <SubmitButton
+          className={styles.bottom}
+          name="선택 완료"
+          onClick={handleSubmit}
+        />
       </div>
     </div>
   );

@@ -4,9 +4,6 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect } from "react";
 import { SubmitButton } from "@dnd9-10/webui/src/button/SubmitButton";
 import {
-  Bold22,
-  Medium14,
-  Medium16,
   Semibold20,
 } from "@dnd9-10/webui/src/text/Typographies";
 
@@ -15,6 +12,8 @@ import Icon from "@dnd9-10/webui/src/icon/Icon";
 import { images } from "@dnd9-10/shared/src/libs/images";
 import Image from "next/image";
 import { initKakao, loginWithKakao } from "../../../libs/kakao";
+import { guestLogin } from "../../../apis/account";
+import { storage } from "../../../libs/localStorage";
 
 export default function Page() {
   const router = useRouter();
@@ -23,8 +22,15 @@ export default function Page() {
     initKakao();
   }, []);
 
-  const handleNext = useCallback(() => {
-    router.replace("/checklist/new");
+  const handleGuest = useCallback(async () => {
+    try {
+      const response = await guestLogin();
+      storage().setMemberId(response.data?.memberId);
+      router.replace("/checklist/new");
+    } catch (error) {
+      console.error(error);
+      alert(error.message);
+    }
   }, [router]);
 
   const handleKakao = useCallback(() => {
@@ -60,7 +66,7 @@ export default function Page() {
         <SubmitButton
           className={styles["guest-button"]}
           name="시작하기"
-          onClick={handleNext}
+          onClick={handleGuest}
         />
       </div>
     </div>
