@@ -11,7 +11,7 @@ import { Bold22, Medium16 } from "@dnd9-10/webui/src/text/Typographies";
 import styles from "./page.module.css";
 import { BasicChecklistDto } from "@dnd9-10/shared/src/__generate__/member/api";
 import { createChecklist } from "../../../../apis/checklist";
-import { storage } from "../../../../libs/localStorage";
+import { storage } from "../../../../libs/local-storage";
 
 interface Props {
   data: BasicChecklistDto;

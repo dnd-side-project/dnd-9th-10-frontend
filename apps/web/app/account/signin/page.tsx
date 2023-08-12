@@ -13,7 +13,7 @@ import { images } from "@dnd9-10/shared/src/libs/images";
 import Image from "next/image";
 import { initKakao, loginWithKakao } from "../../../libs/kakao";
 import { guestLogin } from "../../../apis/account";
-import { storage } from "../../../libs/localStorage";
+import { storage } from "../../../libs/local-storage";
 
 export default function Page() {
   const router = useRouter();
