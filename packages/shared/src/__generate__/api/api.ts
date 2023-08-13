@@ -113,31 +113,6 @@ export interface DataResponseBookmarkInfoDto {
 /**
  * 
  * @export
- * @interface DataResponseDiariesDto
- */
-export interface DataResponseDiariesDto {
-    /**
-     * 
-     * @type {DiariesDto}
-     * @memberof DataResponseDiariesDto
-     */
-    'data'?: DiariesDto;
-    /**
-     * 응답 메시지
-     * @type {string}
-     * @memberof DataResponseDiariesDto
-     */
-    'message'?: string;
-    /**
-     * 응답 코드
-     * @type {number}
-     * @memberof DataResponseDiariesDto
-     */
-    'status'?: number;
-}
-/**
- * 
- * @export
  * @interface DataResponseDiaryDto
  */
 export interface DataResponseDiaryDto {
@@ -182,31 +157,6 @@ export interface DataResponseDiaryStickerDto {
      * 응답 코드
      * @type {number}
      * @memberof DataResponseDiaryStickerDto
-     */
-    'status'?: number;
-}
-/**
- * 
- * @export
- * @interface DataResponseDiaryTagDto
- */
-export interface DataResponseDiaryTagDto {
-    /**
-     * 
-     * @type {DiaryTagDto}
-     * @memberof DataResponseDiaryTagDto
-     */
-    'data'?: DiaryTagDto;
-    /**
-     * 응답 메시지
-     * @type {string}
-     * @memberof DataResponseDiaryTagDto
-     */
-    'message'?: string;
-    /**
-     * 응답 코드
-     * @type {number}
-     * @memberof DataResponseDiaryTagDto
      */
     'status'?: number;
 }
@@ -259,55 +209,6 @@ export interface DataResponseMyChecklistDto {
      * @memberof DataResponseMyChecklistDto
      */
     'status'?: number;
-}
-/**
- * 
- * @export
- * @interface DiariesDto
- */
-export interface DiariesDto {
-    /**
-     * 일화 목록
-     * @type {Array<DiaryDto>}
-     * @memberof DiariesDto
-     */
-    'diaries'?: Array<DiaryDto>;
-    /**
-     * 현재 페이지에 담긴 데이터 개수
-     * @type {number}
-     * @memberof DiariesDto
-     */
-    'numberOfElements'?: number;
-    /**
-     * 시작 offset
-     * @type {number}
-     * @memberof DiariesDto
-     */
-    'offset'?: number;
-    /**
-     * 페이지 당 담을 수 있는 최대 용량의 데이터 개수
-     * @type {number}
-     * @memberof DiariesDto
-     */
-    'pageNumber'?: number;
-    /**
-     * 현재 페이지 번호 (0부터 시작)
-     * @type {number}
-     * @memberof DiariesDto
-     */
-    'pageSize'?: number;
-    /**
-     * 전체 페이지의 개수 (필터링에 만족하는)
-     * @type {number}
-     * @memberof DiariesDto
-     */
-    'totalElements'?: number;
-    /**
-     * 전체 요소 개수 (필터링에 만족하는)
-     * @type {number}
-     * @memberof DiariesDto
-     */
-    'totalPages'?: number;
 }
 /**
  * 
@@ -473,19 +374,6 @@ export interface DiaryStickerDto {
 /**
  * 
  * @export
- * @interface DiaryTagDto
- */
-export interface DiaryTagDto {
-    /**
-     * 태그 목록
-     * @type {Array<TagDto>}
-     * @memberof DiaryTagDto
-     */
-    'tags'?: Array<TagDto>;
-}
-/**
- * 
- * @export
  * @interface FriendDto
  */
 export interface FriendDto {
@@ -641,25 +529,6 @@ export const StickerDtoNameEnum = {
 
 export type StickerDtoNameEnum = typeof StickerDtoNameEnum[keyof typeof StickerDtoNameEnum];
 
-/**
- * 
- * @export
- * @interface TagDto
- */
-export interface TagDto {
-    /**
-     * 태그 id
-     * @type {number}
-     * @memberof TagDto
-     */
-    'id'?: number;
-    /**
-     * 태그 이름
-     * @type {string}
-     * @memberof TagDto
-     */
-    'tag'?: string;
-}
 
 /**
  * MockApi - axios parameter creator
@@ -831,60 +700,6 @@ export const MockApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * 
-         * @summary 일기 목록 조회
-         * @param {number} id 친구 id
-         * @param {number} [offset] 목록 오프셋
-         * @param {string} [order] 시간 정렬 기준
-         * @param {string} [q] 검색어
-         * @param {string} [tag] 태그
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getDiariesUsingGET: async (id: number, offset?: number, order?: string, q?: string, tag?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('getDiariesUsingGET', 'id', id)
-            const localVarPath = `/api/v1/friend/{id}/diary`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            if (offset !== undefined) {
-                localVarQueryParameter['offset'] = offset;
-            }
-
-            if (order !== undefined) {
-                localVarQueryParameter['order'] = order;
-            }
-
-            if (q !== undefined) {
-                localVarQueryParameter['q'] = q;
-            }
-
-            if (tag !== undefined) {
-                localVarQueryParameter['tag'] = tag;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
          * @summary 일기 상세 조회
          * @param {number} id id
          * @param {*} [options] Override http request option.
@@ -955,36 +770,6 @@ export const MockApiAxiosParamCreator = function (configuration?: Configuration)
          */
         getStickersUsingGET: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/friend/diary/sticker`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary 태그 목록 조회
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getTagsUsingGET: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/v1/friend/diary/tag`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -1144,21 +929,6 @@ export const MockApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary 일기 목록 조회
-         * @param {number} id 친구 id
-         * @param {number} [offset] 목록 오프셋
-         * @param {string} [order] 시간 정렬 기준
-         * @param {string} [q] 검색어
-         * @param {string} [tag] 태그
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getDiariesUsingGET(id: number, offset?: number, order?: string, q?: string, tag?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataResponseDiariesDto>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getDiariesUsingGET(id, offset, order, q, tag, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
          * @summary 일기 상세 조회
          * @param {number} id id
          * @param {*} [options] Override http request option.
@@ -1186,16 +956,6 @@ export const MockApiFp = function(configuration?: Configuration) {
          */
         async getStickersUsingGET(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataResponseDiaryStickerDto>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getStickersUsingGET(options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @summary 태그 목록 조회
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getTagsUsingGET(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataResponseDiaryTagDto>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getTagsUsingGET(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -1281,20 +1041,6 @@ export const MockApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * 
-         * @summary 일기 목록 조회
-         * @param {number} id 친구 id
-         * @param {number} [offset] 목록 오프셋
-         * @param {string} [order] 시간 정렬 기준
-         * @param {string} [q] 검색어
-         * @param {string} [tag] 태그
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getDiariesUsingGET(id: number, offset?: number, order?: string, q?: string, tag?: string, options?: any): AxiosPromise<DataResponseDiariesDto> {
-            return localVarFp.getDiariesUsingGET(id, offset, order, q, tag, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
          * @summary 일기 상세 조회
          * @param {number} id id
          * @param {*} [options] Override http request option.
@@ -1320,15 +1066,6 @@ export const MockApiFactory = function (configuration?: Configuration, basePath?
          */
         getStickersUsingGET(options?: any): AxiosPromise<DataResponseDiaryStickerDto> {
             return localVarFp.getStickersUsingGET(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary 태그 목록 조회
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getTagsUsingGET(options?: any): AxiosPromise<DataResponseDiaryTagDto> {
-            return localVarFp.getTagsUsingGET(options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1421,22 +1158,6 @@ export class MockApi extends BaseAPI {
 
     /**
      * 
-     * @summary 일기 목록 조회
-     * @param {number} id 친구 id
-     * @param {number} [offset] 목록 오프셋
-     * @param {string} [order] 시간 정렬 기준
-     * @param {string} [q] 검색어
-     * @param {string} [tag] 태그
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof MockApi
-     */
-    public getDiariesUsingGET(id: number, offset?: number, order?: string, q?: string, tag?: string, options?: AxiosRequestConfig) {
-        return MockApiFp(this.configuration).getDiariesUsingGET(id, offset, order, q, tag, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
      * @summary 일기 상세 조회
      * @param {number} id id
      * @param {*} [options] Override http request option.
@@ -1467,17 +1188,6 @@ export class MockApi extends BaseAPI {
      */
     public getStickersUsingGET(options?: AxiosRequestConfig) {
         return MockApiFp(this.configuration).getStickersUsingGET(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary 태그 목록 조회
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof MockApi
-     */
-    public getTagsUsingGET(options?: AxiosRequestConfig) {
-        return MockApiFp(this.configuration).getTagsUsingGET(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

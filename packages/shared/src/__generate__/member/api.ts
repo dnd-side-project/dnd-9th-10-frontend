@@ -156,6 +156,31 @@ export interface DataResponseBbokCharactersDto {
 /**
  * 
  * @export
+ * @interface DataResponseDiariesDto
+ */
+export interface DataResponseDiariesDto {
+    /**
+     * 
+     * @type {DiariesDto}
+     * @memberof DataResponseDiariesDto
+     */
+    'data'?: DiariesDto;
+    /**
+     * 응답 메시지
+     * @type {string}
+     * @memberof DataResponseDiariesDto
+     */
+    'message'?: string;
+    /**
+     * 응답 코드
+     * @type {number}
+     * @memberof DataResponseDiariesDto
+     */
+    'status'?: number;
+}
+/**
+ * 
+ * @export
  * @interface DataResponseDiaryCreateDto
  */
 export interface DataResponseDiaryCreateDto {
@@ -175,6 +200,31 @@ export interface DataResponseDiaryCreateDto {
      * 응답 코드
      * @type {number}
      * @memberof DataResponseDiaryCreateDto
+     */
+    'status'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface DataResponseDiaryTagDto
+ */
+export interface DataResponseDiaryTagDto {
+    /**
+     * 
+     * @type {DiaryTagDto}
+     * @memberof DataResponseDiaryTagDto
+     */
+    'data'?: DiaryTagDto;
+    /**
+     * 응답 메시지
+     * @type {string}
+     * @memberof DataResponseDiaryTagDto
+     */
+    'message'?: string;
+    /**
+     * 응답 코드
+     * @type {number}
+     * @memberof DataResponseDiaryTagDto
      */
     'status'?: number;
 }
@@ -206,6 +256,80 @@ export interface DataResponseMemberInfoResponseDto {
 /**
  * 
  * @export
+ * @interface DiariesDto
+ */
+export interface DiariesDto {
+    /**
+     * 일화 목록
+     * @type {Array<DiaryDto>}
+     * @memberof DiariesDto
+     */
+    'diaries'?: Array<DiaryDto>;
+    /**
+     * 현재 페이지에 담긴 데이터 개수
+     * @type {number}
+     * @memberof DiariesDto
+     */
+    'numberOfElements'?: number;
+    /**
+     * 시작 offset
+     * @type {number}
+     * @memberof DiariesDto
+     */
+    'offset'?: number;
+    /**
+     * 페이지 당 담을 수 있는 최대 용량의 데이터 개수
+     * @type {number}
+     * @memberof DiariesDto
+     */
+    'pageNumber'?: number;
+    /**
+     * 현재 페이지 번호 (0부터 시작)
+     * @type {number}
+     * @memberof DiariesDto
+     */
+    'pageSize'?: number;
+    /**
+     * 전체 페이지의 개수 (필터링에 만족하는)
+     * @type {number}
+     * @memberof DiariesDto
+     */
+    'totalElements'?: number;
+    /**
+     * 전체 요소 개수 (필터링에 만족하는)
+     * @type {number}
+     * @memberof DiariesDto
+     */
+    'totalPages'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface DiaryChecklistDto
+ */
+export interface DiaryChecklistDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof DiaryChecklistDto
+     */
+    'criteria'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof DiaryChecklistDto
+     */
+    'id'?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof DiaryChecklistDto
+     */
+    'isChecked'?: boolean;
+}
+/**
+ * 
+ * @export
  * @interface DiaryCreateDto
  */
 export interface DiaryCreateDto {
@@ -222,6 +346,79 @@ export interface DiaryCreateDto {
      */
     'saying'?: DiarySayingDto;
 }
+/**
+ * 
+ * @export
+ * @interface DiaryDto
+ */
+export interface DiaryDto {
+    /**
+     * 부적합 체크리스트
+     * @type {Array<DiaryChecklistDto>}
+     * @memberof DiaryDto
+     */
+    'badChecklist'?: Array<DiaryChecklistDto>;
+    /**
+     * 일기 내용
+     * @type {string}
+     * @memberof DiaryDto
+     */
+    'content'?: string;
+    /**
+     * 일기 작성 날짜
+     * @type {string}
+     * @memberof DiaryDto
+     */
+    'date'?: string;
+    /**
+     * 일기에 사용한 이모지
+     * @type {string}
+     * @memberof DiaryDto
+     */
+    'emoji'?: DiaryDtoEmojiEnum;
+    /**
+     * 이모지 다운로드 url
+     * @type {string}
+     * @memberof DiaryDto
+     */
+    'emojiUrl'?: string;
+    /**
+     * 적합 체크리스트
+     * @type {Array<DiaryChecklistDto>}
+     * @memberof DiaryDto
+     */
+    'goodChecklist'?: Array<DiaryChecklistDto>;
+    /**
+     * 일기 고유 ID
+     * @type {number}
+     * @memberof DiaryDto
+     */
+    'id'?: number;
+    /**
+     * 스티커 JSON
+     * @type {string}
+     * @memberof DiaryDto
+     */
+    'sticker'?: string;
+    /**
+     * 일기 태그 목록
+     * @type {Array<string>}
+     * @memberof DiaryDto
+     */
+    'tags'?: Array<string>;
+}
+
+export const DiaryDtoEmojiEnum = {
+    Angry: 'ANGRY',
+    Calm: 'CALM',
+    Displeased: 'DISPLEASED',
+    Happy: 'HAPPY',
+    Panic: 'PANIC',
+    Sad: 'SAD'
+} as const;
+
+export type DiaryDtoEmojiEnum = typeof DiaryDtoEmojiEnum[keyof typeof DiaryDtoEmojiEnum];
+
 /**
  * 
  * @export
@@ -301,6 +498,19 @@ export interface DiarySayingDto {
      * @memberof DiarySayingDto
      */
     'reference'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface DiaryTagDto
+ */
+export interface DiaryTagDto {
+    /**
+     * 태그 목록
+     * @type {Array<TagDto>}
+     * @memberof DiaryTagDto
+     */
+    'tags'?: Array<TagDto>;
 }
 /**
  * 
@@ -397,6 +607,25 @@ export interface MessageResponse {
      * @memberof MessageResponse
      */
     'status'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface TagDto
+ */
+export interface TagDto {
+    /**
+     * 태그 id
+     * @type {number}
+     * @memberof TagDto
+     */
+    'id'?: number;
+    /**
+     * 태그 이름
+     * @type {string}
+     * @memberof TagDto
+     */
+    'tag'?: string;
 }
 
 /**
@@ -587,6 +816,63 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
+         * 
+         * @summary 일기 목록 조회
+         * @param {number} id 친구 id
+         * @param {number} [offset] 목록 오프셋
+         * @param {string} [order] 시간 정렬 기준
+         * @param {string} [q] 검색어
+         * @param {string} [tag] 태그
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getDiariesUsingGET: async (id: number, offset?: number, order?: string, q?: string, tag?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('getDiariesUsingGET', 'id', id)
+            const localVarPath = `/api/v1/friend/{id}/diary`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Authorization required
+            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+
+            if (offset !== undefined) {
+                localVarQueryParameter['offset'] = offset;
+            }
+
+            if (order !== undefined) {
+                localVarQueryParameter['order'] = order;
+            }
+
+            if (q !== undefined) {
+                localVarQueryParameter['q'] = q;
+            }
+
+            if (tag !== undefined) {
+                localVarQueryParameter['tag'] = tag;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * 마이 페이지에서 사용자의 정보를 볼 수 있습니다.
          * @summary 내 정보 조회
          * @param {*} [options] Override http request option.
@@ -594,6 +880,43 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          */
         getMemberUsingGET: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/member`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Authorization required
+            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary 태그 목록 조회
+         * @param {number} id 친구 id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getTagsUsingGET: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('getTagsUsingGET', 'id', id)
+            const localVarPath = `/api/v1/friend/{id}/diary/tag`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -684,6 +1007,21 @@ export const DefaultApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * 
+         * @summary 일기 목록 조회
+         * @param {number} id 친구 id
+         * @param {number} [offset] 목록 오프셋
+         * @param {string} [order] 시간 정렬 기준
+         * @param {string} [q] 검색어
+         * @param {string} [tag] 태그
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getDiariesUsingGET(id: number, offset?: number, order?: string, q?: string, tag?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataResponseDiariesDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getDiariesUsingGET(id, offset, order, q, tag, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * 마이 페이지에서 사용자의 정보를 볼 수 있습니다.
          * @summary 내 정보 조회
          * @param {*} [options] Override http request option.
@@ -691,6 +1029,17 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async getMemberUsingGET(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataResponseMemberInfoResponseDto>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getMemberUsingGET(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary 태그 목록 조회
+         * @param {number} id 친구 id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getTagsUsingGET(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataResponseDiaryTagDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getTagsUsingGET(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -753,6 +1102,20 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.getBbokCharacterUsingGET(options).then((request) => request(axios, basePath));
         },
         /**
+         * 
+         * @summary 일기 목록 조회
+         * @param {number} id 친구 id
+         * @param {number} [offset] 목록 오프셋
+         * @param {string} [order] 시간 정렬 기준
+         * @param {string} [q] 검색어
+         * @param {string} [tag] 태그
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getDiariesUsingGET(id: number, offset?: number, order?: string, q?: string, tag?: string, options?: any): AxiosPromise<DataResponseDiariesDto> {
+            return localVarFp.getDiariesUsingGET(id, offset, order, q, tag, options).then((request) => request(axios, basePath));
+        },
+        /**
          * 마이 페이지에서 사용자의 정보를 볼 수 있습니다.
          * @summary 내 정보 조회
          * @param {*} [options] Override http request option.
@@ -760,6 +1123,16 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          */
         getMemberUsingGET(options?: any): AxiosPromise<DataResponseMemberInfoResponseDto> {
             return localVarFp.getMemberUsingGET(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary 태그 목록 조회
+         * @param {number} id 친구 id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getTagsUsingGET(id: number, options?: any): AxiosPromise<DataResponseDiaryTagDto> {
+            return localVarFp.getTagsUsingGET(id, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -831,6 +1204,22 @@ export class DefaultApi extends BaseAPI {
     }
 
     /**
+     * 
+     * @summary 일기 목록 조회
+     * @param {number} id 친구 id
+     * @param {number} [offset] 목록 오프셋
+     * @param {string} [order] 시간 정렬 기준
+     * @param {string} [q] 검색어
+     * @param {string} [tag] 태그
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public getDiariesUsingGET(id: number, offset?: number, order?: string, q?: string, tag?: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).getDiariesUsingGET(id, offset, order, q, tag, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * 마이 페이지에서 사용자의 정보를 볼 수 있습니다.
      * @summary 내 정보 조회
      * @param {*} [options] Override http request option.
@@ -839,6 +1228,18 @@ export class DefaultApi extends BaseAPI {
      */
     public getMemberUsingGET(options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).getMemberUsingGET(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary 태그 목록 조회
+     * @param {number} id 친구 id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public getTagsUsingGET(id: number, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).getTagsUsingGET(id, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
