@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback } from "react";
 import { SubmitButton } from "@dnd9-10/webui/src/button/SubmitButton";
 import {
@@ -17,7 +17,8 @@ import { NewDiaryEmpty } from "@dnd9-10/webui/src/empty/NewDiaryEmpty";
 
 export default function Page() {
   const router = useRouter();
-  const friendId = 1;
+  const searchParams = useSearchParams();
+  const friendId = searchParams.get("friendId");
 
   const handleBackOrHome = useCallback(
     (e: React.MouseEvent) => {
@@ -27,8 +28,8 @@ export default function Page() {
   );
 
   const handleNewDiary = useCallback(() => {
-    router.push("/friend/" + friendId + "/diary/new");
-  }, [router]);
+    router.push(`/friend/${friendId}/diary/new`);
+  }, [friendId, router]);
 
   return (
     <div className={styles.wrap}>
