@@ -10,11 +10,12 @@ import { BbokCharacterDto } from "@dnd9-10/shared/src/__generate__/member/api";
 
 export interface FriendEmptyProps {
   className?: string;
-  characters: BbokCharacterDto[]
+  characters: BbokCharacterDto[];
+  onAddFriend: (form: { name: string; character: BbokCharacterDto }) => void;
 }
 
 export function FriendEmpty(props: FriendEmptyProps) {
-  const { className, characters } = props;
+  const { className, characters, onAddFriend } = props;
   return (
     <div className={cn(styles.wrap, className)}>
       <Image width={180} height={160} alt="empty" src={images.FRIEND_EMPTY} />
@@ -23,7 +24,7 @@ export function FriendEmpty(props: FriendEmptyProps) {
         {`친구를 등록하고 일화를 작성하여
 생각을 정리 해 보세요.`}
       </Regular15>
-      <SelectFriendModal characters={characters}  />
+      <SelectFriendModal characters={characters} onSubmit={onAddFriend} />
     </div>
   );
 }

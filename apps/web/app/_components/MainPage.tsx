@@ -19,6 +19,7 @@ import { NewFriendCard } from "@dnd9-10/webui/src/card/NewFriendCard";
 import CircularIndicator from "@dnd9-10/webui/src/indicator/CircularIndicator";
 import { FriendDto } from "@dnd9-10/shared/src/__generate__/api";
 import { BbokCharacterDto } from "@dnd9-10/shared/src/__generate__/member/api";
+import { createFriend } from "../../apis/friend";
 
 interface Props {
   friends: FriendDto[];
@@ -26,12 +27,11 @@ interface Props {
 }
 
 export default function MainPage(props: Props) {
-  const { friends } = props;
-  console.log(props);
+  const { friends, characters } = props;
   const router = useRouter();
   const searchParam = useSearchParams();
   const [page, setPage] = useState(0);
-  const totalCount = 3;
+  const totalCount = friends.length + 2;
 
   usePwa();
 
@@ -39,13 +39,26 @@ export default function MainPage(props: Props) {
     setPage(page);
   }, []);
 
-  const handleSelectedItem = useCallback(() => {
-    router.push("/friend/1/diaries");
-  }, [router]);
+  const handleSelectedItem = useCallback(
+    (friend: FriendDto) => () => {
+      router.push(`/friend/${friend.id}/diaries`);
+    },
+    [router]
+  );
+
+  const handleAddFriend = useCallback(
+    async (form: { name: string; character: BbokCharacterDto }) => {
+      await createFriend({
+        character: form.character.type,
+        name: form.name,
+      });
+    },
+    []
+  );
 
   const handleAdd = useCallback(() => {
-    router.push(`/friend/${1}/diary/new`);
-  }, [router]);
+    router.push(`/friend/${page}/diary/new`);
+  }, [page, router]);
 
   const handleSelectedTab = useCallback(
     (tab: BottomTabs) => {
@@ -69,7 +82,7 @@ export default function MainPage(props: Props) {
           <Bold22 className={styles["section-title"]}>친구 선택</Bold22>
           <div className={styles["section-content"]}>
             <Carousel onPagination={handlePagination}>
-              {friends.map((item) => {
+              {friends.map((item, index) => {
                 const {
                   characterUrl,
                   countingDay,
@@ -80,26 +93,21 @@ export default function MainPage(props: Props) {
                   status,
                 } = item;
                 return (
-                  <div key={id} className={styles["friend-item"]}>
+                  <div key={index} className={styles["friend-item"]}>
                     <FriendCard
                       characterUrl={characterUrl}
                       statusText={countingDay + "일째 작성 중"}
                       name={name}
                       diaryCount={countingDiary}
-                      onClick={handleSelectedItem}
+                      onClick={handleSelectedItem(item)}
                     />
                   </div>
                 );
               })}
               <div className={styles["friend-item"]}>
-                <FriendEmpty characters={[]} />
-              </div>
-              <div className={styles["friend-item"]}>
-                <FriendCard
-                  statusText="12일째 작성 중"
-                  name="김도리"
-                  diaryCount={10}
-                  onClick={handleSelectedItem}
+                <FriendEmpty
+                  characters={characters}
+                  onAddFriend={handleAddFriend}
                 />
               </div>
               <div className={styles["friend-item"]}>

@@ -30,7 +30,7 @@ module.exports = withPWA({
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'i.ibb.co',
+        hostname: '*',
         port: '',
         pathname: '/**',
       },

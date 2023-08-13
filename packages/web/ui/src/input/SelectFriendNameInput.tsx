@@ -6,13 +6,16 @@ import { Regular13 } from "../text/Typographies";
 import Image from "next/image";
 import Icon from "../icon/Icon";
 import InfoText from "../text/InfoText";
+import React from "react";
 
 export interface SelectFriendNameInputProps {
   className?: string;
+  value: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export function SelectFriendNameInput(props: SelectFriendNameInputProps) {
-  const { className } = props;
+  const { className, value, onChange } = props;
   return (
     <div className={cn(styles.wrap, className)}>
       <div className={styles["friend-profile"]}>
@@ -21,6 +24,8 @@ export function SelectFriendNameInput(props: SelectFriendNameInputProps) {
       <TextInput
         className={styles.input}
         inputProps={{
+          value,
+          onChange,
           placeholder: "이름을 입력하세요.",
         }}
       />

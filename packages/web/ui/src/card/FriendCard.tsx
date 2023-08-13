@@ -8,7 +8,7 @@ import IconButton from "../button/IconButton";
 
 export interface FriendCardProps {
   className?: string;
-  characterUrl: string;
+  characterUrl?: string;
   statusText: string;
   name: string;
   diaryCount: number;
