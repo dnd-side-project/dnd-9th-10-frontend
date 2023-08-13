@@ -1,54 +1,21 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
-import { useCallback } from "react";
-import { SubmitButton } from "@dnd9-10/webui/src/button/SubmitButton";
-import {
-  Bold22,
-  Medium14,
-  Medium16,
-  Semibold20,
-} from "@dnd9-10/webui/src/text/Typographies";
+import { useQuery } from "@tanstack/react-query";
+import { getDiaries } from "../../../../apis/diary";
+import { getTags } from "../../../../apis/tag";
+import FriendIdDiariesPage from "./_components/FriendIdDiariesPage";
 
-import styles from "./page.module.css";
-import Topbar from "@dnd9-10/webui/src/topbar/Topbar";
-import { SearchTextInput } from "@dnd9-10/webui/src/input/SearchTextInput";
-import { NewDiaryEmpty } from "@dnd9-10/webui/src/empty/NewDiaryEmpty";
+interface Props {
+  params: {
+    friendId?: string;
+  };
+  searchParams: {};
+}
 
-export default function Page() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const friendId = searchParams.get("friendId");
+export default function Page(props: Props) {
+  const { params } = props;
+  const friendId = Number(params.friendId);
+  const tags = useQuery(["getTags", friendId], () => getTags(friendId));
 
-  const handleBackOrHome = useCallback(
-    (e: React.MouseEvent) => {
-      router.replace("/");
-    },
-    [router]
-  );
-
-  const handleNewDiary = useCallback(() => {
-    router.push(`/friend/${friendId}/diary/new`);
-  }, [friendId, router]);
-
-  return (
-    <div className={styles.wrap}>
-      <Topbar
-        className={styles.topbar}
-        onBackClick={handleBackOrHome}
-        RightComponent={
-          <SearchTextInput
-            className={styles["search-input"]}
-            inputProps={{ placeholder: "검색할 단어를 입력해주세요." }}
-          />
-        }
-      />
-      <div className={styles.content}>
-        <NewDiaryEmpty className={styles.empty} />
-      </div>
-      <div className={styles.bottom}>
-        <SubmitButton name="일화 작성" onClick={handleNewDiary} />
-      </div>
-    </div>
-  );
+  return <FriendIdDiariesPage friendId={friendId} tags={tags?.data ?? []} />;
 }

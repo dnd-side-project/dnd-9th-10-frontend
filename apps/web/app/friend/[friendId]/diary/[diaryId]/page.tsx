@@ -19,9 +19,26 @@ import Icon from "@dnd9-10/webui/src/icon/Icon";
 
 import { DiaryContentCard } from "@dnd9-10/webui/src/card/DiaryContentCard";
 import { DeleteThingsModal } from "@dnd9-10/webui/src/modal/DeleteThingsModal";
+import { useQuery } from "@tanstack/react-query";
+import { getDiary } from "../../../../../apis/diary";
 
-export default function Page() {
+interface Props {
+  params: {
+    friendId: string;
+    diaryId: string;
+  };
+}
+
+export default function Page(props: Props) {
   const router = useRouter();
+  const { params } = props;
+  const friendId = Number(params.friendId);
+  const diaryId = Number(params.diaryId);
+  const diary = useQuery(["getDiaries", diaryId], () =>
+    getDiary({ id: diaryId })
+  );
+
+  const { date, content, tags = [] } = diary.data ?? {};
 
   const handleBackClick = useCallback(() => {
     router.back();
@@ -47,13 +64,13 @@ export default function Page() {
     <div className={styles.wrap}>
       <Topbar
         className={styles.topbar}
-        title={<Semibold18 className={styles.title}>{"23.07.18"}</Semibold18>}
+        title={<Semibold18 className={styles.title}>{date}</Semibold18>}
         onBackClick={handleBackClick}
       />
       <div className={styles.content}>
         <Icon className={styles.emoji} name="emoji1" />
         <DiaryContentCard
-          content="testtes"
+          content={content}
           TooltipComponent={
             <Toolbar.Root className={styles.toolbar}>
               <Toolbar.Button onClick={handleSticker}>
@@ -79,9 +96,13 @@ export default function Page() {
         <div className={styles["tag-section"]}>
           <Bold18 className={styles["section-title"]}>태그</Bold18>
           <div className={styles.tags}>
-            <TagText className={styles.tag} size={"medium"}>
-              test
-            </TagText>
+            {tags.map((tag, index) => {
+              return (
+                <TagText key={index} className={styles.tag} size={"medium"}>
+                  {tag}
+                </TagText>
+              );
+            })}
           </div>
         </div>
       </div>

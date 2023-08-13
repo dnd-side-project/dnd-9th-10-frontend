@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 import { kakaoLogin } from "../../../../apis/account";
 
-type Props = {
+interface Props {
   searchParams?: {
     code?: string;
   };

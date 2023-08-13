@@ -8,13 +8,14 @@ export interface DiaryCardProps {
   date: string;
   description: string;
   tags: string[];
-  emoji: string;
+  emojiUrl: string;
+  onClick?: () => void
 }
 
 export function DiaryCard(props: DiaryCardProps) {
-  const { className, date, description, tags } = props;
+  const { className, date, description, tags, onClick } = props;
   return (
-    <div className={cn(styles.wrap, className)}>
+    <div className={cn(styles.wrap, className)} onClick={onClick}>
       <div className={styles.content}>
         <div className={styles.date}>{date}</div>
         <p className={styles.description}>{description}</p>
