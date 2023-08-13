@@ -8,6 +8,7 @@ import IconButton from "../button/IconButton";
 
 export interface FriendCardProps {
   className?: string;
+  characterUrl: string;
   statusText: string;
   name: string;
   diaryCount: number;
@@ -15,7 +16,8 @@ export interface FriendCardProps {
 }
 
 export function FriendCard(props: FriendCardProps) {
-  const { className, statusText, name, diaryCount, onClick } = props;
+  const { className, characterUrl, statusText, name, diaryCount, onClick } =
+    props;
   return (
     <div
       className={cn(styles.wrap, className)}
@@ -27,7 +29,7 @@ export function FriendCard(props: FriendCardProps) {
           <ProfileImage
             className={styles["profile-image"]}
             alt="profile"
-            src={images.FRIEND_PROFILE1}
+            src={characterUrl ?? images.FRIEND_PROFILE1}
             size={102}
           />
           <div className={styles["profile-textgroup"]}>
@@ -36,7 +38,11 @@ export function FriendCard(props: FriendCardProps) {
             </Medium13>
             <Bold19 className={styles["profile-name"]}>{name}</Bold19>
             <Medium14 className={styles["profile-count"]}>
-              <Icon name="diary" size={20} />
+              <Icon
+                className={styles["profile-diary-count"]}
+                name="diary"
+                size={20}
+              />
               {diaryCount}
             </Medium14>
           </div>

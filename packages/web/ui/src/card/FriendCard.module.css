@@ -28,6 +28,10 @@
   background: #fff;
 }
 
+.profile-diary-count {
+  margin-right: 3px;
+}
+
 .profile-group {
   display: flex;
   flex-direction: row;

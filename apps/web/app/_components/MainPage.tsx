@@ -21,13 +21,13 @@ import { FriendDto } from "@dnd9-10/shared/src/__generate__/api";
 import { BbokCharacterDto } from "@dnd9-10/shared/src/__generate__/member/api";
 
 interface Props {
-  friends: FriendDto[]
-  characters: BbokCharacterDto[]
+  friends: FriendDto[];
+  characters: BbokCharacterDto[];
 }
 
 export default function MainPage(props: Props) {
-
-  console.log(props)
+  const { friends } = props;
+  console.log(props);
   const router = useRouter();
   const searchParam = useSearchParams();
   const [page, setPage] = useState(0);
@@ -69,6 +69,28 @@ export default function MainPage(props: Props) {
           <Bold22 className={styles["section-title"]}>친구 선택</Bold22>
           <div className={styles["section-content"]}>
             <Carousel onPagination={handlePagination}>
+              {friends.map((item) => {
+                const {
+                  characterUrl,
+                  countingDay,
+                  countingDiary,
+                  id,
+                  name,
+                  score,
+                  status,
+                } = item;
+                return (
+                  <div key={id} className={styles["friend-item"]}>
+                    <FriendCard
+                      characterUrl={characterUrl}
+                      statusText={countingDay + "일째 작성 중"}
+                      name={name}
+                      diaryCount={countingDiary}
+                      onClick={handleSelectedItem}
+                    />
+                  </div>
+                );
+              })}
               <div className={styles["friend-item"]}>
                 <FriendEmpty characters={[]} />
               </div>

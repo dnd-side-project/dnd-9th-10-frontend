@@ -26,6 +26,16 @@ module.exports = withPWA({
     ];
     return config;
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'i.ibb.co',
+        port: '',
+        pathname: '/**',
+      },
+    ],
+  },
 });
 
 
