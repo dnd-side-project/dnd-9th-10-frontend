@@ -19,8 +19,10 @@ import Icon from "@dnd9-10/webui/src/icon/Icon";
 
 import { DiaryContentCard } from "@dnd9-10/webui/src/card/DiaryContentCard";
 import { DeleteThingsModal } from "@dnd9-10/webui/src/modal/DeleteThingsModal";
+import { transformDateTimeStrToText } from "@dnd9-10/shared/src/utils/datetime/datetime";
 import { useQuery } from "@tanstack/react-query";
 import { getDiary } from "../../../../../apis/diary";
+import { DATE_TIME_FORMAT6 } from "@dnd9-10/shared/src/utils/datetime/datetime-format";
 
 interface Props {
   params: {
@@ -64,7 +66,11 @@ export default function Page(props: Props) {
     <div className={styles.wrap}>
       <Topbar
         className={styles.topbar}
-        title={<Semibold18 className={styles.title}>{date}</Semibold18>}
+        title={
+          <Semibold18 className={styles.title}>
+            {transformDateTimeStrToText(date, DATE_TIME_FORMAT6)}
+          </Semibold18>
+        }
         onBackClick={handleBackClick}
       />
       <div className={styles.content}>
