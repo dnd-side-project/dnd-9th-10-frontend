@@ -8,6 +8,10 @@
 .topbar {
 }
 
+.topbar-right {
+  color: var(--gray-30, #aeb7b7);
+}
+
 .header {
   padding-left: 32px;
   padding-right: 32px;

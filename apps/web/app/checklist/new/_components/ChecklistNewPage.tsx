@@ -1,12 +1,16 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Topbar } from "@dnd9-10/webui/src/topbar/Topbar";
 import { CheckList } from "@dnd9-10/webui/src/checklist/CheckList";
 import { SubmitButton } from "@dnd9-10/webui/src/button/SubmitButton";
 import { StepIndicator } from "@dnd9-10/webui/src/indicator/StepIndicator";
-import { Bold22, Medium16 } from "@dnd9-10/webui/src/text/Typographies";
+import {
+  Bold22,
+  Medium14,
+  Medium16,
+} from "@dnd9-10/webui/src/text/Typographies";
 
 import styles from "./page.module.css";
 import { BasicChecklistDto } from "@dnd9-10/shared/src/__generate__/member/api";
@@ -17,17 +21,35 @@ interface Props {
   data: BasicChecklistDto;
 }
 
+const BAD_INDEX = 0;
+const GOOD_INDEX = 1;
+
 export default function ChecklistNewPage(props: Props) {
   const { data } = props;
   const router = useRouter();
-  const [checklist, setChecklist] = useState(data?.badChecklist ?? []);
-  const [selected, setSelected] = useState([]);
+  const [stepIndex, setStepIndex] = useState(0);
+  const [selectedGoodChecklist, setSelectedGoodChecklist] = useState([]);
+  const [goodChecklist, setGoodChecklist] = useState(data?.goodChecklist ?? []);
+  const [selectedBadChecklist, setSelectedBadChecklist] = useState([]);
+  const [badChecklist, setBadChecklist] = useState(data?.badChecklist ?? []);
+  const isBadType = BAD_INDEX === stepIndex;
+  const isGoodType = GOOD_INDEX === stepIndex;
+  const checklist = isBadType ? badChecklist : goodChecklist;
+  const setChecklist = isBadType ? setBadChecklist : setGoodChecklist;
+  const selected = isBadType ? selectedBadChecklist : selectedGoodChecklist;
+  const setSelected = isBadType
+    ? setSelectedBadChecklist
+    : setSelectedGoodChecklist;
 
   const handleBackOrHome = useCallback(
     (e: React.MouseEvent) => {
-      router.replace("/");
+      if (isGoodType) {
+        setStepIndex(BAD_INDEX);
+        return;
+      }
+      router.back();
     },
-    [router]
+    [isGoodType, router]
   );
 
   const handleCheckedByIndex = useCallback(
@@ -43,7 +65,7 @@ export default function ChecklistNewPage(props: Props) {
         return prev.filter((name) => name === checklist[index]);
       });
     },
-    [checklist]
+    [checklist, setSelected]
   );
 
   const handleChangeNameByIndex = useCallback(
@@ -53,26 +75,31 @@ export default function ChecklistNewPage(props: Props) {
       newChecklist[index] = name;
       setChecklist(newChecklist);
     },
-    [checklist]
+    [checklist, setChecklist]
   );
 
   const handleDeleteByIndex = useCallback(
     (index: number) => {
       setChecklist(checklist.filter((_, itemIndex) => itemIndex !== index));
     },
-    [checklist]
+    [checklist, setChecklist]
   );
 
   const handleAddItem = useCallback(() => {
     setChecklist((prev) => {
       return [...prev, ""];
     });
+  }, [setChecklist]);
+
+  const handleNext = useCallback(async () => {
+    setStepIndex(GOOD_INDEX);
   }, []);
 
   const handleSubmit = useCallback(async () => {
     try {
       await createChecklist({
         badChecklist: selected,
+        goodChecklist: selected,
       });
       router.replace("/");
     } catch (error) {
@@ -82,18 +109,25 @@ export default function ChecklistNewPage(props: Props) {
 
   return (
     <div className={styles.wrap}>
-      <Topbar className={styles.topbar} onBackClick={handleBackOrHome} />
+      <Topbar
+        className={styles.topbar}
+        onBackClick={handleBackOrHome}
+        RightComponent={<Medium14>2단계 중 {stepIndex + 1}단계</Medium14>}
+      />
       <div className={styles.header}>
         <Bold22 className={styles.title} as="p">
           내 기준에서
-          <span className={styles.highlight}> 벗어난 친구 유형</span>
+          <span className={styles.highlight}>
+            {" "}
+            {isBadType ? "벗어난 친구 유형 " : "적합한 친구 유형 "}
+          </span>
           <br />
           5가지를 선택해주세요.
         </Bold22>
         <StepIndicator
           className={styles.indicator}
-          current={1}
-          totalCount={2}
+          current={selected.length}
+          totalCount={checklist.length}
         />
       </div>
       <div className={styles.content}>
@@ -113,7 +147,7 @@ export default function ChecklistNewPage(props: Props) {
         <SubmitButton
           className={styles.bottom}
           name="선택 완료"
-          onClick={handleSubmit}
+          onClick={isBadType ? handleNext : handleSubmit}
         />
       </div>
     </div>
