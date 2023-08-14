@@ -10,12 +10,12 @@ import {
   MemberChecklistRequestDto,
 } from "@dnd9-10/shared/src/__generate__/member/api";
 
-const memberFactory = DefaultApiFactory(undefined, undefined, axiosInstance);
-const factory = MockApiFactory(undefined, undefined, axiosInstance);
+const factory = DefaultApiFactory(undefined, undefined, axiosInstance);
+const mockFactory = MockApiFactory(undefined, undefined, axiosInstance);
 
 export const getBasicChecklist = async () => {
   try {
-    const response = await memberFactory.getBasicChecklistUsingGET();
+    const response = await factory.getBasicChecklistUsingGET();
     return response.data?.data ?? { badChecklist: [], goodChecklist: [] };
   } catch (e) {
     console.error(e);
@@ -34,11 +34,11 @@ export const getFriendChecklist = async () => {
 };
 
 export const createChecklist = async (payload: MemberChecklistRequestDto) => {
-  const response = await memberFactory.createChecklistUsingPOST(payload);
+  const response = await factory.createChecklistUsingPOST(payload);
   return response.data;
 };
 
 export const updateChecklist = async (payload: ChecklistInfoRequestDto) => {
-  const response = await factory.updateChecklistUsingPATCH(payload);
+  const response = await mockFactory.updateChecklistUsingPATCH(payload);
   return response.data;
 };

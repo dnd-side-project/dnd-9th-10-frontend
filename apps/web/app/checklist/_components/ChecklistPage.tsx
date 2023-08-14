@@ -7,7 +7,7 @@ import cn from "classnames";
 import styles from "./page.module.css";
 import Topbar from "@dnd9-10/webui/src/topbar/Topbar";
 import BasedMyCheckList from "@dnd9-10/webui/src/checklist/BasedMyCheckList";
-import { MyChecklistDto } from "@dnd9-10/shared/src/__generate__/api";
+import { MyChecklistDto } from "@dnd9-10/shared/src/__generate__/member/api";
 
 interface Props {
   data: MyChecklistDto;

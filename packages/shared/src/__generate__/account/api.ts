@@ -133,7 +133,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        guestLoginUsingPOST: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        guestSignupUsingPOST: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/guest/signup`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -255,8 +255,8 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async guestLoginUsingPOST(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataResponseLoginResponseDto>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.guestLoginUsingPOST(options);
+        async guestSignupUsingPOST(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataResponseLoginResponseDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.guestSignupUsingPOST(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -306,8 +306,8 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        guestLoginUsingPOST(options?: any): AxiosPromise<DataResponseLoginResponseDto> {
-            return localVarFp.guestLoginUsingPOST(options).then((request) => request(axios, basePath));
+        guestSignupUsingPOST(options?: any): AxiosPromise<DataResponseLoginResponseDto> {
+            return localVarFp.guestSignupUsingPOST(options).then((request) => request(axios, basePath));
         },
         /**
          * 인가 코드를 입력하고 요청보내면, 사용자의 정보를 저장한 후 사용자의 Id를 확인할 수 있습니다.
@@ -357,8 +357,8 @@ export class DefaultApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public guestLoginUsingPOST(options?: AxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).guestLoginUsingPOST(options).then((request) => request(this.axios, this.basePath));
+    public guestSignupUsingPOST(options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).guestSignupUsingPOST(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

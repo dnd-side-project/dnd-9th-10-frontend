@@ -9,8 +9,8 @@ export const kakaoLogin = async (code: string) => {
   return response.data;
 };
 
-export const guestLogin = async () => {
-  const response = await factory.guestLoginUsingPOST();
+export const guestSignup = async () => {
+  const response = await factory.guestSignupUsingPOST();
   return response.data;
 };
 

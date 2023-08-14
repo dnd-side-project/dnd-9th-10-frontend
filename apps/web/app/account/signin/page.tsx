@@ -3,16 +3,14 @@
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect } from "react";
 import { SubmitButton } from "@dnd9-10/webui/src/button/SubmitButton";
-import {
-  Semibold20,
-} from "@dnd9-10/webui/src/text/Typographies";
+import { Semibold20 } from "@dnd9-10/webui/src/text/Typographies";
 
 import styles from "./page.module.css";
 import Icon from "@dnd9-10/webui/src/icon/Icon";
 import { images } from "@dnd9-10/shared/src/libs/images";
 import Image from "next/image";
 import { initKakao, loginWithKakao } from "../../../libs/kakao";
-import { guestLogin } from "../../../apis/account";
+import { guestSignup } from "../../../apis/account";
 import { storage } from "../../../libs/local-storage";
 
 export default function Page() {
@@ -24,7 +22,7 @@ export default function Page() {
 
   const handleGuest = useCallback(async () => {
     try {
-      const response = await guestLogin();
+      const response = await guestSignup();
       storage().setMemberId(response.data?.memberId);
       router.replace("/checklist/new");
     } catch (error) {

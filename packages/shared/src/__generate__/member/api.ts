@@ -106,6 +106,25 @@ export interface ChecklistDto {
 /**
  * 
  * @export
+ * @interface ChecklistInfoDto
+ */
+export interface ChecklistInfoDto {
+    /**
+     * 기준 설명
+     * @type {string}
+     * @memberof ChecklistInfoDto
+     */
+    'criteria'?: string;
+    /**
+     * 기준 아이디
+     * @type {number}
+     * @memberof ChecklistInfoDto
+     */
+    'id'?: number;
+}
+/**
+ * 
+ * @export
  * @interface DataResponseBasicChecklistDto
  */
 export interface DataResponseBasicChecklistDto {
@@ -250,6 +269,31 @@ export interface DataResponseMemberInfoResponseDto {
      * 응답 코드
      * @type {number}
      * @memberof DataResponseMemberInfoResponseDto
+     */
+    'status'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface DataResponseMyChecklistDto
+ */
+export interface DataResponseMyChecklistDto {
+    /**
+     * 
+     * @type {MyChecklistDto}
+     * @memberof DataResponseMyChecklistDto
+     */
+    'data'?: MyChecklistDto;
+    /**
+     * 응답 메시지
+     * @type {string}
+     * @memberof DataResponseMyChecklistDto
+     */
+    'message'?: string;
+    /**
+     * 응답 코드
+     * @type {number}
+     * @memberof DataResponseMyChecklistDto
      */
     'status'?: number;
 }
@@ -611,6 +655,25 @@ export interface MessageResponse {
 /**
  * 
  * @export
+ * @interface MyChecklistDto
+ */
+export interface MyChecklistDto {
+    /**
+     * 이상적인 기준
+     * @type {Array<ChecklistInfoDto>}
+     * @memberof MyChecklistDto
+     */
+    'badChecklist'?: Array<ChecklistInfoDto>;
+    /**
+     * 기피하는 기준
+     * @type {Array<ChecklistInfoDto>}
+     * @memberof MyChecklistDto
+     */
+    'goodChecklist'?: Array<ChecklistInfoDto>;
+}
+/**
+ * 
+ * @export
  * @interface TagDto
  */
 export interface TagDto {
@@ -790,6 +853,39 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          */
         getBbokCharacterUsingGET: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/character`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Authorization required
+            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary 나만의 기준 조회
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getChecklistUsingGET: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v1/friend/checklist`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -1008,6 +1104,16 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary 나만의 기준 조회
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getChecklistUsingGET(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataResponseMyChecklistDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getChecklistUsingGET(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @summary 일기 목록 조회
          * @param {number} id 친구 id
          * @param {number} [offset] 목록 오프셋
@@ -1100,6 +1206,15 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          */
         getBbokCharacterUsingGET(options?: any): AxiosPromise<DataResponseBbokCharactersDto> {
             return localVarFp.getBbokCharacterUsingGET(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary 나만의 기준 조회
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getChecklistUsingGET(options?: any): AxiosPromise<DataResponseMyChecklistDto> {
+            return localVarFp.getChecklistUsingGET(options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1201,6 +1316,17 @@ export class DefaultApi extends BaseAPI {
      */
     public getBbokCharacterUsingGET(options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).getBbokCharacterUsingGET(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary 나만의 기준 조회
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public getChecklistUsingGET(options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).getChecklistUsingGET(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
