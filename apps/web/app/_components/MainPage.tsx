@@ -25,14 +25,19 @@ import {
   parseDate,
   todayTime,
 } from "@dnd9-10/shared/src/utils/datetime/datetime";
+import { getFriends } from "../../apis/friend";
+import { useQuery } from "@tanstack/react-query";
 
 interface Props {
-  friends: FriendDto[];
   characters: BbokCharacterDto[];
 }
 
 export default function MainPage(props: Props) {
-  const { friends, characters } = props;
+  const { characters } = props;
+  const friendsResponse = useQuery(["getFriends"], getFriends, {
+    suspense: true,
+  });
+  const friends = friendsResponse?.data ?? [];
   const router = useRouter();
   const searchParam = useSearchParams();
   const [page, setPage] = useState(0);
