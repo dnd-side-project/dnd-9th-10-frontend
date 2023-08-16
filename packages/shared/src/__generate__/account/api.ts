@@ -164,10 +164,10 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        kakaoLoginUsingPOST: async (code: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        kakaoLoginUsingGET: async (code: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'code' is not null or undefined
-            assertParamExists('kakaoLoginUsingPOST', 'code', code)
-            const localVarPath = `/api/v1/kakao/signup`;
+            assertParamExists('kakaoLoginUsingGET', 'code', code)
+            const localVarPath = `/api/v1/account/kakao/result`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -175,7 +175,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -266,8 +266,8 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async kakaoLoginUsingPOST(code: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataResponseLoginResponseDto>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.kakaoLoginUsingPOST(code, options);
+        async kakaoLoginUsingGET(code: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataResponseLoginResponseDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.kakaoLoginUsingGET(code, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -316,8 +316,8 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        kakaoLoginUsingPOST(code: string, options?: any): AxiosPromise<DataResponseLoginResponseDto> {
-            return localVarFp.kakaoLoginUsingPOST(code, options).then((request) => request(axios, basePath));
+        kakaoLoginUsingGET(code: string, options?: any): AxiosPromise<DataResponseLoginResponseDto> {
+            return localVarFp.kakaoLoginUsingGET(code, options).then((request) => request(axios, basePath));
         },
         /**
          * Jwt를 재발급 할 수 있습니다.
@@ -369,8 +369,8 @@ export class DefaultApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public kakaoLoginUsingPOST(code: string, options?: AxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).kakaoLoginUsingPOST(code, options).then((request) => request(this.axios, this.basePath));
+    public kakaoLoginUsingGET(code: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).kakaoLoginUsingGET(code, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

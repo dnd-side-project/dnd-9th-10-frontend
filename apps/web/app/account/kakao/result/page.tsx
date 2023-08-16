@@ -8,12 +8,12 @@ interface Props {
   searchParams?: {
     code?: string;
   };
-};
+}
 
 export default function Page(props: Props) {
   const { searchParams } = props;
   const code = searchParams?.code;
-  const [errorMessage, setErrorMessage] = useState('')
+  const [errorMessage, setErrorMessage] = useState("");
   useEffect(() => {
     async function redirectTo() {
       try {
@@ -21,16 +21,16 @@ export default function Page(props: Props) {
         if (response.data?.memberId) {
           redirect("/?success=true");
         }
-        console.log(response)
-      } catch(error) {
-        console.error(error)
-        setErrorMessage(error.message)
+        console.log(response);
+      } catch (error) {
+        console.error(error);
+        setErrorMessage(error.message);
       }
     }
     redirectTo();
   }, [code]);
 
-  return <div>error: {errorMessage}</div>
+  return <div>error: {errorMessage}</div>;
   // try {
   //   const response = await kakaoLogin(code)
   //   if(response.data?.memberId) {

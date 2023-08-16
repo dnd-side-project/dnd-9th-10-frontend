@@ -13,12 +13,12 @@ import {
 } from "@dnd9-10/webui/src/text/Typographies";
 
 import styles from "./page.module.css";
-import { BasicChecklistDto } from "@dnd9-10/shared/src/__generate__/member/api";
+import { GetBasicChecklistResponse } from "@dnd9-10/shared/src/__generate__/member/api";
 import { createChecklist } from "../../../../apis/checklist";
 import { storage } from "../../../../libs/local-storage";
 
 interface Props {
-  data: BasicChecklistDto;
+  data: GetBasicChecklistResponse;
 }
 
 const BAD_INDEX = 0;

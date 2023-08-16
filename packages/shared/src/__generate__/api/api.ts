@@ -144,31 +144,6 @@ export interface DataResponseDiaryStickerDto {
 /**
  * 
  * @export
- * @interface DataResponseFriendsDto
- */
-export interface DataResponseFriendsDto {
-    /**
-     * 
-     * @type {FriendsDto}
-     * @memberof DataResponseFriendsDto
-     */
-    'data'?: FriendsDto;
-    /**
-     * 응답 메시지
-     * @type {string}
-     * @memberof DataResponseFriendsDto
-     */
-    'message'?: string;
-    /**
-     * 응답 코드
-     * @type {number}
-     * @memberof DataResponseFriendsDto
-     */
-    'status'?: number;
-}
-/**
- * 
- * @export
  * @interface DiaryChecklistDto
  */
 export interface DiaryChecklistDto {
@@ -326,68 +301,6 @@ export interface DiaryStickerDto {
      * @memberof DiaryStickerDto
      */
     'stickers'?: Array<StickerDto>;
-}
-/**
- * 
- * @export
- * @interface FriendDto
- */
-export interface FriendDto {
-    /**
-     * 친구 캐릭터 아이콘 url
-     * @type {string}
-     * @memberof FriendDto
-     */
-    'characterUrl'?: string;
-    /**
-     * 친구 생성 날짜 카운팅
-     * @type {number}
-     * @memberof FriendDto
-     */
-    'countingDay'?: number;
-    /**
-     * 친구 관련 일화 수
-     * @type {number}
-     * @memberof FriendDto
-     */
-    'countingDiary'?: number;
-    /**
-     * 친구 고유 ID
-     * @type {number}
-     * @memberof FriendDto
-     */
-    'id'?: number;
-    /**
-     * 친구 이름
-     * @type {string}
-     * @memberof FriendDto
-     */
-    'name'?: string;
-    /**
-     * 친구 점수
-     * @type {number}
-     * @memberof FriendDto
-     */
-    'score'?: number;
-    /**
-     * 친구 활성화 상태
-     * @type {boolean}
-     * @memberof FriendDto
-     */
-    'status'?: boolean;
-}
-/**
- * 
- * @export
- * @interface FriendsDto
- */
-export interface FriendsDto {
-    /**
-     * 친구 목록
-     * @type {Array<FriendDto>}
-     * @memberof FriendsDto
-     */
-    'friends'?: Array<FriendDto>;
 }
 /**
  * 
@@ -641,36 +554,6 @@ export const MockApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * 
-         * @summary 친구 목록 조회
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getFriendsUsingGET: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/v1/friend`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
          * @summary 스티커 목록 조회
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -837,16 +720,6 @@ export const MockApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary 친구 목록 조회
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getFriendsUsingGET(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataResponseFriendsDto>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getFriendsUsingGET(options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
          * @summary 스티커 목록 조회
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -936,15 +809,6 @@ export const MockApiFactory = function (configuration?: Configuration, basePath?
          */
         getDiaryUsingGET(id: number, options?: any): AxiosPromise<DataResponseDiaryDto> {
             return localVarFp.getDiaryUsingGET(id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary 친구 목록 조회
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getFriendsUsingGET(options?: any): AxiosPromise<DataResponseFriendsDto> {
-            return localVarFp.getFriendsUsingGET(options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1043,17 +907,6 @@ export class MockApi extends BaseAPI {
      */
     public getDiaryUsingGET(id: number, options?: AxiosRequestConfig) {
         return MockApiFp(this.configuration).getDiaryUsingGET(id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary 친구 목록 조회
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof MockApi
-     */
-    public getFriendsUsingGET(options?: AxiosRequestConfig) {
-        return MockApiFp(this.configuration).getFriendsUsingGET(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

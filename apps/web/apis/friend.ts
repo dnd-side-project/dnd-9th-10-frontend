@@ -1,6 +1,5 @@
 import { axiosInstance } from "../libs/axios";
 
-import { MockApiFactory } from "@dnd9-10/shared/src/__generate__/api/api";
 import {
   FriendRequestDto,
   DefaultApiFactory,
@@ -8,11 +7,9 @@ import {
 
 const memberFactory = DefaultApiFactory(undefined, undefined, axiosInstance);
 
-const factory = MockApiFactory(undefined, undefined, axiosInstance);
-
 export const getFriends = async () => {
   try {
-    const response = await factory.getFriendsUsingGET();
+    const response = await memberFactory.getFriendsUsingGET();
     return response.data?.data?.friends ?? [];
   } catch (e) {
     console.error(e);

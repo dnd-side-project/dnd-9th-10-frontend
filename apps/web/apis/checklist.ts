@@ -7,9 +7,11 @@ import {
 
 import {
   DefaultApiFactory,
+  OldApiFactory,
   MemberChecklistRequestDto,
 } from "@dnd9-10/shared/src/__generate__/member/api";
 
+const oldFactory = OldApiFactory(undefined, undefined, axiosInstance);
 const factory = DefaultApiFactory(undefined, undefined, axiosInstance);
 const mockFactory = MockApiFactory(undefined, undefined, axiosInstance);
 
@@ -34,7 +36,7 @@ export const getFriendChecklist = async () => {
 };
 
 export const createChecklist = async (payload: MemberChecklistRequestDto) => {
-  const response = await factory.createChecklistUsingPOST(payload);
+  const response = await oldFactory.createChecklistUsingPOST(payload);
   return response.data;
 };
 

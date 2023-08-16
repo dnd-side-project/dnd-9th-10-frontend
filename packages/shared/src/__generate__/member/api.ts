@@ -24,25 +24,6 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 /**
  * 
  * @export
- * @interface BasicChecklistDto
- */
-export interface BasicChecklistDto {
-    /**
-     * 기본 이상적인 체크리스트
-     * @type {Array<string>}
-     * @memberof BasicChecklistDto
-     */
-    'badChecklist'?: Array<string>;
-    /**
-     * 기본 이상적인 체크리스트
-     * @type {Array<string>}
-     * @memberof BasicChecklistDto
-     */
-    'goodChecklist'?: Array<string>;
-}
-/**
- * 
- * @export
  * @interface BbokCharacterDto
  */
 export interface BbokCharacterDto {
@@ -121,31 +102,6 @@ export interface ChecklistInfoDto {
      * @memberof ChecklistInfoDto
      */
     'id'?: number;
-}
-/**
- * 
- * @export
- * @interface DataResponseBasicChecklistDto
- */
-export interface DataResponseBasicChecklistDto {
-    /**
-     * 
-     * @type {BasicChecklistDto}
-     * @memberof DataResponseBasicChecklistDto
-     */
-    'data'?: BasicChecklistDto;
-    /**
-     * 응답 메시지
-     * @type {string}
-     * @memberof DataResponseBasicChecklistDto
-     */
-    'message'?: string;
-    /**
-     * 응답 코드
-     * @type {number}
-     * @memberof DataResponseBasicChecklistDto
-     */
-    'status'?: number;
 }
 /**
  * 
@@ -244,6 +200,56 @@ export interface DataResponseDiaryTagDto {
      * 응답 코드
      * @type {number}
      * @memberof DataResponseDiaryTagDto
+     */
+    'status'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface DataResponseFriendsDto
+ */
+export interface DataResponseFriendsDto {
+    /**
+     * 
+     * @type {FriendsDto}
+     * @memberof DataResponseFriendsDto
+     */
+    'data'?: FriendsDto;
+    /**
+     * 응답 메시지
+     * @type {string}
+     * @memberof DataResponseFriendsDto
+     */
+    'message'?: string;
+    /**
+     * 응답 코드
+     * @type {number}
+     * @memberof DataResponseFriendsDto
+     */
+    'status'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface DataResponseGetBasicChecklistResponse
+ */
+export interface DataResponseGetBasicChecklistResponse {
+    /**
+     * 
+     * @type {GetBasicChecklistResponse}
+     * @memberof DataResponseGetBasicChecklistResponse
+     */
+    'data'?: GetBasicChecklistResponse;
+    /**
+     * 응답 메시지
+     * @type {string}
+     * @memberof DataResponseGetBasicChecklistResponse
+     */
+    'message'?: string;
+    /**
+     * 응답 코드
+     * @type {number}
+     * @memberof DataResponseGetBasicChecklistResponse
      */
     'status'?: number;
 }
@@ -559,6 +565,55 @@ export interface DiaryTagDto {
 /**
  * 
  * @export
+ * @interface FriendDto
+ */
+export interface FriendDto {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FriendDto
+     */
+    'active'?: boolean;
+    /**
+     * 친구 캐릭터 아이콘 url
+     * @type {string}
+     * @memberof FriendDto
+     */
+    'characterUrl'?: string;
+    /**
+     * 친구 관련 일화 수
+     * @type {number}
+     * @memberof FriendDto
+     */
+    'countingDiary'?: number;
+    /**
+     * 친구 고유 ID
+     * @type {number}
+     * @memberof FriendDto
+     */
+    'id'?: number;
+    /**
+     * 친구 이름
+     * @type {string}
+     * @memberof FriendDto
+     */
+    'name'?: string;
+    /**
+     * 친구 점수
+     * @type {number}
+     * @memberof FriendDto
+     */
+    'score'?: number;
+    /**
+     * 친구 생성 날짜
+     * @type {string}
+     * @memberof FriendDto
+     */
+    'startedAt'?: string;
+}
+/**
+ * 
+ * @export
  * @interface FriendRequestDto
  */
 export interface FriendRequestDto {
@@ -574,6 +629,38 @@ export interface FriendRequestDto {
      * @memberof FriendRequestDto
      */
     'name'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface FriendsDto
+ */
+export interface FriendsDto {
+    /**
+     * 친구 목록
+     * @type {Array<FriendDto>}
+     * @memberof FriendsDto
+     */
+    'friends'?: Array<FriendDto>;
+}
+/**
+ * 
+ * @export
+ * @interface GetBasicChecklistResponse
+ */
+export interface GetBasicChecklistResponse {
+    /**
+     * 기본 기피하는 체크리스트
+     * @type {Array<string>}
+     * @memberof GetBasicChecklistResponse
+     */
+    'badChecklist'?: Array<string>;
+    /**
+     * 기본 이상적인 체크리스트
+     * @type {Array<string>}
+     * @memberof GetBasicChecklistResponse
+     */
+    'goodChecklist'?: Array<string>;
 }
 /**
  * 
@@ -697,43 +784,6 @@ export interface TagDto {
  */
 export const DefaultApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
-        /**
-         * 
-         * @summary 사용자 정의 체크리스트 추가
-         * @param {MemberChecklistRequestDto} [memberChecklistRequestDto] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        createChecklistUsingPOST: async (memberChecklistRequestDto?: MemberChecklistRequestDto, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/v1/checklist`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Authorization required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(memberChecklistRequestDto, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
         /**
          * 
          * @summary 일기 등록
@@ -969,6 +1019,39 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
+         * 
+         * @summary 친구 목록 조회
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getFriendsUsingGET: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v1/friend`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Authorization required
+            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * 마이 페이지에서 사용자의 정보를 볼 수 있습니다.
          * @summary 내 정보 조회
          * @param {*} [options] Override http request option.
@@ -1050,17 +1133,6 @@ export const DefaultApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @summary 사용자 정의 체크리스트 추가
-         * @param {MemberChecklistRequestDto} [memberChecklistRequestDto] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async createChecklistUsingPOST(memberChecklistRequestDto?: MemberChecklistRequestDto, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createChecklistUsingPOST(memberChecklistRequestDto, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
          * @summary 일기 등록
          * @param {number} id 친구 id
          * @param {DiaryRequestDto} [diaryRequestDto] 
@@ -1088,7 +1160,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getBasicChecklistUsingGET(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataResponseBasicChecklistDto>> {
+        async getBasicChecklistUsingGET(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataResponseGetBasicChecklistResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getBasicChecklistUsingGET(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1128,6 +1200,16 @@ export const DefaultApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * 
+         * @summary 친구 목록 조회
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getFriendsUsingGET(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataResponseFriendsDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getFriendsUsingGET(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * 마이 페이지에서 사용자의 정보를 볼 수 있습니다.
          * @summary 내 정보 조회
          * @param {*} [options] Override http request option.
@@ -1160,16 +1242,6 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
     return {
         /**
          * 
-         * @summary 사용자 정의 체크리스트 추가
-         * @param {MemberChecklistRequestDto} [memberChecklistRequestDto] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        createChecklistUsingPOST(memberChecklistRequestDto?: MemberChecklistRequestDto, options?: any): AxiosPromise<MessageResponse> {
-            return localVarFp.createChecklistUsingPOST(memberChecklistRequestDto, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
          * @summary 일기 등록
          * @param {number} id 친구 id
          * @param {DiaryRequestDto} [diaryRequestDto] 
@@ -1195,7 +1267,7 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getBasicChecklistUsingGET(options?: any): AxiosPromise<DataResponseBasicChecklistDto> {
+        getBasicChecklistUsingGET(options?: any): AxiosPromise<DataResponseGetBasicChecklistResponse> {
             return localVarFp.getBasicChecklistUsingGET(options).then((request) => request(axios, basePath));
         },
         /**
@@ -1231,6 +1303,15 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.getDiariesUsingGET(id, offset, order, q, tag, options).then((request) => request(axios, basePath));
         },
         /**
+         * 
+         * @summary 친구 목록 조회
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getFriendsUsingGET(options?: any): AxiosPromise<DataResponseFriendsDto> {
+            return localVarFp.getFriendsUsingGET(options).then((request) => request(axios, basePath));
+        },
+        /**
          * 마이 페이지에서 사용자의 정보를 볼 수 있습니다.
          * @summary 내 정보 조회
          * @param {*} [options] Override http request option.
@@ -1259,18 +1340,6 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
  * @extends {BaseAPI}
  */
 export class DefaultApi extends BaseAPI {
-    /**
-     * 
-     * @summary 사용자 정의 체크리스트 추가
-     * @param {MemberChecklistRequestDto} [memberChecklistRequestDto] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public createChecklistUsingPOST(memberChecklistRequestDto?: MemberChecklistRequestDto, options?: AxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).createChecklistUsingPOST(memberChecklistRequestDto, options).then((request) => request(this.axios, this.basePath));
-    }
-
     /**
      * 
      * @summary 일기 등록
@@ -1346,6 +1415,17 @@ export class DefaultApi extends BaseAPI {
     }
 
     /**
+     * 
+     * @summary 친구 목록 조회
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public getFriendsUsingGET(options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).getFriendsUsingGET(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * 마이 페이지에서 사용자의 정보를 볼 수 있습니다.
      * @summary 내 정보 조회
      * @param {*} [options] Override http request option.
@@ -1366,6 +1446,114 @@ export class DefaultApi extends BaseAPI {
      */
     public getTagsUsingGET(id: number, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).getTagsUsingGET(id, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * OldApi - axios parameter creator
+ * @export
+ */
+export const OldApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary 사용자 정의 체크리스트 추가
+         * @param {MemberChecklistRequestDto} [memberChecklistRequestDto] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createChecklistUsingPOST: async (memberChecklistRequestDto?: MemberChecklistRequestDto, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v1/checklist0`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Authorization required
+            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(memberChecklistRequestDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * OldApi - functional programming interface
+ * @export
+ */
+export const OldApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = OldApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @summary 사용자 정의 체크리스트 추가
+         * @param {MemberChecklistRequestDto} [memberChecklistRequestDto] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createChecklistUsingPOST(memberChecklistRequestDto?: MemberChecklistRequestDto, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createChecklistUsingPOST(memberChecklistRequestDto, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * OldApi - factory interface
+ * @export
+ */
+export const OldApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = OldApiFp(configuration)
+    return {
+        /**
+         * 
+         * @summary 사용자 정의 체크리스트 추가
+         * @param {MemberChecklistRequestDto} [memberChecklistRequestDto] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createChecklistUsingPOST(memberChecklistRequestDto?: MemberChecklistRequestDto, options?: any): AxiosPromise<MessageResponse> {
+            return localVarFp.createChecklistUsingPOST(memberChecklistRequestDto, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * OldApi - object-oriented interface
+ * @export
+ * @class OldApi
+ * @extends {BaseAPI}
+ */
+export class OldApi extends BaseAPI {
+    /**
+     * 
+     * @summary 사용자 정의 체크리스트 추가
+     * @param {MemberChecklistRequestDto} [memberChecklistRequestDto] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OldApi
+     */
+    public createChecklistUsingPOST(memberChecklistRequestDto?: MemberChecklistRequestDto, options?: AxiosRequestConfig) {
+        return OldApiFp(this.configuration).createChecklistUsingPOST(memberChecklistRequestDto, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

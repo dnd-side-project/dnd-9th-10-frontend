@@ -17,9 +17,14 @@ import { Carousel } from "@dnd9-10/webui/src/carousel/Carousel";
 import { FriendCard } from "@dnd9-10/webui/src/card/FriendCard";
 import { NewFriendCard } from "@dnd9-10/webui/src/card/NewFriendCard";
 import CircularIndicator from "@dnd9-10/webui/src/indicator/CircularIndicator";
-import { FriendDto } from "@dnd9-10/shared/src/__generate__/api";
+import { FriendDto } from "@dnd9-10/shared/src/__generate__/member/api";
 import { BbokCharacterDto } from "@dnd9-10/shared/src/__generate__/member/api";
 import { createFriend } from "../../apis/friend";
+import {
+  durationDaysByTime,
+  parseDate,
+  todayTime,
+} from "@dnd9-10/shared/src/utils/datetime/datetime";
 
 interface Props {
   friends: FriendDto[];
@@ -85,18 +90,23 @@ export default function MainPage(props: Props) {
               {friends.map((item, index) => {
                 const {
                   characterUrl,
-                  countingDay,
+                  startedAt,
                   countingDiary,
                   id,
                   name,
                   score,
-                  status,
+                  active,
                 } = item;
                 return (
                   <div key={index} className={styles["friend-item"]}>
                     <FriendCard
                       characterUrl={characterUrl}
-                      statusText={countingDay + "일째 작성 중"}
+                      statusText={
+                        durationDaysByTime(
+                          parseDate(startedAt).valueOf(),
+                          todayTime()
+                        ) + "일째 작성 중"
+                      }
                       name={name}
                       diaryCount={countingDiary}
                       onClick={handleSelectedItem(item)}
