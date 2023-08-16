@@ -52,4 +52,8 @@ tsconfig.tsbuildinfo
 **/public/fallback-*.js
 
 # jetbrains
-.idea/
+**/.idea/*
+
+# Storybook
+**/storybook-static/
+**/storybook-static/*

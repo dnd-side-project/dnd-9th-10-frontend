@@ -18,10 +18,12 @@ import Topbar from "@dnd9-10/webui/src/topbar/Topbar";
 import NewDiaryEmojiModal from "@dnd9-10/webui/src/modal/NewDiaryEmojiModal";
 import Button from "@dnd9-10/webui/src/button/Button";
 import TextInput from "@dnd9-10/webui/src/input/TextInput";
+import DateInput from "@dnd9-10/webui/src/input/DateInput";
 
 export default function Page() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
+  const [currDate, setCurrDate] = useState(new Date());
 
   const handleEmojiModalClose = useCallback(() => {
     setOpen(false)
@@ -50,7 +52,7 @@ export default function Page() {
         <div className={styles.section}>
           <Bold18 className={styles["section-title"]}>날짜</Bold18>
           <div className={styles["section-content"]}>
-            <TextInput />
+            <DateInput currDate={currDate} setCurrDate={setCurrDate}/>
           </div>
         </div>
         <div className={styles.section}>
