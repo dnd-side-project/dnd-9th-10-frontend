@@ -16,8 +16,8 @@ import Topbar from "@dnd9-10/webui/src/topbar/Topbar";
 import { SearchTextInput } from "@dnd9-10/webui/src/input/SearchTextInput";
 import { NewDiaryEmpty } from "@dnd9-10/webui/src/empty/NewDiaryEmpty";
 import {
-  DiaryDto,
-  TagDto,
+
+  DiaryTagDto, GetDiariesResponse, GetDiaryResponse,
 } from "@dnd9-10/shared/src/__generate__/member/api";
 import TagText from "@dnd9-10/webui/src/text/TagText";
 import DiaryCard from "@dnd9-10/webui/src/card/DiaryCard";
@@ -27,7 +27,7 @@ import Icon from "@dnd9-10/webui/src/icon/Icon";
 
 interface Props {
   friendId: number;
-  tags: TagDto[];
+  tags: DiaryTagDto['tags'];
 }
 
 export default function FriendIdDiariesPage(props: Props) {
@@ -58,7 +58,7 @@ export default function FriendIdDiariesPage(props: Props) {
   }, []);
 
   const handleClickItem = useCallback(
-    (item: DiaryDto) => () => {
+    (item: GetDiaryResponse) => () => {
       router.push(`/friend/${friendId}/diary/${item.id}`);
     },
     [friendId, router]

@@ -62,46 +62,139 @@ export interface BbokCharactersDto {
 /**
  * 
  * @export
- * @interface ChecklistDto
+ * @interface Checklist
  */
-export interface ChecklistDto {
+export interface Checklist {
     /**
      * 
      * @type {number}
-     * @memberof ChecklistDto
+     * @memberof Checklist
      */
     'id'?: number;
     /**
      * 
      * @type {boolean}
-     * @memberof ChecklistDto
+     * @memberof Checklist
      */
     'isChecked'?: boolean;
     /**
      * 
      * @type {boolean}
-     * @memberof ChecklistDto
+     * @memberof Checklist
      */
     'isGood'?: boolean;
 }
 /**
  * 
  * @export
- * @interface ChecklistInfoDto
+ * @interface ChecklistInfo
  */
-export interface ChecklistInfoDto {
+export interface ChecklistInfo {
     /**
-     * 기준 설명
+     * 
      * @type {string}
-     * @memberof ChecklistInfoDto
+     * @memberof ChecklistInfo
      */
     'criteria'?: string;
     /**
-     * 기준 아이디
+     * 
      * @type {number}
-     * @memberof ChecklistInfoDto
+     * @memberof ChecklistInfo
      */
     'id'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface CreateDiaryRequest
+ */
+export interface CreateDiaryRequest {
+    /**
+     * 체크한 적합 체크리스트 id 배열
+     * @type {Array<Checklist>}
+     * @memberof CreateDiaryRequest
+     */
+    'checklist'?: Array<Checklist>;
+    /**
+     * 일기 내용
+     * @type {string}
+     * @memberof CreateDiaryRequest
+     */
+    'content'?: string;
+    /**
+     * 일기 날짜
+     * @type {string}
+     * @memberof CreateDiaryRequest
+     */
+    'date'?: string;
+    /**
+     * 사용한 이모지
+     * @type {string}
+     * @memberof CreateDiaryRequest
+     */
+    'emoji'?: CreateDiaryRequestEmojiEnum;
+    /**
+     * 사용한 스티커 정보
+     * @type {string}
+     * @memberof CreateDiaryRequest
+     */
+    'sticker'?: string;
+    /**
+     * 태그 목록
+     * @type {Array<string>}
+     * @memberof CreateDiaryRequest
+     */
+    'tags'?: Array<string>;
+}
+
+export const CreateDiaryRequestEmojiEnum = {
+    Angry: 'ANGRY',
+    Calm: 'CALM',
+    Displeased: 'DISPLEASED',
+    Happy: 'HAPPY',
+    Panic: 'PANIC',
+    Sad: 'SAD'
+} as const;
+
+export type CreateDiaryRequestEmojiEnum = typeof CreateDiaryRequestEmojiEnum[keyof typeof CreateDiaryRequestEmojiEnum];
+
+/**
+ * 
+ * @export
+ * @interface CreateDiaryResponse
+ */
+export interface CreateDiaryResponse {
+    /**
+     * 친구 적합도
+     * @type {number}
+     * @memberof CreateDiaryResponse
+     */
+    'friendPercentage'?: number;
+    /**
+     * 
+     * @type {DiarySaying}
+     * @memberof CreateDiaryResponse
+     */
+    'saying'?: DiarySaying;
+}
+/**
+ * 
+ * @export
+ * @interface CreateMemberChecklistRequest
+ */
+export interface CreateMemberChecklistRequest {
+    /**
+     * 사용자 정의 기피하는 기준 리스트
+     * @type {Array<string>}
+     * @memberof CreateMemberChecklistRequest
+     */
+    'badChecklist'?: Array<string>;
+    /**
+     * 사용자 정의 이상적인 기준 리스트
+     * @type {Array<string>}
+     * @memberof CreateMemberChecklistRequest
+     */
+    'goodChecklist'?: Array<string>;
 }
 /**
  * 
@@ -131,50 +224,25 @@ export interface DataResponseBbokCharactersDto {
 /**
  * 
  * @export
- * @interface DataResponseDiariesDto
+ * @interface DataResponseCreateDiaryResponse
  */
-export interface DataResponseDiariesDto {
+export interface DataResponseCreateDiaryResponse {
     /**
      * 
-     * @type {DiariesDto}
-     * @memberof DataResponseDiariesDto
+     * @type {CreateDiaryResponse}
+     * @memberof DataResponseCreateDiaryResponse
      */
-    'data'?: DiariesDto;
+    'data'?: CreateDiaryResponse;
     /**
      * 응답 메시지
      * @type {string}
-     * @memberof DataResponseDiariesDto
+     * @memberof DataResponseCreateDiaryResponse
      */
     'message'?: string;
     /**
      * 응답 코드
      * @type {number}
-     * @memberof DataResponseDiariesDto
-     */
-    'status'?: number;
-}
-/**
- * 
- * @export
- * @interface DataResponseDiaryCreateDto
- */
-export interface DataResponseDiaryCreateDto {
-    /**
-     * 
-     * @type {DiaryCreateDto}
-     * @memberof DataResponseDiaryCreateDto
-     */
-    'data'?: DiaryCreateDto;
-    /**
-     * 응답 메시지
-     * @type {string}
-     * @memberof DataResponseDiaryCreateDto
-     */
-    'message'?: string;
-    /**
-     * 응답 코드
-     * @type {number}
-     * @memberof DataResponseDiaryCreateDto
+     * @memberof DataResponseCreateDiaryResponse
      */
     'status'?: number;
 }
@@ -256,101 +324,77 @@ export interface DataResponseGetBasicChecklistResponse {
 /**
  * 
  * @export
- * @interface DataResponseMemberInfoResponseDto
+ * @interface DataResponseGetDiariesResponse
  */
-export interface DataResponseMemberInfoResponseDto {
+export interface DataResponseGetDiariesResponse {
     /**
      * 
-     * @type {MemberInfoResponseDto}
-     * @memberof DataResponseMemberInfoResponseDto
+     * @type {GetDiariesResponse}
+     * @memberof DataResponseGetDiariesResponse
      */
-    'data'?: MemberInfoResponseDto;
+    'data'?: GetDiariesResponse;
     /**
      * 응답 메시지
      * @type {string}
-     * @memberof DataResponseMemberInfoResponseDto
+     * @memberof DataResponseGetDiariesResponse
      */
     'message'?: string;
     /**
      * 응답 코드
      * @type {number}
-     * @memberof DataResponseMemberInfoResponseDto
+     * @memberof DataResponseGetDiariesResponse
      */
     'status'?: number;
 }
 /**
  * 
  * @export
- * @interface DataResponseMyChecklistDto
+ * @interface DataResponseGetMemberChecklistResponse
  */
-export interface DataResponseMyChecklistDto {
+export interface DataResponseGetMemberChecklistResponse {
     /**
      * 
-     * @type {MyChecklistDto}
-     * @memberof DataResponseMyChecklistDto
+     * @type {GetMemberChecklistResponse}
+     * @memberof DataResponseGetMemberChecklistResponse
      */
-    'data'?: MyChecklistDto;
+    'data'?: GetMemberChecklistResponse;
     /**
      * 응답 메시지
      * @type {string}
-     * @memberof DataResponseMyChecklistDto
+     * @memberof DataResponseGetMemberChecklistResponse
      */
     'message'?: string;
     /**
      * 응답 코드
      * @type {number}
-     * @memberof DataResponseMyChecklistDto
+     * @memberof DataResponseGetMemberChecklistResponse
      */
     'status'?: number;
 }
 /**
  * 
  * @export
- * @interface DiariesDto
+ * @interface DataResponseGetMemberInfoResponse
  */
-export interface DiariesDto {
+export interface DataResponseGetMemberInfoResponse {
     /**
-     * 일화 목록
-     * @type {Array<DiaryDto>}
-     * @memberof DiariesDto
+     * 
+     * @type {GetMemberInfoResponse}
+     * @memberof DataResponseGetMemberInfoResponse
      */
-    'diaries'?: Array<DiaryDto>;
+    'data'?: GetMemberInfoResponse;
     /**
-     * 현재 페이지에 담긴 데이터 개수
+     * 응답 메시지
+     * @type {string}
+     * @memberof DataResponseGetMemberInfoResponse
+     */
+    'message'?: string;
+    /**
+     * 응답 코드
      * @type {number}
-     * @memberof DiariesDto
+     * @memberof DataResponseGetMemberInfoResponse
      */
-    'numberOfElements'?: number;
-    /**
-     * 시작 offset
-     * @type {number}
-     * @memberof DiariesDto
-     */
-    'offset'?: number;
-    /**
-     * 페이지 당 담을 수 있는 최대 용량의 데이터 개수
-     * @type {number}
-     * @memberof DiariesDto
-     */
-    'pageNumber'?: number;
-    /**
-     * 현재 페이지 번호 (0부터 시작)
-     * @type {number}
-     * @memberof DiariesDto
-     */
-    'pageSize'?: number;
-    /**
-     * 전체 페이지의 개수 (필터링에 만족하는)
-     * @type {number}
-     * @memberof DiariesDto
-     */
-    'totalElements'?: number;
-    /**
-     * 전체 요소 개수 (필터링에 만족하는)
-     * @type {number}
-     * @memberof DiariesDto
-     */
-    'totalPages'?: number;
+    'status'?: number;
 }
 /**
  * 
@@ -380,172 +424,31 @@ export interface DiaryChecklistDto {
 /**
  * 
  * @export
- * @interface DiaryCreateDto
+ * @interface DiarySaying
  */
-export interface DiaryCreateDto {
-    /**
-     * 친구 적합도
-     * @type {number}
-     * @memberof DiaryCreateDto
-     */
-    'friendPercentage'?: number;
-    /**
-     * 
-     * @type {DiarySayingDto}
-     * @memberof DiaryCreateDto
-     */
-    'saying'?: DiarySayingDto;
-}
-/**
- * 
- * @export
- * @interface DiaryDto
- */
-export interface DiaryDto {
-    /**
-     * 부적합 체크리스트
-     * @type {Array<DiaryChecklistDto>}
-     * @memberof DiaryDto
-     */
-    'badChecklist'?: Array<DiaryChecklistDto>;
-    /**
-     * 일기 내용
-     * @type {string}
-     * @memberof DiaryDto
-     */
-    'content'?: string;
-    /**
-     * 일기 작성 날짜
-     * @type {string}
-     * @memberof DiaryDto
-     */
-    'date'?: string;
-    /**
-     * 일기에 사용한 이모지
-     * @type {string}
-     * @memberof DiaryDto
-     */
-    'emoji'?: DiaryDtoEmojiEnum;
-    /**
-     * 이모지 다운로드 url
-     * @type {string}
-     * @memberof DiaryDto
-     */
-    'emojiUrl'?: string;
-    /**
-     * 적합 체크리스트
-     * @type {Array<DiaryChecklistDto>}
-     * @memberof DiaryDto
-     */
-    'goodChecklist'?: Array<DiaryChecklistDto>;
-    /**
-     * 일기 고유 ID
-     * @type {number}
-     * @memberof DiaryDto
-     */
-    'id'?: number;
-    /**
-     * 스티커 JSON
-     * @type {string}
-     * @memberof DiaryDto
-     */
-    'sticker'?: string;
-    /**
-     * 일기 태그 목록
-     * @type {Array<string>}
-     * @memberof DiaryDto
-     */
-    'tags'?: Array<string>;
-}
-
-export const DiaryDtoEmojiEnum = {
-    Angry: 'ANGRY',
-    Calm: 'CALM',
-    Displeased: 'DISPLEASED',
-    Happy: 'HAPPY',
-    Panic: 'PANIC',
-    Sad: 'SAD'
-} as const;
-
-export type DiaryDtoEmojiEnum = typeof DiaryDtoEmojiEnum[keyof typeof DiaryDtoEmojiEnum];
-
-/**
- * 
- * @export
- * @interface DiaryRequestDto
- */
-export interface DiaryRequestDto {
-    /**
-     * 체크한 적합 체크리스트 id 배열
-     * @type {Array<ChecklistDto>}
-     * @memberof DiaryRequestDto
-     */
-    'checklist'?: Array<ChecklistDto>;
-    /**
-     * 일기 내용
-     * @type {string}
-     * @memberof DiaryRequestDto
-     */
-    'content'?: string;
-    /**
-     * 일기 날짜
-     * @type {string}
-     * @memberof DiaryRequestDto
-     */
-    'date'?: string;
-    /**
-     * 사용한 이모지
-     * @type {string}
-     * @memberof DiaryRequestDto
-     */
-    'emoji'?: DiaryRequestDtoEmojiEnum;
-    /**
-     * 태그 목록
-     * @type {Array<string>}
-     * @memberof DiaryRequestDto
-     */
-    'tags'?: Array<string>;
-}
-
-export const DiaryRequestDtoEmojiEnum = {
-    Angry: 'ANGRY',
-    Calm: 'CALM',
-    Displeased: 'DISPLEASED',
-    Happy: 'HAPPY',
-    Panic: 'PANIC',
-    Sad: 'SAD'
-} as const;
-
-export type DiaryRequestDtoEmojiEnum = typeof DiaryRequestDtoEmojiEnum[keyof typeof DiaryRequestDtoEmojiEnum];
-
-/**
- * 
- * @export
- * @interface DiarySayingDto
- */
-export interface DiarySayingDto {
+export interface DiarySaying {
     /**
      * 명언 내용
      * @type {string}
-     * @memberof DiarySayingDto
+     * @memberof DiarySaying
      */
     'contents'?: string;
     /**
      * 명언 Id
      * @type {number}
-     * @memberof DiarySayingDto
+     * @memberof DiarySaying
      */
     'id'?: number;
     /**
      * 북마크 되어있는지 여부
      * @type {boolean}
-     * @memberof DiarySayingDto
+     * @memberof DiarySaying
      */
     'isMarked'?: boolean;
     /**
      * 명언 출처
      * @type {string}
-     * @memberof DiarySayingDto
+     * @memberof DiarySaying
      */
     'reference'?: string;
 }
@@ -557,10 +460,10 @@ export interface DiarySayingDto {
 export interface DiaryTagDto {
     /**
      * 태그 목록
-     * @type {Array<TagDto>}
+     * @type {Array<Tag>}
      * @memberof DiaryTagDto
      */
-    'tags'?: Array<TagDto>;
+    'tags'?: Array<Tag>;
 }
 /**
  * 
@@ -665,60 +568,182 @@ export interface GetBasicChecklistResponse {
 /**
  * 
  * @export
- * @interface MemberChecklistRequestDto
+ * @interface GetDiariesResponse
  */
-export interface MemberChecklistRequestDto {
+export interface GetDiariesResponse {
     /**
-     * 사용자 정의 기피하는 기준 리스트
-     * @type {Array<string>}
-     * @memberof MemberChecklistRequestDto
+     * 일화 목록
+     * @type {Array<GetDiaryResponse>}
+     * @memberof GetDiariesResponse
      */
-    'badChecklist'?: Array<string>;
+    'diaries'?: Array<GetDiaryResponse>;
     /**
-     * 사용자 정의 이상적인 기준 리스트
-     * @type {Array<string>}
-     * @memberof MemberChecklistRequestDto
+     * 현재 페이지에 담긴 데이터 개수
+     * @type {number}
+     * @memberof GetDiariesResponse
      */
-    'goodChecklist'?: Array<string>;
+    'numberOfElements'?: number;
+    /**
+     * 시작 offset
+     * @type {number}
+     * @memberof GetDiariesResponse
+     */
+    'offset'?: number;
+    /**
+     * 페이지 당 담을 수 있는 최대 용량의 데이터 개수
+     * @type {number}
+     * @memberof GetDiariesResponse
+     */
+    'pageNumber'?: number;
+    /**
+     * 현재 페이지 번호 (0부터 시작)
+     * @type {number}
+     * @memberof GetDiariesResponse
+     */
+    'pageSize'?: number;
+    /**
+     * 전체 페이지의 개수 (필터링에 만족하는)
+     * @type {number}
+     * @memberof GetDiariesResponse
+     */
+    'totalElements'?: number;
+    /**
+     * 전체 요소 개수 (필터링에 만족하는)
+     * @type {number}
+     * @memberof GetDiariesResponse
+     */
+    'totalPages'?: number;
 }
 /**
  * 
  * @export
- * @interface MemberInfoResponseDto
+ * @interface GetDiaryResponse
  */
-export interface MemberInfoResponseDto {
+export interface GetDiaryResponse {
+    /**
+     * 부적합 체크리스트
+     * @type {Array<DiaryChecklistDto>}
+     * @memberof GetDiaryResponse
+     */
+    'badChecklist'?: Array<DiaryChecklistDto>;
+    /**
+     * 일기 내용
+     * @type {string}
+     * @memberof GetDiaryResponse
+     */
+    'content'?: string;
+    /**
+     * 일기 작성 날짜
+     * @type {string}
+     * @memberof GetDiaryResponse
+     */
+    'date'?: string;
+    /**
+     * 일기에 사용한 이모지
+     * @type {string}
+     * @memberof GetDiaryResponse
+     */
+    'emoji'?: GetDiaryResponseEmojiEnum;
+    /**
+     * 이모지 다운로드 url
+     * @type {string}
+     * @memberof GetDiaryResponse
+     */
+    'emojiUrl'?: string;
+    /**
+     * 적합 체크리스트
+     * @type {Array<DiaryChecklistDto>}
+     * @memberof GetDiaryResponse
+     */
+    'goodChecklist'?: Array<DiaryChecklistDto>;
+    /**
+     * 일기 고유 ID
+     * @type {number}
+     * @memberof GetDiaryResponse
+     */
+    'id'?: number;
+    /**
+     * 스티커 JSON
+     * @type {string}
+     * @memberof GetDiaryResponse
+     */
+    'sticker'?: string;
+    /**
+     * 일기 태그 목록
+     * @type {Array<string>}
+     * @memberof GetDiaryResponse
+     */
+    'tags'?: Array<string>;
+}
+
+export const GetDiaryResponseEmojiEnum = {
+    Angry: 'ANGRY',
+    Calm: 'CALM',
+    Displeased: 'DISPLEASED',
+    Happy: 'HAPPY',
+    Panic: 'PANIC',
+    Sad: 'SAD'
+} as const;
+
+export type GetDiaryResponseEmojiEnum = typeof GetDiaryResponseEmojiEnum[keyof typeof GetDiaryResponseEmojiEnum];
+
+/**
+ * 
+ * @export
+ * @interface GetMemberChecklistResponse
+ */
+export interface GetMemberChecklistResponse {
+    /**
+     * 이상적인 기준
+     * @type {Array<ChecklistInfo>}
+     * @memberof GetMemberChecklistResponse
+     */
+    'badChecklist'?: Array<ChecklistInfo>;
+    /**
+     * 기피하는 기준
+     * @type {Array<ChecklistInfo>}
+     * @memberof GetMemberChecklistResponse
+     */
+    'goodChecklist'?: Array<ChecklistInfo>;
+}
+/**
+ * 
+ * @export
+ * @interface GetMemberInfoResponse
+ */
+export interface GetMemberInfoResponse {
     /**
      * member의 고유 Id
      * @type {string}
-     * @memberof MemberInfoResponseDto
+     * @memberof GetMemberInfoResponse
      */
     'memberId'?: string;
     /**
      * member의 이름
      * @type {string}
-     * @memberof MemberInfoResponseDto
+     * @memberof GetMemberInfoResponse
      */
     'memberName'?: string;
     /**
-     * member의 oauth 제공자(GUEST, KAKAO)
+     * 
      * @type {string}
-     * @memberof MemberInfoResponseDto
+     * @memberof GetMemberInfoResponse
      */
-    'oauth2Provider'?: MemberInfoResponseDtoOauth2ProviderEnum;
+    'oauth2Provider'?: GetMemberInfoResponseOauth2ProviderEnum;
     /**
      * member의 프로필 이미지 url
      * @type {string}
-     * @memberof MemberInfoResponseDto
+     * @memberof GetMemberInfoResponse
      */
     'profileUrl'?: string;
 }
 
-export const MemberInfoResponseDtoOauth2ProviderEnum = {
+export const GetMemberInfoResponseOauth2ProviderEnum = {
     Guest: 'GUEST',
     Kakao: 'KAKAO'
 } as const;
 
-export type MemberInfoResponseDtoOauth2ProviderEnum = typeof MemberInfoResponseDtoOauth2ProviderEnum[keyof typeof MemberInfoResponseDtoOauth2ProviderEnum];
+export type GetMemberInfoResponseOauth2ProviderEnum = typeof GetMemberInfoResponseOauth2ProviderEnum[keyof typeof GetMemberInfoResponseOauth2ProviderEnum];
 
 /**
  * 
@@ -742,38 +767,19 @@ export interface MessageResponse {
 /**
  * 
  * @export
- * @interface MyChecklistDto
+ * @interface Tag
  */
-export interface MyChecklistDto {
-    /**
-     * 이상적인 기준
-     * @type {Array<ChecklistInfoDto>}
-     * @memberof MyChecklistDto
-     */
-    'badChecklist'?: Array<ChecklistInfoDto>;
-    /**
-     * 기피하는 기준
-     * @type {Array<ChecklistInfoDto>}
-     * @memberof MyChecklistDto
-     */
-    'goodChecklist'?: Array<ChecklistInfoDto>;
-}
-/**
- * 
- * @export
- * @interface TagDto
- */
-export interface TagDto {
+export interface Tag {
     /**
      * 태그 id
      * @type {number}
-     * @memberof TagDto
+     * @memberof Tag
      */
     'id'?: number;
     /**
      * 태그 이름
      * @type {string}
-     * @memberof TagDto
+     * @memberof Tag
      */
     'tag'?: string;
 }
@@ -786,13 +792,50 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
     return {
         /**
          * 
-         * @summary 일기 등록
-         * @param {number} id 친구 id
-         * @param {DiaryRequestDto} [diaryRequestDto] 
+         * @summary 사용자 정의 체크리스트 추가
+         * @param {CreateMemberChecklistRequest} [createMemberChecklistRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createDiaryUsingPOST: async (id: number, diaryRequestDto?: DiaryRequestDto, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createChecklistUsingPOST: async (createMemberChecklistRequest?: CreateMemberChecklistRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v1/checklist`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Authorization required
+            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(createMemberChecklistRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary 일기 등록
+         * @param {number} id 친구 id
+         * @param {CreateDiaryRequest} [createDiaryRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createDiaryUsingPOST: async (id: number, createDiaryRequest?: CreateDiaryRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('createDiaryUsingPOST', 'id', id)
             const localVarPath = `/api/v1/friend/{id}/diary`
@@ -818,7 +861,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(diaryRequestDto, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(createDiaryRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -1133,14 +1176,25 @@ export const DefaultApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @summary 일기 등록
-         * @param {number} id 친구 id
-         * @param {DiaryRequestDto} [diaryRequestDto] 
+         * @summary 사용자 정의 체크리스트 추가
+         * @param {CreateMemberChecklistRequest} [createMemberChecklistRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createDiaryUsingPOST(id: number, diaryRequestDto?: DiaryRequestDto, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataResponseDiaryCreateDto>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createDiaryUsingPOST(id, diaryRequestDto, options);
+        async createChecklistUsingPOST(createMemberChecklistRequest?: CreateMemberChecklistRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createChecklistUsingPOST(createMemberChecklistRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary 일기 등록
+         * @param {number} id 친구 id
+         * @param {CreateDiaryRequest} [createDiaryRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createDiaryUsingPOST(id: number, createDiaryRequest?: CreateDiaryRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataResponseCreateDiaryResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createDiaryUsingPOST(id, createDiaryRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -1180,7 +1234,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getChecklistUsingGET(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataResponseMyChecklistDto>> {
+        async getChecklistUsingGET(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataResponseGetMemberChecklistResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getChecklistUsingGET(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1195,7 +1249,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getDiariesUsingGET(id: number, offset?: number, order?: string, q?: string, tag?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataResponseDiariesDto>> {
+        async getDiariesUsingGET(id: number, offset?: number, order?: string, q?: string, tag?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataResponseGetDiariesResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getDiariesUsingGET(id, offset, order, q, tag, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1215,7 +1269,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getMemberUsingGET(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataResponseMemberInfoResponseDto>> {
+        async getMemberUsingGET(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataResponseGetMemberInfoResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getMemberUsingGET(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1242,14 +1296,24 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
     return {
         /**
          * 
-         * @summary 일기 등록
-         * @param {number} id 친구 id
-         * @param {DiaryRequestDto} [diaryRequestDto] 
+         * @summary 사용자 정의 체크리스트 추가
+         * @param {CreateMemberChecklistRequest} [createMemberChecklistRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createDiaryUsingPOST(id: number, diaryRequestDto?: DiaryRequestDto, options?: any): AxiosPromise<DataResponseDiaryCreateDto> {
-            return localVarFp.createDiaryUsingPOST(id, diaryRequestDto, options).then((request) => request(axios, basePath));
+        createChecklistUsingPOST(createMemberChecklistRequest?: CreateMemberChecklistRequest, options?: any): AxiosPromise<MessageResponse> {
+            return localVarFp.createChecklistUsingPOST(createMemberChecklistRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary 일기 등록
+         * @param {number} id 친구 id
+         * @param {CreateDiaryRequest} [createDiaryRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createDiaryUsingPOST(id: number, createDiaryRequest?: CreateDiaryRequest, options?: any): AxiosPromise<DataResponseCreateDiaryResponse> {
+            return localVarFp.createDiaryUsingPOST(id, createDiaryRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1285,7 +1349,7 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getChecklistUsingGET(options?: any): AxiosPromise<DataResponseMyChecklistDto> {
+        getChecklistUsingGET(options?: any): AxiosPromise<DataResponseGetMemberChecklistResponse> {
             return localVarFp.getChecklistUsingGET(options).then((request) => request(axios, basePath));
         },
         /**
@@ -1299,7 +1363,7 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getDiariesUsingGET(id: number, offset?: number, order?: string, q?: string, tag?: string, options?: any): AxiosPromise<DataResponseDiariesDto> {
+        getDiariesUsingGET(id: number, offset?: number, order?: string, q?: string, tag?: string, options?: any): AxiosPromise<DataResponseGetDiariesResponse> {
             return localVarFp.getDiariesUsingGET(id, offset, order, q, tag, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1317,7 +1381,7 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMemberUsingGET(options?: any): AxiosPromise<DataResponseMemberInfoResponseDto> {
+        getMemberUsingGET(options?: any): AxiosPromise<DataResponseGetMemberInfoResponse> {
             return localVarFp.getMemberUsingGET(options).then((request) => request(axios, basePath));
         },
         /**
@@ -1342,15 +1406,27 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
 export class DefaultApi extends BaseAPI {
     /**
      * 
-     * @summary 일기 등록
-     * @param {number} id 친구 id
-     * @param {DiaryRequestDto} [diaryRequestDto] 
+     * @summary 사용자 정의 체크리스트 추가
+     * @param {CreateMemberChecklistRequest} [createMemberChecklistRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public createDiaryUsingPOST(id: number, diaryRequestDto?: DiaryRequestDto, options?: AxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).createDiaryUsingPOST(id, diaryRequestDto, options).then((request) => request(this.axios, this.basePath));
+    public createChecklistUsingPOST(createMemberChecklistRequest?: CreateMemberChecklistRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).createChecklistUsingPOST(createMemberChecklistRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary 일기 등록
+     * @param {number} id 친구 id
+     * @param {CreateDiaryRequest} [createDiaryRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public createDiaryUsingPOST(id: number, createDiaryRequest?: CreateDiaryRequest, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).createDiaryUsingPOST(id, createDiaryRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1446,114 +1522,6 @@ export class DefaultApi extends BaseAPI {
      */
     public getTagsUsingGET(id: number, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).getTagsUsingGET(id, options).then((request) => request(this.axios, this.basePath));
-    }
-}
-
-
-/**
- * OldApi - axios parameter creator
- * @export
- */
-export const OldApiAxiosParamCreator = function (configuration?: Configuration) {
-    return {
-        /**
-         * 
-         * @summary 사용자 정의 체크리스트 추가
-         * @param {MemberChecklistRequestDto} [memberChecklistRequestDto] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        createChecklistUsingPOST: async (memberChecklistRequestDto?: MemberChecklistRequestDto, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/v1/checklist0`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Authorization required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(memberChecklistRequestDto, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-    }
-};
-
-/**
- * OldApi - functional programming interface
- * @export
- */
-export const OldApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = OldApiAxiosParamCreator(configuration)
-    return {
-        /**
-         * 
-         * @summary 사용자 정의 체크리스트 추가
-         * @param {MemberChecklistRequestDto} [memberChecklistRequestDto] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async createChecklistUsingPOST(memberChecklistRequestDto?: MemberChecklistRequestDto, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createChecklistUsingPOST(memberChecklistRequestDto, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-    }
-};
-
-/**
- * OldApi - factory interface
- * @export
- */
-export const OldApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = OldApiFp(configuration)
-    return {
-        /**
-         * 
-         * @summary 사용자 정의 체크리스트 추가
-         * @param {MemberChecklistRequestDto} [memberChecklistRequestDto] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        createChecklistUsingPOST(memberChecklistRequestDto?: MemberChecklistRequestDto, options?: any): AxiosPromise<MessageResponse> {
-            return localVarFp.createChecklistUsingPOST(memberChecklistRequestDto, options).then((request) => request(axios, basePath));
-        },
-    };
-};
-
-/**
- * OldApi - object-oriented interface
- * @export
- * @class OldApi
- * @extends {BaseAPI}
- */
-export class OldApi extends BaseAPI {
-    /**
-     * 
-     * @summary 사용자 정의 체크리스트 추가
-     * @param {MemberChecklistRequestDto} [memberChecklistRequestDto] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OldApi
-     */
-    public createChecklistUsingPOST(memberChecklistRequestDto?: MemberChecklistRequestDto, options?: AxiosRequestConfig) {
-        return OldApiFp(this.configuration).createChecklistUsingPOST(memberChecklistRequestDto, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
