@@ -41,6 +41,11 @@ export default function ChecklistNewPage(props: Props) {
     ? setSelectedBadChecklist
     : setSelectedGoodChecklist;
 
+  useEffect(() => {
+    setGoodChecklist(data?.goodChecklist ?? [])
+    setBadChecklist(data?.badChecklist ?? [])
+  }, [data])
+
   const handleBackOrHome = useCallback(
     (e: React.MouseEvent) => {
       if (isGoodType) {
@@ -132,6 +137,7 @@ export default function ChecklistNewPage(props: Props) {
       </div>
       <div className={styles.content}>
         <CheckList
+          type={isBadType ? 'bad' : 'good'}
           data={[...(checklist?.map?.((name) => ({ name })) ?? [])]}
           onCheckedByIndex={handleCheckedByIndex}
           onChangeNameByIndex={handleChangeNameByIndex}

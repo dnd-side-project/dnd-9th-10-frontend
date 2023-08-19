@@ -9,8 +9,13 @@ export const kakaoLogin = async (code: string) => {
   return response.data;
 };
 
+export const guestSignupServer = async () => {
+  const response = await factory.guestSignupUsingPOST()
+  return response.data;
+};
+
 export const guestSignup = async () => {
-  const response = await factory.guestSignupUsingPOST();
+  const response = await axiosInstance.get('/api/guest/signup')
   return response.data;
 };
 

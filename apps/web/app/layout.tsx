@@ -3,6 +3,9 @@ import Head from "next/head";
 import { Metadata } from "next";
 import "../styles/global.css";
 import { ClientProvider } from "../providers/ClientProvider";
+import { setAccessToken } from "../libs/axios"
+
+setAccessToken()
 
 const TITLE = "BBOK";
 const DESCRIPTION = "BBOK";
