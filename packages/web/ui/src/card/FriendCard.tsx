@@ -12,11 +12,12 @@ export interface FriendCardProps {
   statusText: string;
   name: string;
   diaryCount: number;
+  score: number
   onClick?: () => void;
 }
 
 export function FriendCard(props: FriendCardProps) {
-  const { className, characterUrl, statusText, name, diaryCount, onClick } =
+  const { className, characterUrl, statusText, name, diaryCount, score, onClick } =
     props;
   return (
     <div
@@ -50,10 +51,10 @@ export function FriendCard(props: FriendCardProps) {
         <IconButton className={styles["setting-button"]} name="setting" />
       </div>
       <div className={styles.bottom}>
-        <div className={styles["bottom-graph"]}>test</div>
+        <div className={styles["bottom-graph"]}>{score}</div>
         <Bold18 className={styles["bottom-text"]} as="pre">
           {`나의 친구 기준에서 
-50% 벗어나요`}
+${score}% 벗어나요`}
         </Bold18>
       </div>
     </div>

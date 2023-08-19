@@ -1,3 +1,5 @@
+import ArrowDown from "./arrow_down";
+import ArrowUp from "./arrow_up";
 import IconBack from "./back_icon";
 import Back from "./back";
 import BookmarkActive from "./bookmark_active";
@@ -50,6 +52,8 @@ export const emojiIcons = {
 } as const;
 
 export const svgIcons = {
+  arrow_down: ArrowDown,
+  arrow_up: ArrowUp,
   icon_back: IconBack,
   back: Back,
   bookmark_active: BookmarkActive,

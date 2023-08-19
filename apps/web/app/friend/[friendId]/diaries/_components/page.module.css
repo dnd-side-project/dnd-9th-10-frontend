@@ -39,6 +39,9 @@
 }
 
 .filter-sort {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   color: var(--gray-50, #798787);
 }
 
