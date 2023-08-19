@@ -1,8 +1,15 @@
 import { axiosInstance } from "../libs/axios";
 
 import { DefaultApiFactory } from "@dnd9-10/shared/src/__generate__/account/api";
+import { DefaultApiFactory as MemberDefaultApiFactory  } from "@dnd9-10/shared/src/__generate__/member/api";
 
 const factory = DefaultApiFactory(undefined, undefined, axiosInstance);
+const memberFactory = MemberDefaultApiFactory(undefined, undefined, axiosInstance);
+
+export const getMember = async () => {
+  const response = await memberFactory.getMemberUsingGET()
+  return response.data?.data;
+};
 
 export const kakaoLogin = async (code: string) => {
   const response = await factory.kakaoLoginUsingGET(code);
