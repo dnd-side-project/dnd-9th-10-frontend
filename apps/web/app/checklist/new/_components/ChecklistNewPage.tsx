@@ -103,14 +103,14 @@ export default function ChecklistNewPage(props: Props) {
   const handleSubmit = useCallback(async () => {
     try {
       await createChecklist({
-        badChecklist: selected,
-        goodChecklist: selected,
+        badChecklist: selectedBadChecklist,
+        goodChecklist: selectedGoodChecklist,
       });
       router.replace("/");
     } catch (error) {
       console.error(error);
     }
-  }, [router, selected]);
+  }, [router, selectedBadChecklist, selectedGoodChecklist]);
 
   return (
     <div className={styles.wrap}>
