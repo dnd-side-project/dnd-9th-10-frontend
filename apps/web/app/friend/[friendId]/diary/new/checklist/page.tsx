@@ -19,6 +19,9 @@ import Topbar from "@dnd9-10/webui/src/topbar/Topbar";
 import Button from "@dnd9-10/webui/src/button/Button";
 
 import styles from "./page.module.css";
+import { initializeClient } from "../../../../../../libs/client";
+
+initializeClient();
 
 export default function Page() {
   const router = useRouter();

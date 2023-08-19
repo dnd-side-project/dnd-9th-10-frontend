@@ -13,6 +13,9 @@ import { images } from "@dnd9-10/shared/src/libs/images";
 import { Button } from "@dnd9-10/webui/src/button/Button";
 import { useRouter, useSearchParams } from "next/navigation";
 import { ProfileCard } from "@dnd9-10/webui/src/card/ProfileCard";
+import { initializeClient } from "../../libs/client";
+
+initializeClient();
 
 export default function Page() {
   const router = useRouter();

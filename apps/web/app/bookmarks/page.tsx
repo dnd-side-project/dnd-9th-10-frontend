@@ -13,6 +13,9 @@ import {
 import styles from "./page.module.css";
 import Topbar from "@dnd9-10/webui/src/topbar/Topbar";
 import BookmarkCardList from "@dnd9-10/webui/src/bookmarks/BookmarkCardList";
+import { initializeClient } from "../../libs/client";
+
+initializeClient();
 
 export default function Page() {
   const router = useRouter();

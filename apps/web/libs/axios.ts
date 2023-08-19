@@ -8,9 +8,5 @@ export const setAccessToken = (
     ? "Bearer " + storage().getAccessToken()
     : undefined
 ) => {
-  console.log({
-    authorization
-  })
-
   axiosInstance.defaults.headers.Authorization = authorization;
 };

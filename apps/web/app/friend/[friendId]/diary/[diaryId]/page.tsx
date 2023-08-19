@@ -23,6 +23,7 @@ import { transformDateTimeStrToText } from "@dnd9-10/shared/src/utils/datetime/d
 import { useQuery } from "@tanstack/react-query";
 import { getDiary } from "../../../../../apis/diary";
 import { DATE_TIME_FORMAT6 } from "@dnd9-10/shared/src/utils/datetime/datetime-format";
+import { initializeClient } from "../../../../../libs/client";
 
 interface Props {
   params: {
@@ -30,6 +31,8 @@ interface Props {
     diaryId: string;
   };
 }
+
+initializeClient();
 
 export default function Page(props: Props) {
   const router = useRouter();

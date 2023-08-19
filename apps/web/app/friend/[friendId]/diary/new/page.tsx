@@ -19,6 +19,9 @@ import NewDiaryEmojiModal from "@dnd9-10/webui/src/modal/NewDiaryEmojiModal";
 import Button from "@dnd9-10/webui/src/button/Button";
 import TextInput from "@dnd9-10/webui/src/input/TextInput";
 import DateInput from "@dnd9-10/webui/src/input/DateInput";
+import { initializeClient } from "../../../../../libs/client";
+
+initializeClient();
 
 export default function Page() {
   const router = useRouter();
