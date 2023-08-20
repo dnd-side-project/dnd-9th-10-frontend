@@ -1,8 +1,8 @@
 import _ from "lodash";
 
-import { isJSON } from '@dnd9-10/shared/src/utils/common'
+import { isJSON } from "@dnd9-10/shared/src/utils/common";
 
-type StorageType = 'accessToken' | 'memberId';
+type StorageType = "accessToken" | "memberId";
 
 function storageFactory(
   setItem: (key: string, value: string) => void,
@@ -74,16 +74,10 @@ function storageFactory(
 
   const getStorages = {
     getAccessToken: () => {
-      return getStringWithDefault(
-        "accessToken",
-        null
-      );
+      return getStringWithDefault("accessToken", null);
     },
     getMemberId: () => {
-      return getStringWithDefault(
-        "memberId",
-        null
-      );
+      return getStringWithDefault("memberId", null);
     },
   };
 

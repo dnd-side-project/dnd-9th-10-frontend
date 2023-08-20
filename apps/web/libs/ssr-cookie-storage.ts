@@ -1,9 +1,9 @@
 import _ from "lodash";
-import { cookies } from 'next/headers'
+import { cookies } from "next/headers";
 
-import { isJSON } from '@dnd9-10/shared/src/utils/common'
+import { isJSON } from "@dnd9-10/shared/src/utils/common";
 
-type StorageType = 'accessToken' | 'memberId';
+type StorageType = "accessToken" | "memberId";
 
 function storageFactory(
   setItem: (key: string, value: string) => void,
@@ -75,16 +75,10 @@ function storageFactory(
 
   const getStorages = {
     getAccessToken: () => {
-      return getStringWithDefault(
-        "accessToken",
-        null
-      );
+      return getStringWithDefault("accessToken", null);
     },
     getMemberId: () => {
-      return getStringWithDefault(
-        "memberId",
-        null
-      );
+      return getStringWithDefault("memberId", null);
     },
   };
 
@@ -102,11 +96,11 @@ function storageFactory(
 
 export const storage = _.once(() => {
   const setItem = (key: string, value: string) => {
-    return cookies().set(key, value)
+    return cookies().set(key, value);
   };
 
   const getItem = (key: string) => {
-    const res = cookies().get(key)
+    const res = cookies().get(key);
     return res?.value ?? "";
   };
 

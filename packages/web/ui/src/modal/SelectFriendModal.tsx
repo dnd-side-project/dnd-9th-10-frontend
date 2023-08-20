@@ -85,18 +85,12 @@ export function SelectFriendModal(props: SelectFriendModalProps) {
         <div className={styles["content"]}>{contentItem.content}</div>
         {isCharacterType ? (
           <div className={styles.bottom}>
-            <SubmitButton
-              name={"다음"}
-              onClick={handleNext}
-            />
+            <SubmitButton name={"다음"} onClick={handleNext} />
           </div>
         ) : (
           <Dialog.Close asChild>
             <div className={styles.bottom}>
-              <SubmitButton
-                name={"확인"}
-                onClick={handleSubmit}
-              />
+              <SubmitButton name={"확인"} onClick={handleSubmit} />
             </div>
           </Dialog.Close>
         )}

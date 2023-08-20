@@ -12,7 +12,7 @@ import Image from "next/image";
 import { initKakao, loginWithKakao } from "../../../libs/kakao";
 import { guestSignup } from "../../../apis/account";
 import { storage } from "../../../libs/cookie-storage";
-import { setAccessToken } from "../../../libs/axios"
+import { setAccessToken } from "../../../libs/axios";
 
 export default function Page() {
   const router = useRouter();
@@ -24,9 +24,9 @@ export default function Page() {
   const handleGuest = useCallback(async () => {
     try {
       const response = await guestSignup();
-      storage().setAccessToken(response.data?.accessToken)
+      storage().setAccessToken(response.data?.accessToken);
       storage().setMemberId(response.data?.memberId);
-      setAccessToken()
+      setAccessToken();
       router.replace("/checklist/new");
     } catch (error) {
       console.error(error);

@@ -11,7 +11,7 @@ import React from "react";
 export interface SelectFriendNameInputProps {
   className?: string;
   value: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export function SelectFriendNameInput(props: SelectFriendNameInputProps) {

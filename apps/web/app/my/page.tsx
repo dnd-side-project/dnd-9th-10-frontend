@@ -19,7 +19,11 @@ initializeClient();
 
 export default function Page() {
   const member = useQuery(["getMember"], getMember);
-  const { memberName = "", profileUrl = "", oauth2Provider = GetMemberInfoResponseOauth2ProviderEnum.Guest } = member.data ?? {};
+  const {
+    memberName = "",
+    profileUrl = "",
+    oauth2Provider = GetMemberInfoResponseOauth2ProviderEnum.Guest,
+  } = member.data ?? {};
   const router = useRouter();
   const searchParam = useSearchParams();
 
@@ -52,7 +56,11 @@ export default function Page() {
         <div className={styles.section}>
           <Bold22 className={styles["section-title"]}>내 정보</Bold22>
           <div className={styles["section-content"]}>
-            <ProfileCard name={memberName} profileUrl={profileUrl} oauth2Provider={oauth2Provider} />
+            <ProfileCard
+              name={memberName}
+              profileUrl={profileUrl}
+              oauth2Provider={oauth2Provider}
+            />
           </div>
         </div>
         <ul className={styles.list}>

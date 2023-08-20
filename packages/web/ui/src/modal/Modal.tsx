@@ -7,7 +7,7 @@ export interface ModalProps {
   className?: string;
   TriggerComponent: React.ReactNode;
   children: React.ReactNode;
-  useClose?: boolean
+  useClose?: boolean;
 }
 
 export function Modal(props: ModalProps) {
@@ -20,9 +20,11 @@ export function Modal(props: ModalProps) {
           <Dialog.Overlay className={styles.DialogOverlay} />
           <Dialog.Content className={styles.DialogContent}>
             <div className={cn(styles.wrap, className)}>
-              {useClose && <Dialog.Close asChild>
-                <IconButton className={styles["close-button"]} name="close" />
-              </Dialog.Close>}
+              {useClose && (
+                <Dialog.Close asChild>
+                  <IconButton className={styles["close-button"]} name="close" />
+                </Dialog.Close>
+              )}
               {children}
             </div>
           </Dialog.Content>

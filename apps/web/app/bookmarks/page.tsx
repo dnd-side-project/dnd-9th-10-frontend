@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import {useCallback, useEffect, useState} from "react";
+import { useCallback, useEffect, useState } from "react";
 import { SubmitButton } from "@dnd9-10/webui/src/button/SubmitButton";
 import {
   Bold22,
@@ -14,8 +14,8 @@ import styles from "./page.module.css";
 import Topbar from "@dnd9-10/webui/src/topbar/Topbar";
 import BookmarkCardList from "@dnd9-10/webui/src/bookmarks/BookmarkCardList";
 import { initializeClient } from "../../libs/client";
-import {getBookmarks} from "../../apis/bookmark";
-import {useQuery} from "@tanstack/react-query";
+import { getBookmarks } from "../../apis/bookmark";
+import { useQuery } from "@tanstack/react-query";
 
 initializeClient();
 
@@ -28,21 +28,24 @@ export default function Page() {
     router.back();
   }, [router]);
 
-  const { data} = useQuery(GET_BOOKMARKS_QUERY_KEY, () => getBookmarks())
+  const { data } = useQuery(GET_BOOKMARKS_QUERY_KEY, () => getBookmarks());
 
-  return <div className={styles.wrap}>
-    <Topbar title="북마크" onBackClick={handleBackClick}/>
-    <BookmarkCardList className={styles.content} data={
-      (data ?? []).map(bookmark => {
-        return {
-          id: bookmark.id,
-          description: bookmark.contents,
-          reference: bookmark.reference,
-          active: true,
-        };
-      })
-    }/>
-  </div>;
+  return (
+    <div className={styles.wrap}>
+      <Topbar title="북마크" onBackClick={handleBackClick} />
+      <BookmarkCardList
+        className={styles.content}
+        data={(data ?? []).map((bookmark) => {
+          return {
+            id: bookmark.id,
+            description: bookmark.contents,
+            reference: bookmark.reference,
+            active: true,
+          };
+        })}
+      />
+    </div>
+  );
 }
 
-export {GET_BOOKMARKS_QUERY_KEY};
+export { GET_BOOKMARKS_QUERY_KEY };
