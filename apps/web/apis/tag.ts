@@ -1,8 +1,6 @@
 import { axiosInstance } from "../libs/axios";
 
-import {
-  DefaultApiFactory,
-} from "@dnd9-10/shared/src/__generate__/member/api";
+import { DefaultApiFactory } from "@dnd9-10/shared/src/__generate__/member/api";
 
 const factory = DefaultApiFactory(undefined, undefined, axiosInstance);
 

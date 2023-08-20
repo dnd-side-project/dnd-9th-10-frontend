@@ -27,70 +27,82 @@ export default function Page() {
   const router = useRouter();
 
   const handleBackClick = useCallback(() => {
-    router.back()
-  }, [])
+    router.back();
+  }, []);
 
-  return <div className={styles.wrap}>
-    <Topbar
-      title={<Semibold18 className={styles.title}>친구 기준</Semibold18>}
-      RightComponent={
-        <Button className={styles["submit-button"]}>
-          <Medium17 className={styles["submit-button-text"]}>완료</Medium17>
-        </Button>
-      } onBackClick={handleBackClick} />
-    <div className={styles.content}>
-      <Bold18 className={styles.description}>이 일화에서 친구는
-        <span className={styles.highlight}> 어떤 친구였나요?</span>
-      </Bold18>
-      <div className={styles['section']}>
-        <Semibold17 className={styles['section-title']}>
-          <Icon name='broken_heart' />
-          기피하는 친구였어요!
-        </Semibold17>
-        <div className={styles['section-content']}>
-          <NewCheckList data={[
-            {
-              name: '기피하는 친구 유형 1',
-              checked: true,
-            },
-            {
-              name: '기피하는 친구 유형 2',
-              checked: true,
-            },
-            {
-              name: '기피하는 친구 유형 3',
-              checked: true,
-            },
-            {
-              name: '기피하는 친구 유형 4',
-              checked: true,
-            }
-          ]} />
+  return (
+    <div className={styles.wrap}>
+      <Topbar
+        title={<Semibold18 className={styles.title}>친구 기준</Semibold18>}
+        RightComponent={
+          <Button className={styles["submit-button"]}>
+            <Medium17 className={styles["submit-button-text"]}>완료</Medium17>
+          </Button>
+        }
+        onBackClick={handleBackClick}
+      />
+      <div className={styles.content}>
+        <Bold18 className={styles.description}>
+          이 일화에서 친구는
+          <span className={styles.highlight}> 어떤 친구였나요?</span>
+        </Bold18>
+        <div className={styles["section"]}>
+          <Semibold17 className={styles["section-title"]}>
+            <Icon name="broken_heart" />
+            기피하는 친구였어요!
+          </Semibold17>
+          <div className={styles["section-content"]}>
+            <NewCheckList
+              data={[
+                {
+                  name: "기피하는 친구 유형 1",
+                  checked: true,
+                },
+                {
+                  name: "기피하는 친구 유형 2",
+                  checked: true,
+                },
+                {
+                  name: "기피하는 친구 유형 3",
+                  checked: true,
+                },
+                {
+                  name: "기피하는 친구 유형 4",
+                  checked: true,
+                },
+              ]}
+            />
+          </div>
         </div>
-      </div>
-      <div className={styles['section']}>
-        <div className={styles['section-title']}><Icon name='heart' />적합한 친구였어요!</div>
-        <div className={styles['section-content']}>
-        <NewCheckList data={[
-            {
-              name: '기피하는 친구 유형 1',
-              checked: true,
-            },
-            {
-              name: '기피하는 친구 유형 2',
-              checked: true,
-            },
-            {
-              name: '기피하는 친구 유형 3',
-              checked: true,
-            },
-            {
-              name: '기피하는 친구 유형 4',
-              checked: true,
-            }
-          ]} />
+        <div className={styles["section"]}>
+          <div className={styles["section-title"]}>
+            <Icon name="heart" />
+            적합한 친구였어요!
+          </div>
+          <div className={styles["section-content"]}>
+            <NewCheckList
+              data={[
+                {
+                  name: "기피하는 친구 유형 1",
+                  checked: true,
+                },
+                {
+                  name: "기피하는 친구 유형 2",
+                  checked: true,
+                },
+                {
+                  name: "기피하는 친구 유형 3",
+                  checked: true,
+                },
+                {
+                  name: "기피하는 친구 유형 4",
+                  checked: true,
+                },
+              ]}
+            />
+          </div>
         </div>
       </div>
     </div>
-  </div >;
+  );
 }

@@ -8,7 +8,6 @@ import {
 const factory = MockApiFactory(undefined, undefined, axiosInstance);
 
 export const getBookmarks = async () => {
-  
   try {
     const response = await factory.getBookmarksUsingGET();
     return response.data?.data?.bookmarks ?? [];

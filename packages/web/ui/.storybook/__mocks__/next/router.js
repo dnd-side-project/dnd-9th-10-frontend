@@ -1,8 +1,8 @@
 export const useRouter = () => ({
-  route: '/',
-  pathname: '',
-  query: '',
-  asPath: '',
+  route: "/",
+  pathname: "",
+  query: "",
+  asPath: "",
   prefetch: () => {
     // NOTHING
   },

@@ -44,7 +44,7 @@ export default function Page() {
       <div className={styles["bottom"]}>
         <SubmitButton
           className={styles["kakao-button"]}
-          type='kakao'
+          type="kakao"
           name="카카오 로그인"
           onClick={handleNext}
         />

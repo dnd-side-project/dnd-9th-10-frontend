@@ -1,10 +1,10 @@
-import { StoryFn, Meta } from '@storybook/react';
-import { within } from '@storybook/testing-library';
-import { Modal, ModalProps } from './Modal';
+import { StoryFn, Meta } from "@storybook/react";
+import { within } from "@storybook/testing-library";
+import { Modal, ModalProps } from "./Modal";
 
 export default {
   component: Modal,
-  title: 'modal/Modal',
+  title: "modal/Modal",
   argTypes: {},
 } as Meta;
 

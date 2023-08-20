@@ -1,18 +1,18 @@
-import { DATE_TIME_FORMAT, DATE_TIME_FORMAT7 } from './datetime-format';
-import dateFnsParse from 'date-fns/parse';
-import getMinutes from 'date-fns/getMinutes';
-import dateFnsFormat from 'date-fns/format';
-import ko from 'date-fns/locale/ko';
-import enUS from 'date-fns/locale/en-US';
+import { DATE_TIME_FORMAT, DATE_TIME_FORMAT7 } from "./datetime-format";
+import dateFnsParse from "date-fns/parse";
+import getMinutes from "date-fns/getMinutes";
+import dateFnsFormat from "date-fns/format";
+import ko from "date-fns/locale/ko";
+import enUS from "date-fns/locale/en-US";
 
 const locales = { enUS, ko } as const;
 
 type LocaleIdType = keyof typeof locales;
-export type DateTimeFormatModule = typeof import('./datetime-format');
+export type DateTimeFormatModule = typeof import("./datetime-format");
 export type DateTimeFormatType =
   DateTimeFormatModule[keyof DateTimeFormatModule];
 
-const defaultLocaleId: LocaleIdType = 'ko';
+const defaultLocaleId: LocaleIdType = "ko";
 
 export const parseDateFns = (
   dateTime: string,

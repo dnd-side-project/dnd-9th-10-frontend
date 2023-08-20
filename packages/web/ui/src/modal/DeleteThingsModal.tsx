@@ -10,8 +10,8 @@ export interface DeleteThingsModalProps {
   className?: string;
   description: string;
   TriggerComponent: React.ReactNode;
-  onClose?: () => void
-  onSubmit?: () => void
+  onClose?: () => void;
+  onSubmit?: () => void;
 }
 
 export function DeleteThingsModal(props: DeleteThingsModalProps) {
@@ -24,10 +24,9 @@ export function DeleteThingsModal(props: DeleteThingsModalProps) {
     >
       <>
         <Bold20 className={styles.title}>정말 삭제하시겠어요?</Bold20>
-        <Medium14
-          className={styles["content"]}
-          as="pre"
-        >{description}</Medium14>
+        <Medium14 className={styles["content"]} as="pre">
+          {description}
+        </Medium14>
         <Dialog.Close asChild>
           <div className={styles.bottom}>
             <SubmitButton

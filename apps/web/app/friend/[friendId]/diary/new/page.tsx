@@ -29,7 +29,7 @@ export default function Page() {
   const [currDate, setCurrDate] = useState(new Date());
 
   const handleEmojiModalClose = useCallback(() => {
-    setOpen(false)
+    setOpen(false);
   }, []);
 
   const handleEmojiModalSubmit = useCallback(() => {}, []);
@@ -55,7 +55,7 @@ export default function Page() {
         <div className={styles.section}>
           <Bold18 className={styles["section-title"]}>날짜</Bold18>
           <div className={styles["section-content"]}>
-            <DateInput currDate={currDate} setCurrDate={setCurrDate}/>
+            <DateInput currDate={currDate} setCurrDate={setCurrDate} />
           </div>
         </div>
         <div className={styles.section}>

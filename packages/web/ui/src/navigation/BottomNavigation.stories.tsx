@@ -16,7 +16,7 @@ const Template: StoryFn<BottomNavigationProps> = (args) => (
       {...args}
       active={"home"}
       onSelected={action("onSelected")}
-      onAdd={action('onAdd')}
+      onAdd={action("onAdd")}
     />
   </>
 );

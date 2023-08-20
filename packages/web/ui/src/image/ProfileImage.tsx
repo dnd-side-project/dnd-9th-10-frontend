@@ -19,7 +19,13 @@ export function ProfileImage(props: ProfileImageProps) {
         height: size,
       }}
     >
-      <Image className={styles.image} width={size} height={size} alt={alt} src={src} />
+      <Image
+        className={styles.image}
+        width={size}
+        height={size}
+        alt={alt}
+        src={src}
+      />
     </div>
   );
 }

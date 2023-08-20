@@ -1,6 +1,6 @@
-const withPWA = require('next-pwa')({
-  dest: 'public'
-})
+const withPWA = require("next-pwa")({
+  dest: "public",
+});
 
 /**
  * @type {import('next').NextConfig}
@@ -10,7 +10,7 @@ module.exports = withPWA({
     typedRoutes: true,
   },
   reactStrictMode: true,
-  transpilePackages: ['@dnd9-10/webui', '@dnd9-10/shared'],
+  transpilePackages: ["@dnd9-10/webui", "@dnd9-10/shared"],
   webpack: (config) => {
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
@@ -29,15 +29,14 @@ module.exports = withPWA({
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: '*',
-        port: '',
-        pathname: '/**',
+        protocol: "https",
+        hostname: "*",
+        port: "",
+        pathname: "/**",
       },
     ],
   },
 });
-
 
 // Injected content via Sentry wizard below
 

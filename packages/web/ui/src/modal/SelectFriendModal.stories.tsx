@@ -1,14 +1,16 @@
-import { StoryFn, Meta } from '@storybook/react';
-import { within } from '@storybook/testing-library';
-import { SelectFriendModal, SelectFriendModalProps } from './SelectFriendModal';
+import { StoryFn, Meta } from "@storybook/react";
+import { within } from "@storybook/testing-library";
+import { SelectFriendModal, SelectFriendModalProps } from "./SelectFriendModal";
 
 export default {
   component: SelectFriendModal,
-  title: 'modal/SelectFriendModal',
+  title: "modal/SelectFriendModal",
   argTypes: {},
 } as Meta;
 
-const Template: StoryFn<SelectFriendModalProps> = (args) => <SelectFriendModal {...args} characters={[]} />;
+const Template: StoryFn<SelectFriendModalProps> = (args) => (
+  <SelectFriendModal {...args} characters={[]} />
+);
 
 export const Primary = Template.bind({});
 Primary.args = {};

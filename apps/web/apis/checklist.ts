@@ -33,7 +33,9 @@ export const getFriendChecklist = async () => {
   }
 };
 
-export const createChecklist = async (payload: CreateMemberChecklistRequest) => {
+export const createChecklist = async (
+  payload: CreateMemberChecklistRequest
+) => {
   const response = await factory.createChecklistUsingPOST(payload);
   return response.data;
 };

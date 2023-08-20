@@ -62,7 +62,7 @@ export default function MainPage(props: Props) {
         character: form.character.type,
         name: form.name,
       });
-      friendsResponse.refetch()
+      friendsResponse.refetch();
     },
     [friendsResponse]
   );
@@ -109,7 +109,9 @@ export default function MainPage(props: Props) {
                       characterUrl={characterUrl}
                       statusText={
                         durationDaysByTime(
-                          startedAt ? parseDate(startedAt).valueOf() : todayTime(),
+                          startedAt
+                            ? parseDate(startedAt).valueOf()
+                            : todayTime(),
                           todayTime()
                         ) + "일째 작성 중"
                       }

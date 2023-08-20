@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
 export interface CheckboxProps {
   className?: string;
   checked: boolean;
-  onClick?: (e: React.MouseEvent) => void
+  onClick?: (e: React.MouseEvent) => void;
 }
 
 export function Checkbox(props: CheckboxProps) {

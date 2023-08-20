@@ -12,11 +12,19 @@ export interface CheckListItemProps {
   onSelected?: (e: React.MouseEvent) => void;
   onChecked?: (e: React.MouseEvent, checked: boolean) => void;
   onChangeText?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onDelete?: () => void
+  onDelete?: () => void;
 }
 
 export function CheckListItem(props: CheckListItemProps) {
-  const { className, selected, name, onSelected, onChecked, onChangeText, onDelete } = props;
+  const {
+    className,
+    selected,
+    name,
+    onSelected,
+    onChecked,
+    onChangeText,
+    onDelete,
+  } = props;
   const [checked, setChecked] = useState(false);
 
   const handleToggle = useCallback(
@@ -27,9 +35,12 @@ export function CheckListItem(props: CheckListItemProps) {
     [checked, onChecked]
   );
 
-  const handleDelete = useCallback((e: React.MouseEvent) => {
-    onDelete?.()
-  }, [onDelete]);
+  const handleDelete = useCallback(
+    (e: React.MouseEvent) => {
+      onDelete?.();
+    },
+    [onDelete]
+  );
 
   return (
     <div
@@ -43,13 +54,15 @@ export function CheckListItem(props: CheckListItemProps) {
         <input
           className={cn({
             [styles.input]: true,
-            [styles['input-focus']]: selected,
+            [styles["input-focus"]]: selected,
           })}
           defaultValue={name}
           onChange={onChangeText}
         />
       </Label.Root>
-      {selected && <IconButton name="remove" size={24} onClick={handleDelete} />}
+      {selected && (
+        <IconButton name="remove" size={24} onClick={handleDelete} />
+      )}
     </div>
   );
 }
