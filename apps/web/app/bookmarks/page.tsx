@@ -16,6 +16,7 @@ import BookmarkCardList from "@dnd9-10/webui/src/bookmarks/BookmarkCardList";
 import { initializeClient } from "../../libs/client";
 import { getBookmarks } from "../../apis/bookmark";
 import { useQuery } from "@tanstack/react-query";
+import {BookmarkCardProps} from "@dnd9-10/webui/src/bookmarks/BookmarkCard";
 
 initializeClient();
 
@@ -36,12 +37,13 @@ export default function Page() {
       <BookmarkCardList
         className={styles.content}
         data={(data ?? []).map((bookmark) => {
-          return {
-            id: bookmark.id,
-            description: bookmark.contents,
-            reference: bookmark.reference,
-            active: true,
-          };
+            const bookmarkCardProp: BookmarkCardProps = {
+                id: bookmark.id!,
+                description: bookmark.contents!,
+                reference: bookmark.reference!,
+                active: true,
+            };
+          return bookmarkCardProp
         })}
       />
     </div>
