@@ -24,71 +24,96 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 /**
  * 
  * @export
- * @interface DataResponseLoginResponseDto
+ * @interface DataResponseLoginResponse
  */
-export interface DataResponseLoginResponseDto {
+export interface DataResponseLoginResponse {
     /**
      * 
-     * @type {LoginResponseDto}
-     * @memberof DataResponseLoginResponseDto
+     * @type {LoginResponse}
+     * @memberof DataResponseLoginResponse
      */
-    'data'?: LoginResponseDto;
+    'data'?: LoginResponse;
     /**
      * 응답 메시지
      * @type {string}
-     * @memberof DataResponseLoginResponseDto
+     * @memberof DataResponseLoginResponse
      */
     'message'?: string;
     /**
      * 응답 코드
      * @type {number}
-     * @memberof DataResponseLoginResponseDto
+     * @memberof DataResponseLoginResponse
      */
     'status'?: number;
 }
 /**
  * 
  * @export
- * @interface LoginResponseDto
+ * @interface DataResponseReIssueToken
  */
-export interface LoginResponseDto {
+export interface DataResponseReIssueToken {
+    /**
+     * 
+     * @type {ReIssueToken}
+     * @memberof DataResponseReIssueToken
+     */
+    'data'?: ReIssueToken;
+    /**
+     * 응답 메시지
+     * @type {string}
+     * @memberof DataResponseReIssueToken
+     */
+    'message'?: string;
+    /**
+     * 응답 코드
+     * @type {number}
+     * @memberof DataResponseReIssueToken
+     */
+    'status'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface LoginResponse
+ */
+export interface LoginResponse {
     /**
      * 발급된 액세스 토큰
      * @type {string}
-     * @memberof LoginResponseDto
+     * @memberof LoginResponse
      */
     'accessToken'?: string;
     /**
      * 멤버의 id
      * @type {string}
-     * @memberof LoginResponseDto
+     * @memberof LoginResponse
      */
     'memberId'?: string;
     /**
      * 발급된 리프레쉬 토큰
      * @type {string}
-     * @memberof LoginResponseDto
+     * @memberof LoginResponse
      */
     'refreshToken'?: string;
 }
 /**
  * 
  * @export
- * @interface MessageResponse
+ * @interface ReIssueToken
  */
-export interface MessageResponse {
+export interface ReIssueToken {
     /**
-     * 응답 메시지
+     * 
      * @type {string}
-     * @memberof MessageResponse
+     * @memberof ReIssueToken
      */
-    'message'?: string;
+    'accessToken'?: string;
     /**
-     * 응답 코드
-     * @type {number}
-     * @memberof MessageResponse
+     * 
+     * @type {string}
+     * @memberof ReIssueToken
      */
-    'status'?: number;
+    'refreshToken'?: string;
 }
 
 /**
@@ -197,11 +222,13 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Jwt를 재발급 할 수 있습니다.
          * @summary Jwt 재발급
-         * @param {string} [refreshToken] refreshToken
+         * @param {string} refreshToken refreshToken
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        reIssueTokenUsingGET: async (refreshToken?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        reIssueTokenUsingGET: async (refreshToken: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'refreshToken' is not null or undefined
+            assertParamExists('reIssueTokenUsingGET', 'refreshToken', refreshToken)
             const localVarPath = `/api/v1/jwt/refresh`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -255,7 +282,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async guestSignupUsingPOST(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataResponseLoginResponseDto>> {
+        async guestSignupUsingPOST(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataResponseLoginResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.guestSignupUsingPOST(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -266,18 +293,18 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async kakaoLoginUsingGET(code: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataResponseLoginResponseDto>> {
+        async kakaoLoginUsingGET(code: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataResponseLoginResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.kakaoLoginUsingGET(code, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Jwt를 재발급 할 수 있습니다.
          * @summary Jwt 재발급
-         * @param {string} [refreshToken] refreshToken
+         * @param {string} refreshToken refreshToken
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async reIssueTokenUsingGET(refreshToken?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageResponse>> {
+        async reIssueTokenUsingGET(refreshToken: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataResponseReIssueToken>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.reIssueTokenUsingGET(refreshToken, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -306,7 +333,7 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        guestSignupUsingPOST(options?: any): AxiosPromise<DataResponseLoginResponseDto> {
+        guestSignupUsingPOST(options?: any): AxiosPromise<DataResponseLoginResponse> {
             return localVarFp.guestSignupUsingPOST(options).then((request) => request(axios, basePath));
         },
         /**
@@ -316,17 +343,17 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        kakaoLoginUsingGET(code: string, options?: any): AxiosPromise<DataResponseLoginResponseDto> {
+        kakaoLoginUsingGET(code: string, options?: any): AxiosPromise<DataResponseLoginResponse> {
             return localVarFp.kakaoLoginUsingGET(code, options).then((request) => request(axios, basePath));
         },
         /**
          * Jwt를 재발급 할 수 있습니다.
          * @summary Jwt 재발급
-         * @param {string} [refreshToken] refreshToken
+         * @param {string} refreshToken refreshToken
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        reIssueTokenUsingGET(refreshToken?: string, options?: any): AxiosPromise<MessageResponse> {
+        reIssueTokenUsingGET(refreshToken: string, options?: any): AxiosPromise<DataResponseReIssueToken> {
             return localVarFp.reIssueTokenUsingGET(refreshToken, options).then((request) => request(axios, basePath));
         },
     };
@@ -376,12 +403,12 @@ export class DefaultApi extends BaseAPI {
     /**
      * Jwt를 재발급 할 수 있습니다.
      * @summary Jwt 재발급
-     * @param {string} [refreshToken] refreshToken
+     * @param {string} refreshToken refreshToken
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public reIssueTokenUsingGET(refreshToken?: string, options?: AxiosRequestConfig) {
+    public reIssueTokenUsingGET(refreshToken: string, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).reIssueTokenUsingGET(refreshToken, options).then((request) => request(this.axios, this.basePath));
     }
 }

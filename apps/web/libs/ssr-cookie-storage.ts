@@ -1,4 +1,5 @@
 import _ from "lodash";
+import { cookies } from 'next/headers'
 
 import { isJSON } from '@dnd9-10/shared/src/utils/common'
 
@@ -7,7 +8,7 @@ type StorageType = 'accessToken' | 'memberId';
 function storageFactory(
   setItem: (key: string, value: string) => void,
   getItem: (key: string) => string,
-  clear: () => void
+  clear: (key: string) => void
 ) {
   const setStorageItem = (key: StorageType, value: string) => {
     return setItem(key, value);
@@ -101,15 +102,16 @@ function storageFactory(
 
 export const storage = _.once(() => {
   const setItem = (key: string, value: string) => {
-    localStorage.setItem(key, value);
+    return cookies().set(key, value)
   };
 
   const getItem = (key: string) => {
-    return localStorage.getItem(key) ?? "";
+    const res = cookies().get(key)
+    return res?.value ?? "";
   };
 
-  const clear = () => {
-    return localStorage.clear();
+  const clear = (key: string) => {
+    return cookies().delete(key);
   };
   return storageFactory(setItem, getItem, clear);
 });

@@ -69,6 +69,25 @@ export interface ChecklistInfoRequestDto {
 /**
  * 
  * @export
+ * @interface CreateDiaryResponse
+ */
+export interface CreateDiaryResponse {
+    /**
+     * 친구 적합도
+     * @type {number}
+     * @memberof CreateDiaryResponse
+     */
+    'friendPercentage'?: number;
+    /**
+     * 
+     * @type {DiarySaying}
+     * @memberof CreateDiaryResponse
+     */
+    'saying'?: DiarySaying;
+}
+/**
+ * 
+ * @export
  * @interface DataResponseBookmarkInfoDto
  */
 export interface DataResponseBookmarkInfoDto {
@@ -88,31 +107,6 @@ export interface DataResponseBookmarkInfoDto {
      * 응답 코드
      * @type {number}
      * @memberof DataResponseBookmarkInfoDto
-     */
-    'status'?: number;
-}
-/**
- * 
- * @export
- * @interface DataResponseDiaryDto
- */
-export interface DataResponseDiaryDto {
-    /**
-     * 
-     * @type {DiaryDto}
-     * @memberof DataResponseDiaryDto
-     */
-    'data'?: DiaryDto;
-    /**
-     * 응답 메시지
-     * @type {string}
-     * @memberof DataResponseDiaryDto
-     */
-    'message'?: string;
-    /**
-     * 응답 코드
-     * @type {number}
-     * @memberof DataResponseDiaryDto
      */
     'status'?: number;
 }
@@ -144,6 +138,31 @@ export interface DataResponseDiaryStickerDto {
 /**
  * 
  * @export
+ * @interface DataResponseGetDiaryResponse
+ */
+export interface DataResponseGetDiaryResponse {
+    /**
+     * 
+     * @type {GetDiaryResponse}
+     * @memberof DataResponseGetDiaryResponse
+     */
+    'data'?: GetDiaryResponse;
+    /**
+     * 응답 메시지
+     * @type {string}
+     * @memberof DataResponseGetDiaryResponse
+     */
+    'message'?: string;
+    /**
+     * 응답 코드
+     * @type {number}
+     * @memberof DataResponseGetDiaryResponse
+     */
+    'status'?: number;
+}
+/**
+ * 
+ * @export
  * @interface DiaryChecklistDto
  */
 export interface DiaryChecklistDto {
@@ -169,123 +188,31 @@ export interface DiaryChecklistDto {
 /**
  * 
  * @export
- * @interface DiaryCreateDto
+ * @interface DiarySaying
  */
-export interface DiaryCreateDto {
-    /**
-     * 친구 적합도
-     * @type {number}
-     * @memberof DiaryCreateDto
-     */
-    'friendPercentage'?: number;
-    /**
-     * 
-     * @type {DiarySayingDto}
-     * @memberof DiaryCreateDto
-     */
-    'saying'?: DiarySayingDto;
-}
-/**
- * 
- * @export
- * @interface DiaryDto
- */
-export interface DiaryDto {
-    /**
-     * 부적합 체크리스트
-     * @type {Array<DiaryChecklistDto>}
-     * @memberof DiaryDto
-     */
-    'badChecklist'?: Array<DiaryChecklistDto>;
-    /**
-     * 일기 내용
-     * @type {string}
-     * @memberof DiaryDto
-     */
-    'content'?: string;
-    /**
-     * 일기 작성 날짜
-     * @type {string}
-     * @memberof DiaryDto
-     */
-    'date'?: string;
-    /**
-     * 일기에 사용한 이모지
-     * @type {string}
-     * @memberof DiaryDto
-     */
-    'emoji'?: DiaryDtoEmojiEnum;
-    /**
-     * 이모지 다운로드 url
-     * @type {string}
-     * @memberof DiaryDto
-     */
-    'emojiUrl'?: string;
-    /**
-     * 적합 체크리스트
-     * @type {Array<DiaryChecklistDto>}
-     * @memberof DiaryDto
-     */
-    'goodChecklist'?: Array<DiaryChecklistDto>;
-    /**
-     * 일기 고유 ID
-     * @type {number}
-     * @memberof DiaryDto
-     */
-    'id'?: number;
-    /**
-     * 스티커 JSON
-     * @type {string}
-     * @memberof DiaryDto
-     */
-    'sticker'?: string;
-    /**
-     * 일기 태그 목록
-     * @type {Array<string>}
-     * @memberof DiaryDto
-     */
-    'tags'?: Array<string>;
-}
-
-export const DiaryDtoEmojiEnum = {
-    Angry: 'ANGRY',
-    Calm: 'CALM',
-    Displeased: 'DISPLEASED',
-    Happy: 'HAPPY',
-    Panic: 'PANIC',
-    Sad: 'SAD'
-} as const;
-
-export type DiaryDtoEmojiEnum = typeof DiaryDtoEmojiEnum[keyof typeof DiaryDtoEmojiEnum];
-
-/**
- * 
- * @export
- * @interface DiarySayingDto
- */
-export interface DiarySayingDto {
+export interface DiarySaying {
     /**
      * 명언 내용
      * @type {string}
-     * @memberof DiarySayingDto
+     * @memberof DiarySaying
      */
     'contents'?: string;
     /**
      * 명언 Id
      * @type {number}
-     * @memberof DiarySayingDto
+     * @memberof DiarySaying
      */
     'id'?: number;
     /**
      * 북마크 되어있는지 여부
      * @type {boolean}
-     * @memberof DiarySayingDto
+     * @memberof DiarySaying
      */
     'isMarked'?: boolean;
     /**
      * 명언 출처
      * @type {string}
-     * @memberof DiarySayingDto
+     * @memberof DiarySaying
      */
     'reference'?: string;
 }
@@ -302,6 +229,79 @@ export interface DiaryStickerDto {
      */
     'stickers'?: Array<StickerDto>;
 }
+/**
+ * 
+ * @export
+ * @interface GetDiaryResponse
+ */
+export interface GetDiaryResponse {
+    /**
+     * 부적합 체크리스트
+     * @type {Array<DiaryChecklistDto>}
+     * @memberof GetDiaryResponse
+     */
+    'badChecklist'?: Array<DiaryChecklistDto>;
+    /**
+     * 일기 내용
+     * @type {string}
+     * @memberof GetDiaryResponse
+     */
+    'content'?: string;
+    /**
+     * 일기 작성 날짜
+     * @type {string}
+     * @memberof GetDiaryResponse
+     */
+    'date'?: string;
+    /**
+     * 일기에 사용한 이모지
+     * @type {string}
+     * @memberof GetDiaryResponse
+     */
+    'emoji'?: GetDiaryResponseEmojiEnum;
+    /**
+     * 이모지 다운로드 url
+     * @type {string}
+     * @memberof GetDiaryResponse
+     */
+    'emojiUrl'?: string;
+    /**
+     * 적합 체크리스트
+     * @type {Array<DiaryChecklistDto>}
+     * @memberof GetDiaryResponse
+     */
+    'goodChecklist'?: Array<DiaryChecklistDto>;
+    /**
+     * 일기 고유 ID
+     * @type {number}
+     * @memberof GetDiaryResponse
+     */
+    'id'?: number;
+    /**
+     * 스티커 JSON
+     * @type {string}
+     * @memberof GetDiaryResponse
+     */
+    'sticker'?: string;
+    /**
+     * 일기 태그 목록
+     * @type {Array<string>}
+     * @memberof GetDiaryResponse
+     */
+    'tags'?: Array<string>;
+}
+
+export const GetDiaryResponseEmojiEnum = {
+    Angry: 'ANGRY',
+    Calm: 'CALM',
+    Displeased: 'DISPLEASED',
+    Happy: 'HAPPY',
+    Panic: 'PANIC',
+    Sad: 'SAD'
+} as const;
+
+export type GetDiaryResponseEmojiEnum = typeof GetDiaryResponseEmojiEnum[keyof typeof GetDiaryResponseEmojiEnum];
+
 /**
  * 
  * @export
@@ -620,11 +620,11 @@ export const MockApiAxiosParamCreator = function (configuration?: Configuration)
          * 
          * @summary 일기 수정
          * @param {number} id 일기 id
-         * @param {DiaryCreateDto} [diaryCreateDto] 
+         * @param {CreateDiaryResponse} [createDiaryResponse] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateDiaryUsingPATCH: async (id: number, diaryCreateDto?: DiaryCreateDto, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateDiaryUsingPATCH: async (id: number, createDiaryResponse?: CreateDiaryResponse, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('updateDiaryUsingPATCH', 'id', id)
             const localVarPath = `/api/v1/friend/diary/{id}`
@@ -647,7 +647,7 @@ export const MockApiAxiosParamCreator = function (configuration?: Configuration)
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(diaryCreateDto, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(createDiaryResponse, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -714,7 +714,7 @@ export const MockApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getDiaryUsingGET(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataResponseDiaryDto>> {
+        async getDiaryUsingGET(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataResponseGetDiaryResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getDiaryUsingGET(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -743,12 +743,12 @@ export const MockApiFp = function(configuration?: Configuration) {
          * 
          * @summary 일기 수정
          * @param {number} id 일기 id
-         * @param {DiaryCreateDto} [diaryCreateDto] 
+         * @param {CreateDiaryResponse} [createDiaryResponse] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateDiaryUsingPATCH(id: number, diaryCreateDto?: DiaryCreateDto, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateDiaryUsingPATCH(id, diaryCreateDto, options);
+        async updateDiaryUsingPATCH(id: number, createDiaryResponse?: CreateDiaryResponse, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateDiaryUsingPATCH(id, createDiaryResponse, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -807,7 +807,7 @@ export const MockApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getDiaryUsingGET(id: number, options?: any): AxiosPromise<DataResponseDiaryDto> {
+        getDiaryUsingGET(id: number, options?: any): AxiosPromise<DataResponseGetDiaryResponse> {
             return localVarFp.getDiaryUsingGET(id, options).then((request) => request(axios, basePath));
         },
         /**
@@ -833,12 +833,12 @@ export const MockApiFactory = function (configuration?: Configuration, basePath?
          * 
          * @summary 일기 수정
          * @param {number} id 일기 id
-         * @param {DiaryCreateDto} [diaryCreateDto] 
+         * @param {CreateDiaryResponse} [createDiaryResponse] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateDiaryUsingPATCH(id: number, diaryCreateDto?: DiaryCreateDto, options?: any): AxiosPromise<MessageResponse> {
-            return localVarFp.updateDiaryUsingPATCH(id, diaryCreateDto, options).then((request) => request(axios, basePath));
+        updateDiaryUsingPATCH(id: number, createDiaryResponse?: CreateDiaryResponse, options?: any): AxiosPromise<MessageResponse> {
+            return localVarFp.updateDiaryUsingPATCH(id, createDiaryResponse, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -936,13 +936,13 @@ export class MockApi extends BaseAPI {
      * 
      * @summary 일기 수정
      * @param {number} id 일기 id
-     * @param {DiaryCreateDto} [diaryCreateDto] 
+     * @param {CreateDiaryResponse} [createDiaryResponse] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MockApi
      */
-    public updateDiaryUsingPATCH(id: number, diaryCreateDto?: DiaryCreateDto, options?: AxiosRequestConfig) {
-        return MockApiFp(this.configuration).updateDiaryUsingPATCH(id, diaryCreateDto, options).then((request) => request(this.axios, this.basePath));
+    public updateDiaryUsingPATCH(id: number, createDiaryResponse?: CreateDiaryResponse, options?: AxiosRequestConfig) {
+        return MockApiFp(this.configuration).updateDiaryUsingPATCH(id, createDiaryResponse, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

@@ -62,8 +62,9 @@ export default function MainPage(props: Props) {
         character: form.character.type,
         name: form.name,
       });
+      friendsResponse.refetch()
     },
-    []
+    [friendsResponse]
   );
 
   const handleAdd = useCallback(() => {
@@ -103,17 +104,18 @@ export default function MainPage(props: Props) {
                   active,
                 } = item;
                 return (
-                  <div key={index} className={styles["friend-item"]}>
+                  <div key={id + index} className={styles["friend-item"]}>
                     <FriendCard
                       characterUrl={characterUrl}
                       statusText={
                         durationDaysByTime(
-                          parseDate(startedAt).valueOf(),
+                          startedAt ? parseDate(startedAt).valueOf() : todayTime(),
                           todayTime()
                         ) + "일째 작성 중"
                       }
                       name={name}
                       diaryCount={countingDiary}
+                      score={score}
                       onClick={handleSelectedItem(item)}
                     />
                   </div>

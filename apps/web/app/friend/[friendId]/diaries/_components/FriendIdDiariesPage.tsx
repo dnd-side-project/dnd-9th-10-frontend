@@ -16,19 +16,23 @@ import Topbar from "@dnd9-10/webui/src/topbar/Topbar";
 import { SearchTextInput } from "@dnd9-10/webui/src/input/SearchTextInput";
 import { NewDiaryEmpty } from "@dnd9-10/webui/src/empty/NewDiaryEmpty";
 import {
-  DiaryDto,
-  TagDto,
+  DiaryTagDto,
+  GetDiariesResponse,
+  GetDiaryResponse,
 } from "@dnd9-10/shared/src/__generate__/member/api";
 import TagText from "@dnd9-10/webui/src/text/TagText";
 import DiaryCard from "@dnd9-10/webui/src/card/DiaryCard";
 import { useQuery } from "@tanstack/react-query";
 import { getDiaries } from "../../../../../apis/diary";
 import Icon from "@dnd9-10/webui/src/icon/Icon";
+import Button from "@dnd9-10/webui/src/button/Button";
 
 interface Props {
   friendId: number;
-  tags: TagDto[];
+  tags: DiaryTagDto["tags"];
 }
+
+type SortType = "desc" | undefined;
 
 export default function FriendIdDiariesPage(props: Props) {
   const { friendId, tags } = props;
@@ -36,11 +40,13 @@ export default function FriendIdDiariesPage(props: Props) {
 
   const [searchText, setSearchText] = useState("");
   const [selectedTags, setSelectedTags] = useState([]);
+  const [sortType, setSortType] = useState<SortType>("desc");
 
-  const diaries = useQuery(["getDiaries", friendId, searchText], () =>
-    getDiaries({ id: friendId, q: searchText })
+  const diaries = useQuery(["getDiaries", friendId, searchText, sortType], () =>
+    getDiaries({ id: friendId, q: searchText, order: sortType })
   );
-  const isEmpty = diaries?.data?.totalElements === 0;
+  const totalCount = diaries?.data?.totalElements ?? 0;
+  const isEmpty = totalCount === 0;
 
   const handleBackOrHome = useCallback(
     (e: React.MouseEvent) => {
@@ -57,8 +63,12 @@ export default function FriendIdDiariesPage(props: Props) {
     setSearchText(text);
   }, []);
 
+  const handleSortType = useCallback(() => {
+    setSortType(sortType === "desc" ? undefined : "desc");
+  }, [sortType]);
+
   const handleClickItem = useCallback(
-    (item: DiaryDto) => () => {
+    (item: GetDiaryResponse) => () => {
       router.push(`/friend/${friendId}/diary/${item.id}`);
     },
     [friendId, router]
@@ -90,11 +100,30 @@ export default function FriendIdDiariesPage(props: Props) {
         })}
       </div>
       <div className={styles["filter-group"]}>
-        <Medium13 className={styles["filter-count"]}>총 일화 수 10</Medium13>
-        <Medium13 className={styles["filter-sort"]}>
-          최신순
-          <Icon className={styles["sort-icon"]} name={"forward"} size={14} />
+        <Medium13 className={styles["filter-count"]}>
+          총 일화 수 {totalCount}
         </Medium13>
+        <Button onClick={handleSortType}>
+          {sortType === "desc" ? (
+            <Medium13 className={styles["filter-sort"]}>
+              최신순
+              <Icon
+                className={styles["sort-icon"]}
+                name={"arrow_up"}
+                size={14}
+              />
+            </Medium13>
+          ) : (
+            <Medium13 className={styles["filter-sort"]}>
+              오래된 순
+              <Icon
+                className={styles["sort-icon"]}
+                name={"arrow_down"}
+                size={14}
+              />
+            </Medium13>
+          )}
+        </Button>
       </div>
       <div className={styles.content}>
         {isEmpty ? <NewDiaryEmpty className={styles.empty} /> : null}

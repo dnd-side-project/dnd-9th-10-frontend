@@ -1,8 +1,8 @@
 import { axiosInstance } from "../libs/axios";
 
 import {
+  CreateDiaryRequest,
   DefaultApiFactory,
-  DiaryRequestDto,
 } from "@dnd9-10/shared/src/__generate__/member/api";
 import {
   MockApiFactory,
@@ -31,7 +31,7 @@ export const getDiary = async (params: { id: number }) => {
 
 export const createDiary = async (params: {
   id: number;
-  diaryRequestDto?: DiaryRequestDto;
+  diaryRequestDto?: CreateDiaryRequest;
 }) => {
   const { id, diaryRequestDto } = params;
 

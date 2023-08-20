@@ -3,6 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getDiaries } from "../../../../apis/diary";
 import { getTags } from "../../../../apis/tag";
+import { initializeClient } from "../../../../libs/client";
 import FriendIdDiariesPage from "./_components/FriendIdDiariesPage";
 
 interface Props {
@@ -11,6 +12,8 @@ interface Props {
   };
   searchParams: {};
 }
+
+initializeClient();
 
 export default function Page(props: Props) {
   const { params } = props;

@@ -1,8 +1,12 @@
 import axios from "axios";
+import { storage } from "./cookie-storage";
 
-export const axiosInstance = axios.create({
-  headers: {
-    Authorization:
-      "Bearer " + "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzYmUwNWEwOS05N2IzLTQ0ZWUtODI3ZC1jYWFmOWJkZjBjMzYiLCJyb2xlIjoiZ3Vlc3QiLCJpc3MiOiJiYm9rIiwiaWF0IjoxNjkxODczNjYwLCJleHAiOjE2OTE5NjAwNjB9.SwuKRJbap75K9ZsmH20vAoswZbd9j_YgFa7zMKc3ZA8"
-  },
-});
+export const axiosInstance = axios.create({});
+
+export const setAccessToken = (
+  authorization = storage().getAccessToken()
+    ? "Bearer " + storage().getAccessToken()
+    : undefined
+) => {
+  axiosInstance.defaults.headers.Authorization = authorization;
+};

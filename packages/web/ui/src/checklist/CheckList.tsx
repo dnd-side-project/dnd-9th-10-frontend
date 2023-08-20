@@ -1,9 +1,15 @@
 import cn from "classnames";
-import React, { InputHTMLAttributes, useCallback, useEffect, useState } from "react";
+import React, {
+  InputHTMLAttributes,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import styles from "./CheckList.module.css";
 import CheckListItem, { CheckListItemProps } from "./CheckListItem";
 
 export interface CheckListProps {
+  type: "good" | "bad";
   className?: string;
   data: CheckListItemProps[];
   onChangeNameByIndex?: (params: { index: number; name: string }) => void;
@@ -14,6 +20,7 @@ export interface CheckListProps {
 export function CheckList(props: CheckListProps) {
   const {
     className,
+    type,
     data,
     onChangeNameByIndex,
     onCheckedByIndex,
@@ -68,7 +75,7 @@ export function CheckList(props: CheckListProps) {
         const { name } = item;
         return (
           <CheckListItem
-            key={index}
+            key={type + index}
             className={cn(styles.item)}
             selected={index === selectedIndex}
             name={name}
