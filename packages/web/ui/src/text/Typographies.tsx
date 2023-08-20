@@ -3,7 +3,7 @@ import { CSSProperties } from "react";
 import styles from "./Typographies.module.css";
 
 export interface TypographiesProps {
-  as?: "div" | "span" | "pre" | "p" | 'li';
+  as?: "div" | "span" | "pre" | "p" | "li";
   className?: string;
   style?: CSSProperties;
   children: React.ReactNode;

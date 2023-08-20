@@ -12,13 +12,20 @@ export interface FriendCardProps {
   statusText: string;
   name: string;
   diaryCount: number;
-  score: number
+  score: number;
   onClick?: () => void;
 }
 
 export function FriendCard(props: FriendCardProps) {
-  const { className, characterUrl, statusText, name, diaryCount, score, onClick } =
-    props;
+  const {
+    className,
+    characterUrl,
+    statusText,
+    name,
+    diaryCount,
+    score,
+    onClick,
+  } = props;
   return (
     <div
       className={cn(styles.wrap, className)}

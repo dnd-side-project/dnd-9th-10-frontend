@@ -75,7 +75,7 @@ export const svgIcons = {
   tooltip: Tooltip,
   logo: Logo,
   warn: Warn,
-  profile: Profile
+  profile: Profile,
 } as const;
 
 export const reactIcons = { ...emojiIcons, ...svgIcons } as const;

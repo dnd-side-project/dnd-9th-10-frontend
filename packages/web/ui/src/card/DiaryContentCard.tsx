@@ -7,7 +7,7 @@ import Icon from "../icon/Icon";
 export interface DiaryContentCardProps {
   className?: string;
   content: string;
-  TooltipComponent: React.ReactNode
+  TooltipComponent: React.ReactNode;
 }
 
 export function DiaryContentCard(props: DiaryContentCardProps) {
@@ -15,9 +15,7 @@ export function DiaryContentCard(props: DiaryContentCardProps) {
   return (
     <div className={cn(styles.wrap, className)}>
       <Medium14 className={styles.content}>{content}</Medium14>
-      <div className={styles.toolbar}>
-        {TooltipComponent}
-      </div>
+      <div className={styles.toolbar}>{TooltipComponent}</div>
     </div>
   );
 }

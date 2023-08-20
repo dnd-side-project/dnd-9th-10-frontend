@@ -1,7 +1,10 @@
 import { StoryFn, Meta } from "@storybook/react";
 import { within } from "@storybook/testing-library";
 import Button from "../button/Button";
-import { DeleteRelationshipModal, DeleteRelationshipModalProps } from "./DeleteRelationshipModal";
+import {
+  DeleteRelationshipModal,
+  DeleteRelationshipModalProps,
+} from "./DeleteRelationshipModal";
 import styles from "./DeleteRelationshipModal.module.css";
 
 export default {

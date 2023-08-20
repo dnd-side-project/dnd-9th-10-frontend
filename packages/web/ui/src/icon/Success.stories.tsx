@@ -1,10 +1,10 @@
-import { StoryFn, Meta } from '@storybook/react';
-import { within } from '@storybook/testing-library';
-import { Success, SuccessProps } from './Success';
+import { StoryFn, Meta } from "@storybook/react";
+import { within } from "@storybook/testing-library";
+import { Success, SuccessProps } from "./Success";
 
 export default {
   component: Success,
-  title: 'icon/Success',
+  title: "icon/Success",
   argTypes: {},
 } as Meta;
 

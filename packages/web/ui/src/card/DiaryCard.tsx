@@ -9,7 +9,7 @@ export interface DiaryCardProps {
   description: string;
   tags: string[];
   emojiUrl: string;
-  onClick?: () => void
+  onClick?: () => void;
 }
 
 export function DiaryCard(props: DiaryCardProps) {
@@ -22,8 +22,10 @@ export function DiaryCard(props: DiaryCardProps) {
         <div className={styles.tags}>
           {tags?.map((tag, index) => {
             return (
-              <TagText key={index} className={styles.tag} size={"small"}>{tag}</TagText>
-            )
+              <TagText key={index} className={styles.tag} size={"small"}>
+                {tag}
+              </TagText>
+            );
           })}
         </div>
       </div>

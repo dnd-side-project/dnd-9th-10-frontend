@@ -1,10 +1,10 @@
-import { StoryFn, Meta } from '@storybook/react';
-import { within } from '@storybook/testing-library';
-import { FriendEmpty, FriendEmptyProps } from './FriendEmpty';
+import { StoryFn, Meta } from "@storybook/react";
+import { within } from "@storybook/testing-library";
+import { FriendEmpty, FriendEmptyProps } from "./FriendEmpty";
 
 export default {
   component: FriendEmpty,
-  title: 'empty/FriendEmpty',
+  title: "empty/FriendEmpty",
   argTypes: {},
 } as Meta;
 

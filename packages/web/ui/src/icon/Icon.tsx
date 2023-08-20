@@ -5,7 +5,7 @@ type EmojiIconType = keyof typeof emojiIcons;
 export type IconType = SvgType | EmojiIconType;
 
 export interface IconProps {
-  className?: string
+  className?: string;
   name: IconType;
   size?: number;
   color?: string;
@@ -13,11 +13,13 @@ export interface IconProps {
 
 export const Icon = (props: IconProps) => {
   const { className, name, color, size } = props;
-  const fillProps = color ? { fill: color } : {}
-  const sizeProps = size ? { width: size, height: size } : {}
+  const fillProps = color ? { fill: color } : {};
+  const sizeProps = size ? { width: size, height: size } : {};
 
   const TargetComponent = reactIcons[name];
-  return <TargetComponent className={className} {...fillProps} {...sizeProps} />;
+  return (
+    <TargetComponent className={className} {...fillProps} {...sizeProps} />
+  );
 };
 
 export default Icon;

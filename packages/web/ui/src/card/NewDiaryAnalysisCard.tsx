@@ -24,7 +24,9 @@ export function NewDiaryAnalysisCard(props: NewDiaryAnalysisCardProps) {
         <br />
         <span className={styles.highlight}>67%정도 벗어났어요</span>
       </Bold19>
-      <Medium14 className={styles.caption}>친구와의 점수는 내가 체크한 친구 기준으로 측정돼요.</Medium14>
+      <Medium14 className={styles.caption}>
+        친구와의 점수는 내가 체크한 친구 기준으로 측정돼요.
+      </Medium14>
     </div>
   );
 }

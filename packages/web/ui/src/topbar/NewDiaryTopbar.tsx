@@ -1,12 +1,12 @@
-import cn from 'classnames'
-import styles from './NewDiaryTopbar.module.css';
+import cn from "classnames";
+import styles from "./NewDiaryTopbar.module.css";
 
 export interface NewDiaryTopbarProps {
-  className?: string
+  className?: string;
 }
 
 export function NewDiaryTopbar(props: NewDiaryTopbarProps) {
-  const { className } = props
+  const { className } = props;
   return <div className={cn(styles.wrap, className)}>hello world</div>;
 }
 

@@ -49,10 +49,7 @@ export function GuideCarousel(props: GuideCarouselProps) {
           />
         </div>
         <div className={cn(styles.item, itemClassName)}>
-          <Bold22
-            as="pre"
-            className={styles.title}
-          >{`일화마다 감정을 기록하고
+          <Bold22 as="pre" className={styles.title}>{`일화마다 감정을 기록하고
 생각을 정리해보세요`}</Bold22>
           <Image
             alt="onboarding3"
