@@ -14,11 +14,12 @@ import styles from "./page.module.css";
 import Topbar from "@dnd9-10/webui/src/topbar/Topbar";
 import BookmarkCardList from "@dnd9-10/webui/src/bookmarks/BookmarkCardList";
 import { initializeClient } from "../../libs/client";
-
-initializeClient();
 import {getBookmarks} from "../../apis/bookmark";
 import {useQuery} from "@tanstack/react-query";
 
+initializeClient();
+
+const GET_BOOKMARKS_QUERY_KEY: Array<string> = ["getBookmarks"];
 
 export default function Page() {
   const router = useRouter();
@@ -27,13 +28,14 @@ export default function Page() {
     router.back();
   }, [router]);
 
-  const {data} = useQuery(["getBookmarks"], () => getBookmarks())
+  const { data} = useQuery(GET_BOOKMARKS_QUERY_KEY, () => getBookmarks())
 
   return <div className={styles.wrap}>
     <Topbar title="북마크" onBackClick={handleBackClick}/>
     <BookmarkCardList className={styles.content} data={
       (data ?? []).map(bookmark => {
         return {
+          id: bookmark.id,
           description: bookmark.contents,
           reference: bookmark.reference,
           active: true,
@@ -42,3 +44,5 @@ export default function Page() {
     }/>
   </div>;
 }
+
+export {GET_BOOKMARKS_QUERY_KEY};
