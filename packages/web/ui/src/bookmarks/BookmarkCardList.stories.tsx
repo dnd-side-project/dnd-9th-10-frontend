@@ -11,31 +11,31 @@ export default {
 } as Meta;
 
 const Template: StoryFn<BookmarkCardListProps> = (args) => (
-    <QueryClientWrapper>
-        <BookmarkCardList
-            {...args}
-            data={[
-                {
-                    id: 1,
-                    description: "desc1",
-                    reference: "ref",
-                    active: true,
-                },
-                {
-                    id: 2,
-                    description: "desc2",
-                    reference: "ref",
-                    active: true,
-                },
-                {
-                    id: 3,
-                    description: "desc3",
-                    reference: "ref",
-                    active: true,
-                },
-            ]}
-        />
-    </QueryClientWrapper>
+  <QueryClientWrapper>
+    <BookmarkCardList
+      {...args}
+      data={[
+        {
+          id: 1,
+          description: "desc1",
+          reference: "ref",
+          active: true,
+        },
+        {
+          id: 2,
+          description: "desc2",
+          reference: "ref",
+          active: true,
+        },
+        {
+          id: 3,
+          description: "desc3",
+          reference: "ref",
+          active: true,
+        },
+      ]}
+    />
+  </QueryClientWrapper>
 );
 
 export const Primary = Template.bind({});
