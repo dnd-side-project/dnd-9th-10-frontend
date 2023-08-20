@@ -8,7 +8,10 @@ export default {
   argTypes: {},
 } as Meta;
 
-const Template: StoryFn<DateInputProps> = (args) => <DateInput {...args} />;
+const Template: StoryFn<DateInputProps> = (args) => <DateInput
+    {...args}
+    currDate={new Date()}
+/>;
 
 export const Primary = Template.bind({});
 Primary.args = {};
