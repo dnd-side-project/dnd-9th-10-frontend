@@ -3,7 +3,7 @@ import cookie from "js-cookie";
 
 import { isJSON } from "@dnd9-10/shared/src/utils/common";
 
-type StorageType = "accessToken" | "memberId";
+type StorageType = "accessToken" | "memberId" | 'isShowGuide';
 
 function storageFactory(
   setItem: (key: string, value: string) => void,
@@ -65,6 +65,9 @@ function storageFactory(
   };
 
   const setStorages = {
+    setIsShowGuide: (isShowGuide: string) => {
+      setStorageItem("isShowGuide", isShowGuide);
+    },
     setAccessToken: (accessToken: string) => {
       setStorageItem("accessToken", accessToken);
     },

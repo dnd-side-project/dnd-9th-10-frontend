@@ -69,11 +69,11 @@ export default function MainPage(props: Props) {
   );
 
   const handleAdd = useCallback(() => {
-    if (!selectedFriend.id) {
+    if (!selectedFriend?.id) {
       return;
     }
-    router.push(`/friend/${selectedFriend.id}/diary/new`);
-  }, [router, selectedFriend.id]);
+    router.push(`/friend/${selectedFriend?.id}/diary/new`);
+  }, [router, selectedFriend?.id]);
 
   const handleSelectedTab = useCallback(
     (tab: BottomTabs) => {
