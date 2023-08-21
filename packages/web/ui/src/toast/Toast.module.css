@@ -1,0 +1,23 @@
+.wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px;
+  border-radius: 6px;
+}
+
+.wrap-error {
+  background-color: red;
+}
+
+.wrap-info {
+  background-color: #eee;
+}
+
+.icon {
+  margin-right: 10px;
+}
+
+.message {
+  color: #fff;
+}
