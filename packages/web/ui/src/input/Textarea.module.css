@@ -1,6 +1,4 @@
 .wrap {
-  border-radius: 10px;
-  overflow: hidden;
 }
 
 .input {
@@ -13,6 +11,7 @@
   line-height: 100%; /* 14px */
   background: var(--gray-7, #f2f4f5);
   padding: 15px;
+  border-radius: 10px;
   text-align: left;
 }
 

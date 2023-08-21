@@ -41,8 +41,15 @@
 }
 
 .section-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   color: var(--gray-80, #303636);
   margin-bottom: 12px;
+}
+
+.tag-info {
+  margin-left: 6px;
 }
 
 .section-content {

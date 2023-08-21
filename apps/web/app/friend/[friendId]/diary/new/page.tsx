@@ -19,7 +19,10 @@ import NewDiaryEmojiModal from "@dnd9-10/webui/src/modal/NewDiaryEmojiModal";
 import Button from "@dnd9-10/webui/src/button/Button";
 import TextInput from "@dnd9-10/webui/src/input/TextInput";
 import DateInput from "@dnd9-10/webui/src/input/DateInput";
+import Textarea from "@dnd9-10/webui/src/input/Textarea";
 import { initializeClient } from "../../../../../libs/client";
+import InfoText from "@dnd9-10/webui/src/text/InfoText";
+import DiaryEmojiSelectbox from "@dnd9-10/webui/src/selectbox/DiaryEmojiSelectbox";
 
 initializeClient();
 
@@ -60,15 +63,35 @@ export default function Page() {
         </div>
         <div className={styles.section}>
           <Bold18 className={styles["section-title"]}>친구와의 일화</Bold18>
-          <div className={styles["section-content"]}>test</div>
+          <div className={styles["section-content"]}>
+            <Textarea
+              textareaProps={{
+                rows: 5,
+              }}
+            />
+          </div>
         </div>
         <div className={styles.section}>
-          <Bold18 className={styles["section-title"]}>태그</Bold18>
-          <div className={styles["section-content"]}>test</div>
+          <Bold18 className={styles["section-title"]}>
+            태그{" "}
+            <InfoText className={styles["tag-info"]}>
+              최대 7개까지 입력이 가능해요.
+            </InfoText>
+          </Bold18>
+          <div className={styles["section-content"]}>
+            <TextInput
+              inputProps={{
+                disabled: true,
+                placeholder: "태그를 추가해보세요 (ex. 거짓말, 가스라이팅 등)",
+              }}
+            />
+          </div>
         </div>
         <div className={styles.section}>
           <Bold18 className={styles["section-title"]}>감정</Bold18>
-          <div className={styles["section-content"]}>test</div>
+          <div className={styles["section-content"]}>
+            <DiaryEmojiSelectbox onSelected={handleEmojiModalSubmit} />
+          </div>
         </div>
         <div className={styles.section}>
           <Bold18 className={styles["section-title"]}>친구 기준 체크</Bold18>
