@@ -8,12 +8,12 @@ import Modal from "./Modal";
 import styles from "./SelectFriendModal.module.css";
 import * as Dialog from "@radix-ui/react-dialog";
 import SelectFriendNameInput from "../input/SelectFriendNameInput";
-import { BbokCharacterDto } from "@dnd9-10/shared/src/__generate__/member/api";
+import { BbokCharacterInfo } from "@dnd9-10/shared/src/__generate__/member/api";
 
 export interface SelectFriendModalProps {
   className?: string;
-  characters: BbokCharacterDto[];
-  onSubmit: (form: { name: string; character: BbokCharacterDto }) => void;
+  characters: BbokCharacterInfo[];
+  onSubmit: (form: { name: string; character: BbokCharacterInfo }) => void;
 }
 
 const CHARACTER_INDEX = 0;

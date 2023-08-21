@@ -4,9 +4,7 @@ import {
   CreateDiaryRequest,
   DefaultApiFactory,
 } from "@dnd9-10/shared/src/__generate__/member/api";
-import { MockApiFactory } from "@dnd9-10/shared/src/__generate__/api/api";
 
-const mockFactory = MockApiFactory(undefined, undefined, axiosInstance);
 const factory = DefaultApiFactory(undefined, undefined, axiosInstance);
 
 export const getDiaries = async (params: {
@@ -23,7 +21,7 @@ export const getDiaries = async (params: {
 
 export const getDiary = async (params: { id: number }) => {
   const { id } = params;
-  const response = await mockFactory.getDiaryUsingGET(id);
+  const response = await factory.getDiaryUsingGET(id);
   return response.data?.data ?? {};
 };
 

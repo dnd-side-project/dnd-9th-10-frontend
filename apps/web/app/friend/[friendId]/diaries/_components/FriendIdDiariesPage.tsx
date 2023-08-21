@@ -16,8 +16,7 @@ import Topbar from "@dnd9-10/webui/src/topbar/Topbar";
 import { SearchTextInput } from "@dnd9-10/webui/src/input/SearchTextInput";
 import { NewDiaryEmpty } from "@dnd9-10/webui/src/empty/NewDiaryEmpty";
 import {
-  DiaryTagDto,
-  GetDiariesResponse,
+  FriendTag,
   GetDiaryResponse,
 } from "@dnd9-10/shared/src/__generate__/member/api";
 import TagText from "@dnd9-10/webui/src/text/TagText";
@@ -29,7 +28,7 @@ import Button from "@dnd9-10/webui/src/button/Button";
 
 interface Props {
   friendId: number;
-  tags: DiaryTagDto["tags"];
+  tags: FriendTag[];
 }
 
 type SortType = "desc" | undefined;
@@ -91,7 +90,7 @@ export default function FriendIdDiariesPage(props: Props) {
       />
       <div className={styles["tag-group"]}>
         {tags?.map((item, index) => {
-          const { tag } = item;
+          const { name: tag } = item;
           return (
             <TagText key={index} className={styles.tag} size={"medium"}>
               {tag}
