@@ -17,6 +17,16 @@ export const getFriends = async () => {
   }
 };
 
+export const getFriend = async (id: number) => {
+  try {
+    const response = await memberFactory.getFriendsUsingGET();
+    return (response.data?.data?.friends ?? []).find((item) => item.id === id);
+  } catch (e) {
+    console.error(e);
+    return null;
+  }
+};
+
 export const createFriend = async (payload: FriendInfoRequest) => {
   const response = await memberFactory.createFriendUsingPOST(payload);
   return response.data;

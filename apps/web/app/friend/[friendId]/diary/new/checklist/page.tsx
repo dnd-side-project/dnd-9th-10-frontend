@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useCallback } from "react";
+import { useCallback, useReducer } from "react";
 import { SubmitButton } from "@dnd9-10/webui/src/button/SubmitButton";
 import {
   Bold18,
@@ -20,22 +20,61 @@ import Button from "@dnd9-10/webui/src/button/Button";
 
 import styles from "./page.module.css";
 import { initializeClient } from "../../../../../../libs/client";
+import { EmojiType } from "@dnd9-10/webui/src/selectbox/DiaryEmojiSelectbox";
+import { storage } from "../../../../../../libs/local-storage";
 
 initializeClient();
 
-export default function Page() {
+interface Props {
+  params: {
+    friendId?: string;
+  };
+  searchParams: {};
+}
+
+type FormProps = {
+  goodChecklist: string[];
+  badChecklist: string[];
+};
+
+const initialState: FormProps = {
+  goodChecklist: [],
+  badChecklist: [],
+};
+
+export default function Page(props: Props) {
   const router = useRouter();
+  const friendId = props.params.friendId;
+  const [state, setState] = useReducer(
+    (current: FormProps, update: Partial<FormProps>) => ({
+      ...current,
+      ...update,
+    }),
+    initialState
+  );
 
   const handleBackClick = useCallback(() => {
     router.back();
-  }, []);
+  }, [router]);
+
+  const handleSubmit = useCallback(() => {
+    const newForm: {
+      content: string;
+      date: Date;
+      tags: string[];
+      emoji: EmojiType | null;
+      useFriends: boolean;
+    } = storage().getNewDiaryForm();
+
+    router.replace(`/friend/${friendId}/diary/new/checklist`);
+  }, [friendId, router]);
 
   return (
     <div className={styles.wrap}>
       <Topbar
         title={<Semibold18 className={styles.title}>친구 기준</Semibold18>}
         RightComponent={
-          <Button className={styles["submit-button"]}>
+          <Button className={styles["submit-button"]} onClick={handleSubmit}>
             <Medium17 className={styles["submit-button-text"]}>완료</Medium17>
           </Button>
         }

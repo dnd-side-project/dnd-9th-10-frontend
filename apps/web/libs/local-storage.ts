@@ -2,7 +2,7 @@ import _ from "lodash";
 
 import { isJSON } from "@dnd9-10/shared/src/utils/common";
 
-type StorageType = "accessToken" | "memberId";
+type StorageType = "newDiaryForm";
 
 function storageFactory(
   setItem: (key: string, value: string) => void,
@@ -64,20 +64,18 @@ function storageFactory(
   };
 
   const setStorages = {
-    setAccessToken: (accessToken: string) => {
-      setStorageItem("accessToken", accessToken);
-    },
-    setMemberId: (memberId: string) => {
-      setStorageItem("memberId", memberId);
+    setNewDiaryForm: (form: unknown) => {
+      setStorageItem("newDiaryForm", JSON.stringify(form));
     },
   };
 
   const getStorages = {
-    getAccessToken: () => {
-      return getStringWithDefault("accessToken", null);
-    },
-    getMemberId: () => {
-      return getStringWithDefault("memberId", null);
+    getNewDiaryForm: () => {
+      const res = JSON.parse(getStringWithDefault("newDiaryForm", null));
+      return {
+        ...res,
+        date: new Date(res.date),
+      };
     },
   };
 
