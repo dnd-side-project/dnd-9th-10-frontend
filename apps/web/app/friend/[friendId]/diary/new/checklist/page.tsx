@@ -20,12 +20,12 @@ import Button from "@dnd9-10/webui/src/button/Button";
 
 import styles from "./page.module.css";
 import { initializeClient } from "../../../../../../libs/client";
-import { EmojiType } from "@dnd9-10/webui/src/selectbox/DiaryEmojiSelectbox";
 import { storage } from "../../../../../../libs/local-storage";
 import { createDiary } from "../../../../../../apis/diary";
 import { CreateDiaryRequestEmojiEnum } from "@dnd9-10/shared/src/__generate__/member/api";
 import { useQuery } from "@tanstack/react-query";
 import { getFriendChecklist } from "../../../../../../apis/checklist";
+import { EmojiEnumByType, EmojiType } from "@dnd9-10/shared/src/utils/emoji";
 
 initializeClient();
 
@@ -120,7 +120,7 @@ export default function Page(props: Props) {
         content: newForm.content,
         date: newForm.date.toString(),
         tags: newForm.tags,
-        emoji: CreateDiaryRequestEmojiEnum.Angry,
+        emoji: EmojiEnumByType[newForm.emoji],
         checklist: [
           ...badChecklistValues.map((id) => {
             return {
@@ -139,8 +139,8 @@ export default function Page(props: Props) {
         ],
       },
     });
-    router.replace(`/friend/${friendId}/diary/new/checklist`);
-  }, [friendId, router]);
+    router.replace(`/friend/${friendId}/diary/new/result`);
+  }, [friendId, router, state.badChecklist, state.goodChecklist]);
 
   return (
     <div className={styles.wrap}>

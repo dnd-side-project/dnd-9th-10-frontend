@@ -4,13 +4,7 @@ import { Semibold18 } from "../text/Typographies";
 import IconButton from "../button/IconButton";
 import { useCallback, useState } from "react";
 
-export type EmojiType =
-  | "emoji1"
-  | "emoji2"
-  | "emoji3"
-  | "emoji4"
-  | "emoji5"
-  | "emoji6";
+import { EmojiType } from "@dnd9-10/shared/src/utils/emoji";
 
 export interface NewDiaryEmojiSelectboxProps {
   className?: string;

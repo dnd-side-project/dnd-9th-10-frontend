@@ -13,22 +13,27 @@ const Template: StoryFn<NewCheckListProps> = (args) => (
     {...args}
     data={[
       {
+        id: 1,
         name: "test",
         checked: false,
       },
       {
+        id: 2,
         name: "test",
         checked: false,
       },
       {
+        id: 3,
         name: "test",
         checked: false,
       },
       {
+        id: 4,
         name: "test",
         checked: false,
       },
       {
+        id: 5,
         name: "test",
         checked: false,
       },

@@ -4,3 +4,23 @@
   flex-direction: column;
   height: 100%;
 }
+
+.submit-button {
+  width: 30px;
+  position: absolute;
+  right: 20px;
+}
+
+.submit-button-text {
+  color: var(--gray-50, #798787);
+}
+
+.content {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.new-diary-item {
+  margin-top: 88px;
+  margin-bottom: 55px;
+}

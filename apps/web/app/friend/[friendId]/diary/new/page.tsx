@@ -22,12 +22,11 @@ import DateInput from "@dnd9-10/webui/src/input/DateInput";
 import Textarea from "@dnd9-10/webui/src/input/Textarea";
 import { initializeClient } from "../../../../../libs/client";
 import InfoText from "@dnd9-10/webui/src/text/InfoText";
-import DiaryEmojiSelectbox, {
-  EmojiType,
-} from "@dnd9-10/webui/src/selectbox/DiaryEmojiSelectbox";
+import DiaryEmojiSelectbox from "@dnd9-10/webui/src/selectbox/DiaryEmojiSelectbox";
 import { useQuery } from "@tanstack/react-query";
 import { getFriend } from "../../../../../apis/friend";
 import { storage } from "../../../../../libs/local-storage";
+import { EmojiType } from "@dnd9-10/shared/src/utils/emoji";
 
 initializeClient();
 

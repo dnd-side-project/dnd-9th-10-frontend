@@ -39,8 +39,9 @@ export default function MainPage(props: Props) {
   });
   const friends = friendsResponse?.data ?? [];
   const router = useRouter();
-  const searchParam = useSearchParams();
   const [page, setPage] = useState(0);
+  const selectedFriend = friends[page];
+
   const totalCount = friends.length + 2;
 
   usePwa();
@@ -68,8 +69,11 @@ export default function MainPage(props: Props) {
   );
 
   const handleAdd = useCallback(() => {
-    router.push(`/friend/${page}/diary/new`);
-  }, [page, router]);
+    if (!selectedFriend.id) {
+      return;
+    }
+    router.push(`/friend/${selectedFriend.id}/diary/new`);
+  }, [router, selectedFriend.id]);
 
   const handleSelectedTab = useCallback(
     (tab: BottomTabs) => {
