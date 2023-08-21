@@ -26,10 +26,10 @@ export const getDiary = async (params: { id: number }) => {
 };
 
 export const createDiary = async (params: {
-  id: number;
+  friendId: number;
   diaryRequestDto?: CreateDiaryRequest;
 }) => {
-  const { id, diaryRequestDto } = params;
+  const { friendId: id, diaryRequestDto } = params;
 
   try {
     const response = await factory.createDiaryUsingPOST(id, diaryRequestDto);
