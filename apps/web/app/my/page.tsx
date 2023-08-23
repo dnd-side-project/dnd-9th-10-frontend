@@ -50,6 +50,10 @@ export default function Page() {
     router.push("/account/signin");
   }, [router]);
 
+  const handleService = useCallback(() => {
+    router.push("/help");
+  }, [router]);
+
   return (
     <div className={styles.wrap}>
       <div className={styles.content}>
@@ -75,7 +79,7 @@ export default function Page() {
             </Button>
           </li>
           <li>
-            <Button>
+            <Button onClick={handleService}>
               <Medium15>서비스 문의</Medium15>
             </Button>
           </li>

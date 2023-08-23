@@ -1,0 +1,26 @@
+.wrap {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 100%;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 114px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.description {
+  color: var(--gray-70, #485151);
+  margin-top: 16px;
+}
+
+.email {
+  color: var(--gray-70, #485151);
+  margin-top: 16px;
+}
