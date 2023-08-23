@@ -58,7 +58,7 @@ export default function Page(props: Props) {
           <SearchTextInput
             className={styles["search-input"]}
             inputProps={{
-              placeholder: "검색할 단어를 입력해주세요.",
+              placeholder: "가스라이팅",
             }}
             onSearch={handleSearchText}
           />
