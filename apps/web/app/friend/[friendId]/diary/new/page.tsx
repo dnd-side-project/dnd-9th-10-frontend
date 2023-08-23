@@ -2,7 +2,6 @@
 
 import { useRouter } from "next/navigation";
 import { useCallback, useReducer, useState } from "react";
-import { SubmitButton } from "@dnd9-10/webui/src/button/SubmitButton";
 import {
   Bold18,
   Bold22,
@@ -17,6 +16,7 @@ import styles from "./page.module.css";
 import Topbar from "@dnd9-10/webui/src/topbar/Topbar";
 import NewDiaryEmojiModal from "@dnd9-10/webui/src/modal/NewDiaryEmojiModal";
 import Button from "@dnd9-10/webui/src/button/Button";
+import Switch from "@dnd9-10/webui/src/input/Switch";
 import TextInput from "@dnd9-10/webui/src/input/TextInput";
 import DateInput from "@dnd9-10/webui/src/input/DateInput";
 import Textarea from "@dnd9-10/webui/src/input/Textarea";
@@ -175,7 +175,9 @@ export default function Page(props: Props) {
         </div>
         <div className={styles.section}>
           <Bold18 className={styles["section-title"]}>친구 기준 체크</Bold18>
-          <div className={styles["section-content"]}>test</div>
+          <div className={styles["section-content"]}>
+            <Switch />
+          </div>
         </div>
       </div>
       {open && (
