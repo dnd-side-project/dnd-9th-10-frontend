@@ -24,6 +24,10 @@
   padding: 0px 20px;
 }
 
+.tag {
+  margin-right: 8px;
+}
+
 .filter-group {
   display: flex;
   flex-direction: row;

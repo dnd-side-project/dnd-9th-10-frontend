@@ -14,6 +14,7 @@ import { initializeClient } from "../../libs/client";
 import { useQuery } from "@tanstack/react-query";
 import { getMember } from "../../apis/account";
 import { GetMemberInfoResponseOauth2ProviderEnum } from "@dnd9-10/shared/src/__generate__/member/api";
+import { storage } from "../../libs/local-storage";
 
 initializeClient();
 
@@ -28,8 +29,9 @@ export default function Page() {
   const searchParam = useSearchParams();
 
   const handleAdd = useCallback(() => {
-    router.push(`/friend/${1}/diary/new`);
-  }, [router]);
+    // storage().setNewDiaryForm("");
+    // router.push(`/friend/${1}/diary/new`);
+  }, []);
 
   const handleSelected = useCallback(
     (tab: BottomTabs) => {

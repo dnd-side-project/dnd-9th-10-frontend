@@ -19,10 +19,17 @@ import Icon from "@dnd9-10/webui/src/icon/Icon";
 
 import { DiaryContentCard } from "@dnd9-10/webui/src/card/DiaryContentCard";
 import { DeleteThingsModal } from "@dnd9-10/webui/src/modal/DeleteThingsModal";
-import { transformDateTimeStrToText } from "@dnd9-10/shared/src/utils/datetime/datetime";
+import {
+  parseDateFns,
+  toDateTimeText,
+  transformDateTimeStrToText,
+} from "@dnd9-10/shared/src/utils/datetime/datetime";
 import { useQuery } from "@tanstack/react-query";
 import { getDiary } from "../../../../../apis/diary";
-import { DATE_TIME_FORMAT6 } from "@dnd9-10/shared/src/utils/datetime/datetime-format";
+import {
+  DATE_TIME_FORMAT4,
+  DATE_TIME_FORMAT6,
+} from "@dnd9-10/shared/src/utils/datetime/datetime-format";
 import { initializeClient } from "../../../../../libs/client";
 
 interface Props {
@@ -43,7 +50,7 @@ export default function Page(props: Props) {
     getDiary({ id: diaryId })
   );
 
-  const { date, content, tags = [] } = diary.data ?? {};
+  const { date = "2023-11-11", content, tags = [] } = diary.data ?? {};
 
   const handleBackClick = useCallback(() => {
     router.back();
@@ -71,7 +78,10 @@ export default function Page(props: Props) {
         className={styles.topbar}
         title={
           <Semibold18 className={styles.title}>
-            {transformDateTimeStrToText(date, DATE_TIME_FORMAT6)}
+            {toDateTimeText(
+              parseDateFns(date, DATE_TIME_FORMAT4),
+              DATE_TIME_FORMAT6
+            )}
           </Semibold18>
         }
         onBackClick={handleBackClick}

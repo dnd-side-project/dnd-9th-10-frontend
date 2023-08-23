@@ -66,5 +66,5 @@ body > div {
 
 /* reset */
 button {
-  all: unset;
+  /* all: unset; */
 }

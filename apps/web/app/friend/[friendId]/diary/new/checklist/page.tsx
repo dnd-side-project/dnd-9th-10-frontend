@@ -26,6 +26,8 @@ import { CreateDiaryRequestEmojiEnum } from "@dnd9-10/shared/src/__generate__/me
 import { useQuery } from "@tanstack/react-query";
 import { getFriendChecklist } from "../../../../../../apis/checklist";
 import { EmojiEnumByType, EmojiType } from "@dnd9-10/shared/src/utils/emoji";
+import { toDateTimeText } from "@dnd9-10/shared/src/utils/datetime/datetime";
+import { DATE_TIME_FORMAT4 } from "@dnd9-10/shared/src/utils/datetime/datetime-format";
 
 initializeClient();
 
@@ -118,7 +120,7 @@ export default function Page(props: Props) {
       friendId,
       diaryRequestDto: {
         content: newForm.content,
-        date: newForm.date.toString(),
+        date: toDateTimeText(newForm.date, DATE_TIME_FORMAT4),
         tags: newForm.tags,
         emoji: EmojiEnumByType[newForm.emoji],
         checklist: [

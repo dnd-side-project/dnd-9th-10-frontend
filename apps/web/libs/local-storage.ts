@@ -63,17 +63,17 @@ function storageFactory(
   };
 
   const setStorages = {
-    setNewDiaryForm: (form: unknown) => {
-      setStorageItem("newDiaryForm", JSON.stringify(form));
+    setNewDiaryForm: (form: string) => {
+      setStorageItem("newDiaryForm", form);
     },
   };
 
   const getStorages = {
     getNewDiaryForm: () => {
-      const res = JSON.parse(getStringWithDefault("newDiaryForm", null));
+      const res = getJSONWithDefault("newDiaryForm", null);
       return {
         ...res,
-        date: new Date(res.date),
+        date: res?.date ? new Date(res?.date) : new Date(),
       };
     },
   };

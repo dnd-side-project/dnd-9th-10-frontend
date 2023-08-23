@@ -27,6 +27,7 @@ import {
 } from "@dnd9-10/shared/src/utils/datetime/datetime";
 import { getFriends } from "../../apis/friend";
 import { useQuery } from "@tanstack/react-query";
+import { storage } from "../../libs/local-storage";
 
 interface Props {
   characters: BbokCharacterInfo[];
@@ -72,6 +73,7 @@ export default function MainPage(props: Props) {
     if (!selectedFriend?.id) {
       return;
     }
+    storage().setNewDiaryForm("");
     router.push(`/friend/${selectedFriend?.id}/diary/new`);
   }, [router, selectedFriend?.id]);
 

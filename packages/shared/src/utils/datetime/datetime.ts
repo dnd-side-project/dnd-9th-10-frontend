@@ -18,6 +18,9 @@ export const parseDateFns = (
   dateTime: string,
   format: DateTimeFormatType = DATE_TIME_FORMAT
 ) => {
+  console.log({
+    dateTime,
+  });
   return dateFnsParse(dateTime, format, new Date(), {
     locale: locales[defaultLocaleId],
   });

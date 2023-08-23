@@ -27,6 +27,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getFriend } from "../../../../../apis/friend";
 import { storage } from "../../../../../libs/local-storage";
 import { EmojiType } from "@dnd9-10/shared/src/utils/emoji";
+import TagText from "@dnd9-10/webui/src/text/TagText";
 
 initializeClient();
 
@@ -70,8 +71,12 @@ export default function Page(props: Props) {
       ...current,
       ...update,
     }),
-    initialState
+    { ...initialState, ...storage().getNewDiaryForm() }
   );
+
+  console.log({
+    state,
+  });
 
   const handleDate = useCallback((date) => {
     setState({
@@ -87,6 +92,10 @@ export default function Page(props: Props) {
       });
     }, []);
 
+  const handleTag = useCallback(() => {
+    router.push(`/friend/${friendId}/diary/new/tag`);
+  }, [friendId, router]);
+
   const handleEmojiModalClose = useCallback(() => {
     setOpen(false);
   }, []);
@@ -98,7 +107,7 @@ export default function Page(props: Props) {
   }, []);
 
   const handleSubmit = useCallback(() => {
-    storage().setNewDiaryForm(state);
+    storage().setNewDiaryForm(JSON.stringify(state));
     router.push(`/friend/${friendId}/diary/new/checklist`);
   }, [friendId, router, state]);
 
@@ -158,9 +167,18 @@ export default function Page(props: Props) {
                   placeholder:
                     "태그를 추가해보세요 (ex. 거짓말, 가스라이팅 등)",
                 }}
+                onClick={handleTag}
               />
             ) : (
-              ""
+              <div className={styles.tags}>
+                {state.tags.map((tag, index) => {
+                  return (
+                    <TagText key={index} className={styles.tag} size={"medium"}>
+                      {tag}
+                    </TagText>
+                  );
+                })}
+              </div>
             )}
           </div>
         </div>

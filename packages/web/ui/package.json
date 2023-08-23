@@ -12,6 +12,7 @@
     "build-storybook": "storybook build"
   },
   "devDependencies": {
+    "@types/chroma-js": "2.4.0",
     "@types/react-lottie": "1.2.6",
     "@babel/preset-env": "^7.22.9",
     "@babel/preset-react": "^7.22.5",
