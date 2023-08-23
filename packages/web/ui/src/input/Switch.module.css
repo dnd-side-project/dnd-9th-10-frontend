@@ -1,11 +1,4 @@
-@import "@radix-ui/colors/black-alpha.css";
-
 .wrap {
-}
-
-/* reset */
-button {
-  all: unset;
 }
 
 .SwitchRoot {
