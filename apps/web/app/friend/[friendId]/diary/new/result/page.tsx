@@ -19,6 +19,7 @@ import {
   Semibold18,
   Semibold20,
 } from "@dnd9-10/webui/src/text/Typographies";
+import { storage } from "../../../../../../libs/local-storage";
 
 initializeClient();
 
@@ -32,6 +33,7 @@ interface Props {
 export default function Page(props: Props) {
   const friendId = Number(props.params.friendId);
   const router = useRouter();
+  const sayingResult = storage().getSayingResult();
 
   const handleClose = useCallback(() => {
     router.replace(`/friend/${friendId}/diaries`);
@@ -49,12 +51,20 @@ export default function Page(props: Props) {
       />
       <div className={styles.content}>
         <NewDiaryAnalysisCard className={styles["new-diary-item"]} />
-        <BookmarkCard
-          active={false}
-          description={`궁극적으로 결혼이든 우정이든 관계에서 
-         유대감을 형성하는 것은 대화다. `}
-          reference="아일랜드 작가, 오스카 와일드"
-        />
+        {sayingResult ? (
+          <BookmarkCard
+            active={sayingResult?.isMarked ?? false}
+            description={sayingResult?.contents ?? ""}
+            reference={sayingResult?.reference ?? ""}
+          />
+        ) : (
+          <BookmarkCard
+            active={false}
+            description={`궁극적으로 결혼이든 우정이든 관계에서 
+       유대감을 형성하는 것은 대화다. `}
+            reference="아일랜드 작가, 오스카 와일드"
+          />
+        )}
       </div>
     </div>
   );

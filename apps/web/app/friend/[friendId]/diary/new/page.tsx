@@ -74,10 +74,6 @@ export default function Page(props: Props) {
     { ...initialState, ...storage().getNewDiaryForm() }
   );
 
-  console.log({
-    state,
-  });
-
   const handleDate = useCallback((date) => {
     setState({
       date,
@@ -93,8 +89,9 @@ export default function Page(props: Props) {
     }, []);
 
   const handleTag = useCallback(() => {
+    storage().setNewDiaryForm(JSON.stringify(state));
     router.push(`/friend/${friendId}/diary/new/tag`);
-  }, [friendId, router]);
+  }, [friendId, router, state]);
 
   const handleEmojiModalClose = useCallback(() => {
     setOpen(false);
