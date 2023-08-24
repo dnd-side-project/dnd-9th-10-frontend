@@ -41,6 +41,7 @@ export default function MainPage(props: Props) {
     suspense: true,
   });
   const friends = friendsResponse?.data ?? [];
+  const isEmptyFriends = friends.length === 0;
   const router = useRouter();
   const [page, setPage] = useState(0);
   const selectedFriend = friends[page];
@@ -139,12 +140,14 @@ export default function MainPage(props: Props) {
                   </div>
                 );
               })}
-              <div className={styles["friend-item"]}>
-                <FriendEmpty
-                  characters={characters}
-                  onAddFriend={handleAddFriend}
-                />
-              </div>
+              {isEmptyFriends && (
+                <div className={styles["friend-item"]}>
+                  <FriendEmpty
+                    characters={characters}
+                    onAddFriend={handleAddFriend}
+                  />
+                </div>
+              )}
               <div className={styles["friend-item"]}>
                 <NewFriendCard />
               </div>
