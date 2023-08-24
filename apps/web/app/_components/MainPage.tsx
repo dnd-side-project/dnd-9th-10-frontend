@@ -1,5 +1,6 @@
 "use client";
 
+import { useSnackbar } from "notistack";
 import { useCallback, useEffect, useState } from "react";
 import {
   BottomNavigation,
@@ -35,6 +36,7 @@ interface Props {
 
 export default function MainPage(props: Props) {
   const { characters } = props;
+  const { enqueueSnackbar } = useSnackbar();
   const friendsResponse = useQuery(["getFriends"], getFriends, {
     suspense: true,
   });
@@ -64,18 +66,26 @@ export default function MainPage(props: Props) {
         character: form.character.type,
         name: form.name,
       });
-      friendsResponse.refetch();
+      router.refresh();
     },
-    [friendsResponse]
+    [router]
   );
 
   const handleAdd = useCallback(() => {
     if (!selectedFriend?.id) {
+      enqueueSnackbar("친구 생성 후 일화 작성 가능합니다.", {
+        variant: "info",
+        anchorOrigin: {
+          vertical: "top",
+          horizontal: "center",
+        },
+        preventDuplicate: true,
+      });
       return;
     }
     storage().setNewDiaryForm("");
     router.push(`/friend/${selectedFriend?.id}/diary/new`);
-  }, [router, selectedFriend?.id]);
+  }, [enqueueSnackbar, router, selectedFriend?.id]);
 
   const handleSelectedTab = useCallback(
     (tab: BottomTabs) => {
