@@ -46,7 +46,7 @@ export default function MainPage(props: Props) {
   const [page, setPage] = useState(0);
   const selectedFriend = friends[page];
 
-  const totalCount = friends.length + 2;
+  const totalCount = friends.length + 1;
 
   usePwa();
 
