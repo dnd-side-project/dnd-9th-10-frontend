@@ -18,8 +18,8 @@ import { Carousel } from "@dnd9-10/webui/src/carousel/Carousel";
 import { FriendCard } from "@dnd9-10/webui/src/card/FriendCard";
 import { NewFriendCard } from "@dnd9-10/webui/src/card/NewFriendCard";
 import CircularIndicator from "@dnd9-10/webui/src/indicator/CircularIndicator";
-import { FriendInfo } from "@dnd9-10/shared/src/__generate__/member/api";
-import { BbokCharacterInfo } from "@dnd9-10/shared/src/__generate__/member/api";
+import { GetFriendResponse } from "@dnd9-10/shared/src/__generate__/member/api";
+import { GetBbokCharacterResponse } from "@dnd9-10/shared/src/__generate__/member/api";
 import { createFriend } from "../../apis/friend";
 import {
   durationDaysByTime,
@@ -31,7 +31,7 @@ import { useQuery } from "@tanstack/react-query";
 import { storage } from "../../libs/local-storage";
 
 interface Props {
-  characters: BbokCharacterInfo[];
+  characters: GetBbokCharacterResponse[];
 }
 
 export default function MainPage(props: Props) {
@@ -55,21 +55,21 @@ export default function MainPage(props: Props) {
   }, []);
 
   const handleSelectedItem = useCallback(
-    (friend: FriendInfo) => () => {
+    (friend: GetFriendResponse) => () => {
       router.push(`/friend/${friend.id}/diaries`);
     },
     [router]
   );
 
   const handleAddFriend = useCallback(
-    async (form: { name: string; character: BbokCharacterInfo }) => {
+    async (form: { name: string; character: GetBbokCharacterResponse }) => {
       await createFriend({
         character: form.character.type,
         name: form.name,
       });
-      router.refresh();
+      window.location.reload();
     },
-    [router]
+    []
   );
 
   const handleAdd = useCallback(() => {

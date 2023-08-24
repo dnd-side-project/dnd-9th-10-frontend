@@ -127,17 +127,17 @@ export default function Page(props: Props) {
           tags: newForm.tags,
           emoji: EmojiEnumByType[newForm.emoji],
           checklist: [
-            ...badChecklistValues.map((id) => {
+            ...friendChecklist.badChecklist.map((item) => {
               return {
-                id,
-                isChecked: true,
+                id: item.id,
+                isChecked: badChecklistValues.includes(item.id),
                 isGood: false,
               };
             }),
-            ...goodChecklistValues.map((id) => {
+            ...friendChecklist.goodChecklist.map((item) => {
               return {
-                id,
-                isChecked: true,
+                id: item.id,
+                isChecked: goodChecklistValues.includes(item.id),
                 isGood: true,
               };
             }),
@@ -159,6 +159,8 @@ export default function Page(props: Props) {
     }
   }, [
     enqueueSnackbar,
+    friendChecklist.badChecklist,
+    friendChecklist.goodChecklist,
     friendId,
     router,
     state.badChecklist,

@@ -1,11 +1,11 @@
 import { axiosInstance } from "../libs/axios";
 
 import {
-  BookmarkRequestDto,
-  MockApiFactory,
-} from "@dnd9-10/shared/src/__generate__/api/api";
+  CreateBookmarkRequest,
+  DefaultApiFactory,
+} from "@dnd9-10/shared/src/__generate__/member/api";
 
-const factory = MockApiFactory(undefined, undefined, axiosInstance);
+const factory = DefaultApiFactory(undefined, undefined, axiosInstance);
 
 export const getBookmarks = async () => {
   try {
@@ -17,7 +17,7 @@ export const getBookmarks = async () => {
   }
 };
 
-export const createBookmark = async (payload: BookmarkRequestDto) => {
+export const createBookmark = async (payload: CreateBookmarkRequest) => {
   const response = await factory.createBookmarkUsingPOST(payload);
   return response.data;
 };
