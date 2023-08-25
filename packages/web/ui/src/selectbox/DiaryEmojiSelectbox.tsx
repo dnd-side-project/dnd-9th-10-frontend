@@ -2,7 +2,7 @@ import cn from "classnames";
 import styles from "./DiaryEmojiSelectbox.module.css";
 import { Semibold18 } from "../text/Typographies";
 import IconButton from "../button/IconButton";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { EmojiType } from "@dnd9-10/shared/src/utils/emoji";
 
@@ -15,6 +15,10 @@ export interface DiaryEmojiSelectboxProps {
 export function DiaryEmojiSelectbox(props: DiaryEmojiSelectboxProps) {
   const { className, defaultSelected, onSelected } = props;
   const [selected, setSelected] = useState(defaultSelected ?? "emoji1");
+
+  useEffect(() => {
+    setSelected(defaultSelected ?? "emoji1");
+  }, [defaultSelected]);
 
   const handleSelected = useCallback(
     (selected: EmojiType) => () => {

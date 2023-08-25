@@ -44,6 +44,7 @@ type FormProps = {
   tags: string[];
   emoji: EmojiType | null;
   useFriends: boolean;
+  open: boolean;
 };
 
 const initialState: FormProps = {
@@ -52,6 +53,7 @@ const initialState: FormProps = {
   tags: [],
   emoji: null,
   useFriends: false,
+  open: true,
 };
 
 export default function Page(props: Props) {
@@ -65,7 +67,6 @@ export default function Page(props: Props) {
     }
   );
 
-  const [open, setOpen] = useState(false);
   const [state, setState] = useReducer(
     (current: FormProps, update: Partial<FormProps>) => ({
       ...current,
@@ -94,12 +95,15 @@ export default function Page(props: Props) {
   }, [friendId, router, state]);
 
   const handleEmojiModalClose = useCallback(() => {
-    setOpen(false);
+    setState({
+      open: false,
+    });
   }, []);
 
   const handleEmoji = useCallback((emoji: EmojiType) => {
     setState({
       emoji,
+      open: false,
     });
   }, []);
 
@@ -109,7 +113,10 @@ export default function Page(props: Props) {
   }, [friendId, router, state]);
 
   return (
-    <div className={styles.wrap}>
+    <div
+      className={styles.wrap}
+      style={{ overflow: state.open ? "hidden" : "auto" }}
+    >
       <Topbar
         className={styles.topbar}
         title={<Semibold18 className={styles.title}>일화 작성</Semibold18>}
@@ -195,7 +202,7 @@ export default function Page(props: Props) {
           </div>
         </div>
       </div>
-      {open && (
+      {state.open && (
         <NewDiaryEmojiModal
           className={styles["new-emoji-modal"]}
           onClose={handleEmojiModalClose}

@@ -1,14 +1,31 @@
 .wrap {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
   flex: 1;
   flex-direction: column;
+  justify-content: center;
   height: 100%;
+  background-color: white;
 }
 
 .topbar {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.submit-button {
+  width: 30px;
+  position: absolute;
+  right: 20px;
+}
+
+.submit-button-text {
+  color: var(--gray-50, #798787);
 }
 
 .close-button {
@@ -21,8 +38,7 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-  padding-top: 120px;
-  padding-bottom: 257px;
+  padding-top: 90px;
 }
 
 .bottom {
