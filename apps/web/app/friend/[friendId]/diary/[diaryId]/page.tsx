@@ -112,10 +112,11 @@ export default function Page(props: Props) {
                   <DeleteThingsModal
                     description={`삭제한 일화는 다시 복구할 수 없어요.`}
                     TriggerComponent={
-                      <Toolbar.Button onClick={handleDelete}>
+                      <Toolbar.Button>
                         <Icon name="remove" />
                       </Toolbar.Button>
                     }
+                    onSubmit={handleDelete}
                   />
                 </Toolbar.Root>
               }

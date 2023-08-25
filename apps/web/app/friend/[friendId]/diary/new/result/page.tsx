@@ -70,7 +70,7 @@ export default function Page(props: Props) {
         <NewDiaryAnalysisCard className={styles["new-diary-item"]} />
         {sayingResult ? (
           <BookmarkCard
-            active={sayingResult?.isMarked ?? false}
+            active={isMarked}
             description={sayingResult?.contents ?? ""}
             reference={sayingResult?.reference ?? ""}
           />
