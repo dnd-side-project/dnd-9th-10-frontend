@@ -21,6 +21,10 @@
   margin-right: auto;
 }
 
+.loading {
+  margin: auto;
+}
+
 .content {
   display: flex;
   width: 100%;

@@ -25,6 +25,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getDiaries } from "../../../../../apis/diary";
 import Icon from "@dnd9-10/webui/src/icon/Icon";
 import Button from "@dnd9-10/webui/src/button/Button";
+import Loading from "@dnd9-10/webui/src/icon/Loading";
 import { storage } from "../../../../../libs/local-storage";
 
 interface Props {
@@ -152,8 +153,11 @@ export default function FriendIdDiariesPage(props: Props) {
         </Button>
       </div>
       <div className={styles.content}>
-        {isEmpty ? <NewDiaryEmpty className={styles.empty} /> : null}
-        {!isEmpty
+        {diaries.isLoading && <Loading className={styles.loading} />}
+        {!diaries.isLoading && isEmpty ? (
+          <NewDiaryEmpty className={styles.empty} />
+        ) : null}
+        {!diaries.isLoading && !isEmpty
           ? diaries?.data?.diaries?.map?.((item) => {
               const { id, date, tags, content, emoji, emojiUrl } = item;
               return (

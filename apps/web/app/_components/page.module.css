@@ -6,6 +6,10 @@
   height: 100%;
 }
 
+.loading {
+  margin: auto;
+}
+
 .content {
   position: relative;
   display: flex;

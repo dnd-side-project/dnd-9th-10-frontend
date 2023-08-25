@@ -29,6 +29,7 @@ import {
 import { getFriends } from "../../apis/friend";
 import { useQuery } from "@tanstack/react-query";
 import { storage } from "../../libs/local-storage";
+import Loading from "@dnd9-10/webui/src/icon/Loading";
 
 interface Props {
   characters: GetBbokCharacterResponse[];
@@ -37,9 +38,7 @@ interface Props {
 export default function MainPage(props: Props) {
   const { characters } = props;
   const { enqueueSnackbar } = useSnackbar();
-  const friendsResponse = useQuery(["getFriends"], getFriends, {
-    suspense: true,
-  });
+  const friendsResponse = useQuery(["getFriends"], getFriends);
   const friends = friendsResponse?.data ?? [];
   const isEmptyFriends = friends.length === 0;
   const router = useRouter();
@@ -102,6 +101,10 @@ export default function MainPage(props: Props) {
   const handleBasedFriend = useCallback(() => {
     router.push("/checklist");
   }, [router]);
+
+  if(friendsResponse.isLoading) {
+    return <Loading className={styles.loading} />
+  }
 
   return (
     <div className={styles.wrap}>

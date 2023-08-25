@@ -60,6 +60,10 @@
   padding: 0px 20px;
 }
 
+.loading {
+  margin: auto;
+}
+
 .item {
   margin-bottom: 14px;
 }

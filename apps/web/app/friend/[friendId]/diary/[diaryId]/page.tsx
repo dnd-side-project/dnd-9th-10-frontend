@@ -31,6 +31,8 @@ import {
   DATE_TIME_FORMAT6,
 } from "@dnd9-10/shared/src/utils/datetime/datetime-format";
 import { initializeClient } from "../../../../../libs/client";
+import { EmojiTypeByEnum } from "@dnd9-10/shared/src/utils/emoji";
+import Loading from "@dnd9-10/webui/src/icon/Loading";
 
 interface Props {
   params: {
@@ -49,8 +51,7 @@ export default function Page(props: Props) {
   const diary = useQuery(["getDiaries", diaryId], () =>
     getDiary({ id: diaryId })
   );
-
-  const { date = "2023-11-11", content, tags = [] } = diary.data ?? {};
+  const { date = "2023-11-11", content, emoji, tags = [] } = diary.data ?? {};
 
   const handleBackClick = useCallback(() => {
     router.back();
@@ -87,43 +88,51 @@ export default function Page(props: Props) {
         onBackClick={handleBackClick}
       />
       <div className={styles.content}>
-        <Icon className={styles.emoji} name="emoji1" />
-        <DiaryContentCard
-          content={content}
-          TooltipComponent={
-            <Toolbar.Root className={styles.toolbar}>
-              <Toolbar.Button onClick={handleSticker}>
-                <Icon name="sticker" />
-              </Toolbar.Button>
-              <Toolbar.Button onClick={handleEdit}>
-                <Icon name="modify" />
-              </Toolbar.Button>
-              <Toolbar.Button onClick={handleChecked}>
-                <Icon name="checked" />
-              </Toolbar.Button>
-              <DeleteThingsModal
-                description={`삭제한 일화는 다시 복구할 수 없어요.`}
-                TriggerComponent={
-                  <Toolbar.Button onClick={handleDelete}>
-                    <Icon name="remove" />
+        {diary.isLoading && <Loading className={styles.loading} />}
+        {!diary.isLoading && (
+          <>
+            <Icon
+              className={styles.emoji}
+              name={EmojiTypeByEnum[emoji] ?? "emoji1"}
+            />
+            <DiaryContentCard
+              content={content}
+              TooltipComponent={
+                <Toolbar.Root className={styles.toolbar}>
+                  <Toolbar.Button onClick={handleSticker}>
+                    <Icon name="sticker" />
                   </Toolbar.Button>
-                }
-              />
-            </Toolbar.Root>
-          }
-        />
-        <div className={styles["tag-section"]}>
-          <Bold18 className={styles["section-title"]}>태그</Bold18>
-          <div className={styles.tags}>
-            {tags.map((tag, index) => {
-              return (
-                <TagText key={index} className={styles.tag} size={"medium"}>
-                  {tag}
-                </TagText>
-              );
-            })}
-          </div>
-        </div>
+                  <Toolbar.Button onClick={handleEdit}>
+                    <Icon name="modify" />
+                  </Toolbar.Button>
+                  <Toolbar.Button onClick={handleChecked}>
+                    <Icon name="checked" />
+                  </Toolbar.Button>
+                  <DeleteThingsModal
+                    description={`삭제한 일화는 다시 복구할 수 없어요.`}
+                    TriggerComponent={
+                      <Toolbar.Button onClick={handleDelete}>
+                        <Icon name="remove" />
+                      </Toolbar.Button>
+                    }
+                  />
+                </Toolbar.Root>
+              }
+            />
+            <div className={styles["tag-section"]}>
+              <Bold18 className={styles["section-title"]}>태그</Bold18>
+              <div className={styles.tags}>
+                {tags.map((tag, index) => {
+                  return (
+                    <TagText key={index} className={styles.tag} size={"medium"}>
+                      {tag}
+                    </TagText>
+                  );
+                })}
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
