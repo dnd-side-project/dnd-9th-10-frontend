@@ -28,10 +28,18 @@ export default function ChecklistNewPage(props: Props) {
   const { data } = props;
   const router = useRouter();
   const [stepIndex, setStepIndex] = useState(0);
-  const [selectedGoodChecklist, setSelectedGoodChecklist] = useState([]);
-  const [goodChecklist, setGoodChecklist] = useState(data?.goodChecklist ?? []);
-  const [selectedBadChecklist, setSelectedBadChecklist] = useState([]);
-  const [badChecklist, setBadChecklist] = useState(data?.badChecklist ?? []);
+  const [selectedGoodChecklist, setSelectedGoodChecklist] = useState<string[]>(
+    []
+  );
+  const [goodChecklist, setGoodChecklist] = useState<string[]>(
+    data?.goodChecklist ?? []
+  );
+  const [selectedBadChecklist, setSelectedBadChecklist] = useState<string[]>(
+    []
+  );
+  const [badChecklist, setBadChecklist] = useState<string[]>(
+    data?.badChecklist ?? []
+  );
   const isBadType = BAD_INDEX === stepIndex;
   const isGoodType = GOOD_INDEX === stepIndex;
   const checklist = isBadType ? badChecklist : goodChecklist;

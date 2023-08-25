@@ -8,13 +8,14 @@ export interface TextInputProps {
     type: "required";
     text: string;
   };
+  onClick?: () => void
 }
 
 export function TextInput(props: TextInputProps) {
-  const { className, inputProps, error } = props;
+  const { className, inputProps, error, onClick } = props;
 
   return (
-    <div className={cn(styles.wrap, className)}>
+    <div className={cn(styles.wrap, className)} onClick={onClick}>
       <input className={styles.input} {...inputProps} />
       {error?.type === "required" && <p role="alert">{error?.text}</p>}
     </div>

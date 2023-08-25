@@ -1,7 +1,7 @@
 import { axiosInstance } from "../libs/axios";
 
 import {
-  FriendInfoRequest,
+  CreateFriendRequest,
   DefaultApiFactory,
 } from "@dnd9-10/shared/src/__generate__/member/api";
 
@@ -27,7 +27,12 @@ export const getFriend = async (id: number) => {
   }
 };
 
-export const createFriend = async (payload: FriendInfoRequest) => {
+export const createFriend = async (payload: CreateFriendRequest) => {
   const response = await memberFactory.createFriendUsingPOST(payload);
+  return response.data;
+};
+
+export const deactivateFriend = async (id: number) => {
+  const response = await memberFactory.deactivateFriendUsingPATCH(id);
   return response.data;
 };

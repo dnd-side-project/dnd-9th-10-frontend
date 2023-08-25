@@ -1,7 +1,8 @@
+import { DiarySaying } from "@dnd9-10/shared/src/__generate__/member";
 import { isEmpty, isJSON } from "@dnd9-10/shared/src/utils/common";
 import { once } from "@dnd9-10/shared/src/utils/function";
 
-type StorageType = "newDiaryForm";
+type StorageType = "newDiaryForm" | "sayingResult";
 
 function storageFactory(
   setItem: (key: string, value: string) => void,
@@ -63,18 +64,25 @@ function storageFactory(
   };
 
   const setStorages = {
-    setNewDiaryForm: (form: unknown) => {
-      setStorageItem("newDiaryForm", JSON.stringify(form));
+    setNewDiaryForm: (form: string) => {
+      setStorageItem("newDiaryForm", form);
+    },
+    setSayingResult: (sayingResult: string) => {
+      setStorageItem("sayingResult", sayingResult);
     },
   };
 
   const getStorages = {
     getNewDiaryForm: () => {
-      const res = JSON.parse(getStringWithDefault("newDiaryForm", null));
+      const res = getJSONWithDefault("newDiaryForm", null);
       return {
         ...res,
-        date: new Date(res.date),
+        date: res?.date ? new Date(res?.date) : new Date(),
       };
+    },
+    getSayingResult: (): DiarySaying => {
+      const res = getJSONWithDefault("sayingResult", {});
+      return res;
     },
   };
 

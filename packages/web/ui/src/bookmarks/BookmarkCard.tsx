@@ -8,10 +8,11 @@ export interface BookmarkCardProps {
   description: string;
   reference: string;
   active: boolean;
+  onBookmark?: () => void;
 }
 
 export function BookmarkCard(props: BookmarkCardProps) {
-  const { className, description, reference, active } = props;
+  const { className, description, reference, active, onBookmark } = props;
   return (
     <div className={cn(styles.wrap, className)}>
       <Semibold15 className={styles.description}>{description}</Semibold15>
@@ -20,6 +21,7 @@ export function BookmarkCard(props: BookmarkCardProps) {
         className={styles["bookmark-button"]}
         name={active ? "bookmark_active" : "bookmark"}
         size={24}
+        onClick={onBookmark}
       />
     </div>
   );

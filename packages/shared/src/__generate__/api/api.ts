@@ -24,160 +24,40 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 /**
  * 
  * @export
- * @interface BookmarkInfoDto
+ * @interface ChecklistInfoRequest
  */
-export interface BookmarkInfoDto {
+export interface ChecklistInfoRequest {
     /**
-     * 북마크한 글귀 리스트
-     * @type {Array<SayingInfoDto>}
-     * @memberof BookmarkInfoDto
-     */
-    'bookmarks'?: Array<SayingInfoDto>;
-}
-/**
- * 
- * @export
- * @interface BookmarkRequestDto
- */
-export interface BookmarkRequestDto {
-    /**
-     * 북마크하는 명언 Id
-     * @type {number}
-     * @memberof BookmarkRequestDto
-     */
-    'id'?: number;
-}
-/**
- * 
- * @export
- * @interface ChecklistInfoRequestDto
- */
-export interface ChecklistInfoRequestDto {
-    /**
-     * 수정된 기준
+     * 
      * @type {string}
-     * @memberof ChecklistInfoRequestDto
+     * @memberof ChecklistInfoRequest
      */
     'criteria'?: string;
     /**
-     * 수정하려는 기준 Id
+     * 
      * @type {number}
-     * @memberof ChecklistInfoRequestDto
+     * @memberof ChecklistInfoRequest
      */
     'id'?: number;
 }
 /**
  * 
  * @export
- * @interface CreateDiaryResponse
+ * @interface EditMemberChecklistRequest
  */
-export interface CreateDiaryResponse {
-    /**
-     * 친구 적합도
-     * @type {number}
-     * @memberof CreateDiaryResponse
-     */
-    'friendPercentage'?: number;
+export interface EditMemberChecklistRequest {
     /**
      * 
-     * @type {DiarySaying}
-     * @memberof CreateDiaryResponse
+     * @type {Array<ChecklistInfoRequest>}
+     * @memberof EditMemberChecklistRequest
      */
-    'saying'?: DiarySaying;
-}
-/**
- * 
- * @export
- * @interface DataResponseBookmarkInfoDto
- */
-export interface DataResponseBookmarkInfoDto {
+    'badChecklist'?: Array<ChecklistInfoRequest>;
     /**
      * 
-     * @type {BookmarkInfoDto}
-     * @memberof DataResponseBookmarkInfoDto
+     * @type {Array<ChecklistInfoRequest>}
+     * @memberof EditMemberChecklistRequest
      */
-    'data'?: BookmarkInfoDto;
-    /**
-     * 응답 메시지
-     * @type {string}
-     * @memberof DataResponseBookmarkInfoDto
-     */
-    'message'?: string;
-    /**
-     * 응답 코드
-     * @type {number}
-     * @memberof DataResponseBookmarkInfoDto
-     */
-    'status'?: number;
-}
-/**
- * 
- * @export
- * @interface DataResponseDiaryStickerDto
- */
-export interface DataResponseDiaryStickerDto {
-    /**
-     * 
-     * @type {DiaryStickerDto}
-     * @memberof DataResponseDiaryStickerDto
-     */
-    'data'?: DiaryStickerDto;
-    /**
-     * 응답 메시지
-     * @type {string}
-     * @memberof DataResponseDiaryStickerDto
-     */
-    'message'?: string;
-    /**
-     * 응답 코드
-     * @type {number}
-     * @memberof DataResponseDiaryStickerDto
-     */
-    'status'?: number;
-}
-/**
- * 
- * @export
- * @interface DiarySaying
- */
-export interface DiarySaying {
-    /**
-     * 명언 내용
-     * @type {string}
-     * @memberof DiarySaying
-     */
-    'contents'?: string;
-    /**
-     * 명언 Id
-     * @type {number}
-     * @memberof DiarySaying
-     */
-    'id'?: number;
-    /**
-     * 북마크 되어있는지 여부
-     * @type {boolean}
-     * @memberof DiarySaying
-     */
-    'isMarked'?: boolean;
-    /**
-     * 명언 출처
-     * @type {string}
-     * @memberof DiarySaying
-     */
-    'reference'?: string;
-}
-/**
- * 
- * @export
- * @interface DiaryStickerDto
- */
-export interface DiaryStickerDto {
-    /**
-     * 
-     * @type {Array<StickerDto>}
-     * @memberof DiaryStickerDto
-     */
-    'stickers'?: Array<StickerDto>;
+    'goodChecklist'?: Array<ChecklistInfoRequest>;
 }
 /**
  * 
@@ -198,64 +78,6 @@ export interface MessageResponse {
      */
     'status'?: number;
 }
-/**
- * 
- * @export
- * @interface SayingInfoDto
- */
-export interface SayingInfoDto {
-    /**
-     * 명언 내용
-     * @type {string}
-     * @memberof SayingInfoDto
-     */
-    'contents'?: string;
-    /**
-     * 명언 Id
-     * @type {number}
-     * @memberof SayingInfoDto
-     */
-    'id'?: number;
-    /**
-     * 명언 출처
-     * @type {string}
-     * @memberof SayingInfoDto
-     */
-    'reference'?: string;
-}
-/**
- * 
- * @export
- * @interface StickerDto
- */
-export interface StickerDto {
-    /**
-     * 스티커 이름
-     * @type {string}
-     * @memberof StickerDto
-     */
-    'name'?: StickerDtoNameEnum;
-    /**
-     * 스티커 다운로드 주소
-     * @type {string}
-     * @memberof StickerDto
-     */
-    'stickerUrl'?: string;
-}
-
-export const StickerDtoNameEnum = {
-    Aeng: 'AENG',
-    Band: 'BAND',
-    Heart: 'HEART',
-    Kk: 'KK',
-    Poop: 'POOP',
-    Rainbow: 'RAINBOW',
-    Star: 'STAR',
-    Sweetpotato: 'SWEETPOTATO'
-} as const;
-
-export type StickerDtoNameEnum = typeof StickerDtoNameEnum[keyof typeof StickerDtoNameEnum];
-
 
 /**
  * MockApi - axios parameter creator
@@ -265,174 +87,12 @@ export const MockApiAxiosParamCreator = function (configuration?: Configuration)
     return {
         /**
          * 
-         * @summary 북마크 추가
-         * @param {BookmarkRequestDto} [bookmarkRequestDto] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        createBookmarkUsingPOST: async (bookmarkRequestDto?: BookmarkRequestDto, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/v1/bookmark`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(bookmarkRequestDto, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary 북마크 삭제
-         * @param {number} id id
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deleteBookmarkUsingDELETE: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('deleteBookmarkUsingDELETE', 'id', id)
-            const localVarPath = `/api/v1/bookmark/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary 일기 삭제
-         * @param {number} id 일기 id
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deleteDiaryUsingDELETE: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('deleteDiaryUsingDELETE', 'id', id)
-            const localVarPath = `/api/v1/friend/diary/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary 북마크 목록 조회
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getBookmarksUsingGET: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/v1/bookmark`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary 스티커 목록 조회
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getStickersUsingGET: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/v1/friend/diary/sticker`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
          * @summary 나만의 기준 수정
-         * @param {ChecklistInfoRequestDto} [checklistInfoRequestDto] 
+         * @param {EditMemberChecklistRequest} [editMemberChecklistRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateChecklistUsingPATCH: async (checklistInfoRequestDto?: ChecklistInfoRequestDto, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateChecklistUsingPATCH: async (editMemberChecklistRequest?: EditMemberChecklistRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/friend/checklist`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -452,45 +112,7 @@ export const MockApiAxiosParamCreator = function (configuration?: Configuration)
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(checklistInfoRequestDto, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary 일기 수정
-         * @param {number} id 일기 id
-         * @param {CreateDiaryResponse} [createDiaryResponse] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        updateDiaryUsingPATCH: async (id: number, createDiaryResponse?: CreateDiaryResponse, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('updateDiaryUsingPATCH', 'id', id)
-            const localVarPath = `/api/v1/friend/diary/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(createDiaryResponse, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(editMemberChecklistRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -509,78 +131,13 @@ export const MockApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @summary 북마크 추가
-         * @param {BookmarkRequestDto} [bookmarkRequestDto] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async createBookmarkUsingPOST(bookmarkRequestDto?: BookmarkRequestDto, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createBookmarkUsingPOST(bookmarkRequestDto, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @summary 북마크 삭제
-         * @param {number} id id
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async deleteBookmarkUsingDELETE(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteBookmarkUsingDELETE(id, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @summary 일기 삭제
-         * @param {number} id 일기 id
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async deleteDiaryUsingDELETE(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteDiaryUsingDELETE(id, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @summary 북마크 목록 조회
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getBookmarksUsingGET(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataResponseBookmarkInfoDto>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getBookmarksUsingGET(options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @summary 스티커 목록 조회
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getStickersUsingGET(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataResponseDiaryStickerDto>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getStickersUsingGET(options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
          * @summary 나만의 기준 수정
-         * @param {ChecklistInfoRequestDto} [checklistInfoRequestDto] 
+         * @param {EditMemberChecklistRequest} [editMemberChecklistRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateChecklistUsingPATCH(checklistInfoRequestDto?: ChecklistInfoRequestDto, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateChecklistUsingPATCH(checklistInfoRequestDto, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @summary 일기 수정
-         * @param {number} id 일기 id
-         * @param {CreateDiaryResponse} [createDiaryResponse] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async updateDiaryUsingPATCH(id: number, createDiaryResponse?: CreateDiaryResponse, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateDiaryUsingPATCH(id, createDiaryResponse, options);
+        async updateChecklistUsingPATCH(editMemberChecklistRequest?: EditMemberChecklistRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateChecklistUsingPATCH(editMemberChecklistRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -595,72 +152,13 @@ export const MockApiFactory = function (configuration?: Configuration, basePath?
     return {
         /**
          * 
-         * @summary 북마크 추가
-         * @param {BookmarkRequestDto} [bookmarkRequestDto] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        createBookmarkUsingPOST(bookmarkRequestDto?: BookmarkRequestDto, options?: any): AxiosPromise<MessageResponse> {
-            return localVarFp.createBookmarkUsingPOST(bookmarkRequestDto, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary 북마크 삭제
-         * @param {number} id id
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deleteBookmarkUsingDELETE(id: number, options?: any): AxiosPromise<MessageResponse> {
-            return localVarFp.deleteBookmarkUsingDELETE(id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary 일기 삭제
-         * @param {number} id 일기 id
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deleteDiaryUsingDELETE(id: number, options?: any): AxiosPromise<MessageResponse> {
-            return localVarFp.deleteDiaryUsingDELETE(id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary 북마크 목록 조회
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getBookmarksUsingGET(options?: any): AxiosPromise<DataResponseBookmarkInfoDto> {
-            return localVarFp.getBookmarksUsingGET(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary 스티커 목록 조회
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getStickersUsingGET(options?: any): AxiosPromise<DataResponseDiaryStickerDto> {
-            return localVarFp.getStickersUsingGET(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
          * @summary 나만의 기준 수정
-         * @param {ChecklistInfoRequestDto} [checklistInfoRequestDto] 
+         * @param {EditMemberChecklistRequest} [editMemberChecklistRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateChecklistUsingPATCH(checklistInfoRequestDto?: ChecklistInfoRequestDto, options?: any): AxiosPromise<MessageResponse> {
-            return localVarFp.updateChecklistUsingPATCH(checklistInfoRequestDto, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary 일기 수정
-         * @param {number} id 일기 id
-         * @param {CreateDiaryResponse} [createDiaryResponse] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        updateDiaryUsingPATCH(id: number, createDiaryResponse?: CreateDiaryResponse, options?: any): AxiosPromise<MessageResponse> {
-            return localVarFp.updateDiaryUsingPATCH(id, createDiaryResponse, options).then((request) => request(axios, basePath));
+        updateChecklistUsingPATCH(editMemberChecklistRequest?: EditMemberChecklistRequest, options?: any): AxiosPromise<MessageResponse> {
+            return localVarFp.updateChecklistUsingPATCH(editMemberChecklistRequest, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -674,85 +172,14 @@ export const MockApiFactory = function (configuration?: Configuration, basePath?
 export class MockApi extends BaseAPI {
     /**
      * 
-     * @summary 북마크 추가
-     * @param {BookmarkRequestDto} [bookmarkRequestDto] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof MockApi
-     */
-    public createBookmarkUsingPOST(bookmarkRequestDto?: BookmarkRequestDto, options?: AxiosRequestConfig) {
-        return MockApiFp(this.configuration).createBookmarkUsingPOST(bookmarkRequestDto, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary 북마크 삭제
-     * @param {number} id id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof MockApi
-     */
-    public deleteBookmarkUsingDELETE(id: number, options?: AxiosRequestConfig) {
-        return MockApiFp(this.configuration).deleteBookmarkUsingDELETE(id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary 일기 삭제
-     * @param {number} id 일기 id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof MockApi
-     */
-    public deleteDiaryUsingDELETE(id: number, options?: AxiosRequestConfig) {
-        return MockApiFp(this.configuration).deleteDiaryUsingDELETE(id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary 북마크 목록 조회
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof MockApi
-     */
-    public getBookmarksUsingGET(options?: AxiosRequestConfig) {
-        return MockApiFp(this.configuration).getBookmarksUsingGET(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary 스티커 목록 조회
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof MockApi
-     */
-    public getStickersUsingGET(options?: AxiosRequestConfig) {
-        return MockApiFp(this.configuration).getStickersUsingGET(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
      * @summary 나만의 기준 수정
-     * @param {ChecklistInfoRequestDto} [checklistInfoRequestDto] 
+     * @param {EditMemberChecklistRequest} [editMemberChecklistRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MockApi
      */
-    public updateChecklistUsingPATCH(checklistInfoRequestDto?: ChecklistInfoRequestDto, options?: AxiosRequestConfig) {
-        return MockApiFp(this.configuration).updateChecklistUsingPATCH(checklistInfoRequestDto, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary 일기 수정
-     * @param {number} id 일기 id
-     * @param {CreateDiaryResponse} [createDiaryResponse] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof MockApi
-     */
-    public updateDiaryUsingPATCH(id: number, createDiaryResponse?: CreateDiaryResponse, options?: AxiosRequestConfig) {
-        return MockApiFp(this.configuration).updateDiaryUsingPATCH(id, createDiaryResponse, options).then((request) => request(this.axios, this.basePath));
+    public updateChecklistUsingPATCH(editMemberChecklistRequest?: EditMemberChecklistRequest, options?: AxiosRequestConfig) {
+        return MockApiFp(this.configuration).updateChecklistUsingPATCH(editMemberChecklistRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

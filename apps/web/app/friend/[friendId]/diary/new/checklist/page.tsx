@@ -17,6 +17,7 @@ import Icon from "@dnd9-10/webui/src/icon/Icon";
 import NewCheckList from "@dnd9-10/webui/src/checklist/NewCheckList";
 import Topbar from "@dnd9-10/webui/src/topbar/Topbar";
 import Button from "@dnd9-10/webui/src/button/Button";
+import { useSnackbar } from "notistack";
 
 import styles from "./page.module.css";
 import { initializeClient } from "../../../../../../libs/client";
@@ -26,6 +27,8 @@ import { CreateDiaryRequestEmojiEnum } from "@dnd9-10/shared/src/__generate__/me
 import { useQuery } from "@tanstack/react-query";
 import { getFriendChecklist } from "../../../../../../apis/checklist";
 import { EmojiEnumByType, EmojiType } from "@dnd9-10/shared/src/utils/emoji";
+import { toDateTimeText } from "@dnd9-10/shared/src/utils/datetime/datetime";
+import { DATE_TIME_FORMAT4 } from "@dnd9-10/shared/src/utils/datetime/datetime-format";
 
 initializeClient();
 
@@ -48,6 +51,7 @@ const initialState: FormProps = {
 
 export default function Page(props: Props) {
   const router = useRouter();
+  const { enqueueSnackbar } = useSnackbar();
   const friendId = Number(props.params.friendId);
   const friendChecklistResponse = useQuery(
     ["getFriendChecklist"],
@@ -114,33 +118,54 @@ export default function Page(props: Props) {
     const badChecklistValues = Array.from(state.badChecklist.values());
     const goodChecklistValues = Array.from(state.goodChecklist.values());
 
-    await createDiary({
-      friendId,
-      diaryRequestDto: {
-        content: newForm.content,
-        date: newForm.date.toString(),
-        tags: newForm.tags,
-        emoji: EmojiEnumByType[newForm.emoji],
-        checklist: [
-          ...badChecklistValues.map((id) => {
-            return {
-              id,
-              isChecked: true,
-              isGood: false,
-            };
-          }),
-          ...goodChecklistValues.map((id) => {
-            return {
-              id,
-              isChecked: true,
-              isGood: true,
-            };
-          }),
-        ],
-      },
-    });
-    router.replace(`/friend/${friendId}/diary/new/result`);
-  }, [friendId, router, state.badChecklist, state.goodChecklist]);
+    try {
+      const response = await createDiary({
+        friendId,
+        diaryRequestDto: {
+          content: newForm.content,
+          date: toDateTimeText(newForm.date, DATE_TIME_FORMAT4),
+          tags: newForm.tags,
+          emoji: EmojiEnumByType[newForm.emoji],
+          checklist: [
+            ...friendChecklist.badChecklist.map((item) => {
+              return {
+                id: item.id,
+                isChecked: badChecklistValues.includes(item.id),
+                isGood: false,
+              };
+            }),
+            ...friendChecklist.goodChecklist.map((item) => {
+              return {
+                id: item.id,
+                isChecked: goodChecklistValues.includes(item.id),
+                isGood: true,
+              };
+            }),
+          ],
+        },
+      });
+      storage().setSayingResult(JSON.stringify(response?.saying ?? {}));
+      router.replace(`/friend/${friendId}/diary/new/result`);
+    } catch (e) {
+      console.error(e);
+      enqueueSnackbar(e.message, {
+        variant: "error",
+        anchorOrigin: {
+          vertical: "top",
+          horizontal: "center",
+        },
+        preventDuplicate: true,
+      });
+    }
+  }, [
+    enqueueSnackbar,
+    friendChecklist.badChecklist,
+    friendChecklist.goodChecklist,
+    friendId,
+    router,
+    state.badChecklist,
+    state.goodChecklist,
+  ]);
 
   return (
     <div className={styles.wrap}>

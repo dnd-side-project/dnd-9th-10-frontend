@@ -16,3 +16,12 @@ export const EmojiEnumByType: Record<EmojiType, GetDiaryResponseEmojiEnum> = {
   emoji5: GetDiaryResponseEmojiEnum.Angry,
   emoji6: GetDiaryResponseEmojiEnum.Sad,
 };
+
+export const EmojiTypeByEnum: Record<GetDiaryResponseEmojiEnum, EmojiType> = {
+  [GetDiaryResponseEmojiEnum.Calm]: 'emoji1',
+  [GetDiaryResponseEmojiEnum.Happy]: 'emoji2',
+  [GetDiaryResponseEmojiEnum.Displeased]: 'emoji3',
+  [GetDiaryResponseEmojiEnum.Panic]: 'emoji4',
+  [GetDiaryResponseEmojiEnum.Angry]: 'emoji5',
+  [GetDiaryResponseEmojiEnum.Sad]: 'emoji6',
+};
