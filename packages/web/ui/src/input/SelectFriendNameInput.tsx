@@ -7,11 +7,11 @@ import Image from "next/image";
 import Icon from "../icon/Icon";
 import InfoText from "../text/InfoText";
 import React from "react";
-import { BbokCharacterInfo } from "@dnd9-10/shared/src/__generate__/member";
+import { GetBbokCharacterResponse } from "@dnd9-10/shared/src/__generate__/member";
 
 export interface SelectFriendNameInputProps {
   className?: string;
-  character: BbokCharacterInfo;
+  character: GetBbokCharacterResponse;
   value: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
