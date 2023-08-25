@@ -34,3 +34,8 @@ export const createDiary = async (params: {
   const response = await factory.createDiaryUsingPOST(id, diaryRequestDto);
   return response.data?.data;
 };
+
+export const deleteDiary = async (id: number) => {
+  const response = await factory.deleteDiaryUsingDELETE(id);
+  return response.data;
+};

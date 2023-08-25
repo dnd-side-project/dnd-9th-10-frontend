@@ -25,7 +25,7 @@ import {
   transformDateTimeStrToText,
 } from "@dnd9-10/shared/src/utils/datetime/datetime";
 import { useQuery } from "@tanstack/react-query";
-import { getDiary } from "../../../../../apis/diary";
+import { deleteDiary, getDiary } from "../../../../../apis/diary";
 import {
   DATE_TIME_FORMAT4,
   DATE_TIME_FORMAT6,
@@ -69,9 +69,10 @@ export default function Page(props: Props) {
     //
   }, [router]);
 
-  const handleDelete = useCallback(() => {
-    //
-  }, [router]);
+  const handleDelete = useCallback(async () => {
+    await deleteDiary(diaryId);
+    router.back();
+  }, [diaryId, router]);
 
   return (
     <div className={styles.wrap}>
@@ -124,7 +125,11 @@ export default function Page(props: Props) {
               <div className={styles.tags}>
                 {tags.map((tag, index) => {
                   return (
-                    <TagText key={index} className={styles.tag} size={"medium"}>
+                    <TagText
+                      key={tag + index}
+                      className={styles.tag}
+                      size={"medium"}
+                    >
                       {tag}
                     </TagText>
                   );
