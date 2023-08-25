@@ -20,7 +20,7 @@ import { NewFriendCard } from "@dnd9-10/webui/src/card/NewFriendCard";
 import CircularIndicator from "@dnd9-10/webui/src/indicator/CircularIndicator";
 import { GetFriendResponse } from "@dnd9-10/shared/src/__generate__/member/api";
 import { GetBbokCharacterResponse } from "@dnd9-10/shared/src/__generate__/member/api";
-import { createFriend } from "../../apis/friend";
+import { createFriend, deactivateFriend } from "../../apis/friend";
 import {
   durationDaysByTime,
   parseDate,
@@ -39,7 +39,7 @@ export default function MainPage(props: Props) {
   const { characters } = props;
   const { enqueueSnackbar } = useSnackbar();
   const friendsResponse = useQuery(["getFriends"], getFriends);
-  const friends = friendsResponse?.data ?? [];
+  const friends = (friendsResponse?.data ?? []).filter((item) => item.active);
   const isEmptyFriends = friends.length === 0;
   const router = useRouter();
   const [page, setPage] = useState(0);
@@ -102,8 +102,13 @@ export default function MainPage(props: Props) {
     router.push("/checklist");
   }, [router]);
 
-  if(friendsResponse.isLoading) {
-    return <Loading className={styles.loading} />
+  const handleDeleteFirend = useCallback(async () => {
+    await deactivateFriend(selectedFriend?.id);
+    window.location.reload();
+  }, [selectedFriend?.id]);
+
+  if (friendsResponse.isLoading) {
+    return <Loading className={styles.loading} />;
   }
 
   return (
@@ -139,6 +144,7 @@ export default function MainPage(props: Props) {
                       diaryCount={countingDiary}
                       score={score}
                       onClick={handleSelectedItem(item)}
+                      onDeletSubmit={handleDeleteFirend}
                     />
                   </div>
                 );

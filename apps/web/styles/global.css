@@ -6,9 +6,13 @@
 }
 
 body {
+}
+
+#_next {
   position: relative;
   max-width: 375px;
   width: 100%;
+  height: 100%;
   margin: auto;
 }
 

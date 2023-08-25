@@ -121,7 +121,9 @@ export default function RootLayout({
         ></script>
       </head>
       <body>
-        <ClientProvider>{children}</ClientProvider>
+        <div id="_next">
+          <ClientProvider>{children}</ClientProvider>
+        </div>
       </body>
     </html>
   );

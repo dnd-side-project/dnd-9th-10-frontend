@@ -31,3 +31,8 @@ export const createFriend = async (payload: CreateFriendRequest) => {
   const response = await memberFactory.createFriendUsingPOST(payload);
   return response.data;
 };
+
+export const deactivateFriend = async (id: number) => {
+  const response = await memberFactory.deactivateFriendUsingPATCH(id);
+  return response.data;
+};
