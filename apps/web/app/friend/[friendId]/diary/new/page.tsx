@@ -156,11 +156,11 @@ export default function Page(props: Props) {
               최대 7개까지 입력이 가능해요.
             </InfoText>
           </Bold18>
-          <div className={styles["section-content"]}>
+          <div className={styles["tag-section-content"]} onClick={handleTag}>
             {state.tags.length === 0 ? (
               <TextInput
                 inputProps={{
-                  disabled: true,
+                  // disabled: true,
                   placeholder:
                     "태그를 추가해보세요 (ex. 거짓말, 가스라이팅 등)",
                 }}
