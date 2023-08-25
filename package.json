@@ -12,8 +12,7 @@
     "clean": "turbo clean && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore",
     "ui-components:new": "plop ui-components",
-    "codegen": "concurrently \"yarn codegen:api\" \"yarn codegen:account\" \"yarn codegen:member\"",
-    "codegen:api": "java -jar ./scripts/openapi-generator-cli-6.2.1.jar generate -i https://bbok.kro.kr/v3/api-docs?group=Mock-API -g typescript-axios -o ./packages/shared/src/__generate__/api --type-mappings Date=string --skip-validate-spec --config ./codegenConfig.json",
+    "codegen": "concurrently \"yarn codegen:account\" \"yarn codegen:member\"",
     "codegen:account": "java -jar ./scripts/openapi-generator-cli-6.2.1.jar generate -i 'https://bbok.kro.kr/v3/api-docs?group=Non-Security API' -g typescript-axios -o ./packages/shared/src/__generate__/account --type-mappings Date=string --skip-validate-spec --config ./codegenConfig.json",
     "codegen:member": "java -jar ./scripts/openapi-generator-cli-6.2.1.jar generate -i 'https://bbok.kro.kr/v3/api-docs?group=Security API' -g typescript-axios -o ./packages/shared/src/__generate__/member --type-mappings Date=string --skip-validate-spec --config ./codegenConfig.json",
     "prepare": "husky install"

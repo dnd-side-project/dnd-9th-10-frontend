@@ -49,25 +49,6 @@ export interface Checklist {
 /**
  * 
  * @export
- * @interface ChecklistInfo
- */
-export interface ChecklistInfo {
-    /**
-     * 
-     * @type {string}
-     * @memberof ChecklistInfo
-     */
-    'criteria'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof ChecklistInfo
-     */
-    'id'?: number;
-}
-/**
- * 
- * @export
  * @interface ChecklistInfoRequest
  */
 export interface ChecklistInfoRequest {
@@ -551,13 +532,13 @@ export interface EditMemberChecklistRequest {
      * @type {Array<ChecklistInfoRequest>}
      * @memberof EditMemberChecklistRequest
      */
-    'badChecklist'?: Array<ChecklistInfoRequest>;
+    'checklist'?: Array<ChecklistInfoRequest>;
     /**
      * 
-     * @type {Array<ChecklistInfoRequest>}
+     * @type {boolean}
      * @memberof EditMemberChecklistRequest
      */
-    'goodChecklist'?: Array<ChecklistInfoRequest>;
+    'isGood'?: boolean;
 }
 /**
  * 
@@ -647,6 +628,25 @@ export interface GetBookmarkGroupResponse {
      * @memberof GetBookmarkGroupResponse
      */
     'bookmarks'?: Array<GetSayingResponse>;
+}
+/**
+ * 
+ * @export
+ * @interface GetDetailMemberChecklistResponse
+ */
+export interface GetDetailMemberChecklistResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof GetDetailMemberChecklistResponse
+     */
+    'criteria'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof GetDetailMemberChecklistResponse
+     */
+    'id'?: number;
 }
 /**
  * 
@@ -866,16 +866,16 @@ export interface GetFriendTagsResponse {
 export interface GetMemberChecklistResponse {
     /**
      * 이상적인 기준
-     * @type {Array<ChecklistInfo>}
+     * @type {Array<GetDetailMemberChecklistResponse>}
      * @memberof GetMemberChecklistResponse
      */
-    'badChecklist'?: Array<ChecklistInfo>;
+    'badChecklist'?: Array<GetDetailMemberChecklistResponse>;
     /**
      * 기피하는 기준
-     * @type {Array<ChecklistInfo>}
+     * @type {Array<GetDetailMemberChecklistResponse>}
      * @memberof GetMemberChecklistResponse
      */
-    'goodChecklist'?: Array<ChecklistInfo>;
+    'goodChecklist'?: Array<GetDetailMemberChecklistResponse>;
 }
 /**
  * 
@@ -1515,7 +1515,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * @throws {RequiredError}
          */
         getChecklistUsingGET: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/v1/friend/checklist`;
+            const localVarPath = `/api/v1/member/checklist`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;

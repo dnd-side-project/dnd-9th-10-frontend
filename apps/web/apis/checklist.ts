@@ -1,7 +1,5 @@
 import { axiosInstance } from "../libs/axios";
 
-import { MockApiFactory } from "@dnd9-10/shared/src/__generate__/api/api";
-
 import {
   EditMemberChecklistRequest,
   CreateMemberChecklistRequest,
@@ -9,7 +7,6 @@ import {
 } from "@dnd9-10/shared/src/__generate__/member/api";
 
 const factory = DefaultApiFactory(undefined, undefined, axiosInstance);
-const mockFactory = MockApiFactory(undefined, undefined, axiosInstance);
 
 export const getBasicChecklist = async () => {
   try {
@@ -38,7 +35,7 @@ export const createChecklist = async (
   return response.data;
 };
 
-export const updateChecklist = async (payload: EditMemberChecklistRequest) => {
-  const response = await mockFactory.updateChecklistUsingPATCH(payload);
+export const updateChecklist = async (payload?: EditMemberChecklistRequest) => {
+  const response = await factory.editChecklistUsingPATCH(payload);
   return response.data;
 };

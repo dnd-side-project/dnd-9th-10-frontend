@@ -1,11 +1,10 @@
-import { getFriendChecklist } from "../../apis/checklist";
-import { initializeServer } from "../../libs/server";
+"use client";
+
+import { initializeClient } from "../../libs/client";
 import ChecklistPage from "./_components/ChecklistPage";
 
-initializeServer();
+initializeClient();
 
 export default async function Page() {
-  const checklist = await getFriendChecklist();
-
-  return <ChecklistPage data={checklist} />;
+  return <ChecklistPage />;
 }
