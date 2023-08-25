@@ -155,7 +155,7 @@ export default function FriendIdDiariesPage(props: Props) {
         {isEmpty ? <NewDiaryEmpty className={styles.empty} /> : null}
         {!isEmpty
           ? diaries?.data?.diaries?.map?.((item) => {
-              const { id, date, tags, content, emojiUrl } = item;
+              const { id, date, tags, content, emoji, emojiUrl } = item;
               return (
                 <DiaryCard
                   className={styles.item}
@@ -163,6 +163,7 @@ export default function FriendIdDiariesPage(props: Props) {
                   date={date}
                   description={content}
                   tags={tags}
+                  emoji={emoji}
                   emojiUrl={emojiUrl}
                   onClick={handleClickItem(item)}
                 />

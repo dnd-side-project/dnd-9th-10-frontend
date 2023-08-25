@@ -2,18 +2,22 @@ import cn from "classnames";
 import Icon from "../icon/Icon";
 import TagText from "../text/TagText";
 import styles from "./DiaryCard.module.css";
+import { GetDiaryResponseEmojiEnum } from "@dnd9-10/shared/src/__generate__/member/api";
+import { EmojiTypeByEnum } from "@dnd9-10/shared/src/utils/emoji";
 
 export interface DiaryCardProps {
   className?: string;
   date: string;
   description: string;
   tags: string[];
+  emoji: GetDiaryResponseEmojiEnum;
   emojiUrl: string;
   onClick?: () => void;
 }
 
 export function DiaryCard(props: DiaryCardProps) {
-  const { className, date, description, tags, onClick } = props;
+  const { className, date, description, emoji, emojiUrl, tags, onClick } =
+    props;
   return (
     <div className={cn(styles.wrap, className)} onClick={onClick}>
       <div className={styles.content}>
@@ -30,7 +34,7 @@ export function DiaryCard(props: DiaryCardProps) {
         </div>
       </div>
       <div className="emoji-group">
-        <Icon name="emoji1" />
+        <Icon name={EmojiTypeByEnum[emoji] ?? "emoji1"} />
       </div>
     </div>
   );
