@@ -55,7 +55,11 @@ export function SelectFriendModal(props: SelectFriendModalProps) {
     {
       title: "친구의 이름은 무엇인가요?",
       content: (
-        <SelectFriendNameInput value={name} onChange={handleChangeName} />
+        <SelectFriendNameInput
+          character={characters[selectedCharacterIndex]}
+          value={name}
+          onChange={handleChangeName}
+        />
       ),
     },
   ];

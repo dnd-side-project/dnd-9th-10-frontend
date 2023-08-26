@@ -7,19 +7,21 @@ import Image from "next/image";
 import Icon from "../icon/Icon";
 import InfoText from "../text/InfoText";
 import React from "react";
+import { GetBbokCharacterResponse } from "@dnd9-10/shared/src/__generate__/member";
 
 export interface SelectFriendNameInputProps {
   className?: string;
+  character: GetBbokCharacterResponse;
   value: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export function SelectFriendNameInput(props: SelectFriendNameInputProps) {
-  const { className, value, onChange } = props;
+  const { className, character, value, onChange } = props;
   return (
     <div className={cn(styles.wrap, className)}>
       <div className={styles["friend-profile"]}>
-        <Image width={109} height={78} alt="friend" src={images.FRIEND1} />
+        <Image width={109} height={78} alt="friend" src={character.iconUrl ?? images.FRIEND1} />
       </div>
       <TextInput
         className={styles.input}

@@ -6,6 +6,8 @@ import SubmitButton from "../button/SubmitButton";
 import NewDiaryEmojiSelectbox from "../selectbox/NewDiaryEmojiSelectbox";
 import { useCallback, useState } from "react";
 import { EmojiType } from "@dnd9-10/shared/src/utils/emoji";
+import Button from "../button/Button";
+import { Medium17 } from "../text/Typographies";
 
 export interface NewDiaryEmojiModalProps {
   className?: string;
@@ -29,11 +31,9 @@ export function NewDiaryEmojiModal(props: NewDiaryEmojiModalProps) {
     <div className={cn(styles.wrap, className)}>
       <Topbar
         RightComponent={
-          <IconButton
-            className={styles["close-button"]}
-            name="close"
-            onClick={onClose}
-          />
+          <Button className={styles["submit-button"]} onClick={onClose}>
+            <Medium17 className={styles["submit-button-text"]}>닫기</Medium17>
+          </Button>
         }
       />
       <div className={styles.content}>

@@ -22,6 +22,7 @@ import Tooltip from "./tooltip";
 import Logo from "./logo";
 import Warn from "./warn";
 import Profile from "./profile";
+import Circle from "./circle";
 import Emoji1 from "./emoji/icon1";
 import Emoji2 from "./emoji/icon2";
 import Emoji3 from "./emoji/icon3";
@@ -52,6 +53,7 @@ export const emojiIcons = {
 } as const;
 
 export const svgIcons = {
+  circle: Circle,
   arrow_down: ArrowDown,
   arrow_up: ArrowUp,
   icon_back: IconBack,

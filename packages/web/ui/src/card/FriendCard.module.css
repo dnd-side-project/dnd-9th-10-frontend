@@ -72,8 +72,26 @@
 }
 
 .bottom-graph {
-  width: 56px;
-  height: 56px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 62px;
+  height: 62px;
+  margin-right: 20px;
+}
+
+.bottom-graph-text {
+  color: #fff;
+}
+
+.bottom-graph-icon {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .bottom-text {

@@ -82,6 +82,7 @@ export default function Page(props: Props) {
   const handleSubmit = useCallback(() => {
     storage().setNewDiaryForm(
       JSON.stringify({
+        ...storage().getNewDiaryForm(),
         tags: selectedTags.map((item) => item.value),
       })
     );

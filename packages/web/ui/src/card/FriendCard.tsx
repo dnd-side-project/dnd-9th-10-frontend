@@ -1,7 +1,13 @@
 import cn from "classnames";
 import styles from "./FriendCard.module.css";
 import Icon from "../icon/Icon";
-import { Bold18, Bold19, Medium13, Medium14 } from "../text/Typographies";
+import {
+  Bold18,
+  Bold19,
+  Medium13,
+  Medium14,
+  Semibold20,
+} from "../text/Typographies";
 import ProfileImage from "../image/ProfileImage";
 import { images } from "@dnd9-10/shared/src/libs/images";
 import IconButton from "../button/IconButton";
@@ -73,7 +79,12 @@ export function FriendCard(props: FriendCardProps) {
         </div>
       </div>
       <div className={styles.bottom}>
-        <div className={styles["bottom-graph"]}>{score}</div>
+        <div className={styles["bottom-graph"]}>
+          <Icon className={styles["bottom-graph-icon"]} name="circle" />
+          <Semibold20 className={styles["bottom-graph-text"]}>
+            {score}
+          </Semibold20>
+        </div>
         <Bold18 className={styles["bottom-text"]} as="pre">
           {`나의 친구 기준에서 
 ${score}% 벗어나요`}
