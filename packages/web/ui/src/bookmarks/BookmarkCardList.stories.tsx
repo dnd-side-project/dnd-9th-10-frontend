@@ -1,6 +1,8 @@
 import { StoryFn, Meta } from "@storybook/react";
 import { within } from "@storybook/testing-library";
 import { BookmarkCardList, BookmarkCardListProps } from "./BookmarkCardList";
+import React from "react";
+import QueryClientWrapper from "web/libs/react-query";
 
 export default {
   component: BookmarkCardList,
@@ -9,26 +11,31 @@ export default {
 } as Meta;
 
 const Template: StoryFn<BookmarkCardListProps> = (args) => (
-  <BookmarkCardList
-    {...args}
-    data={[
-      {
-        description: "desc1",
-        reference: "ref",
-        active: true,
-      },
-      {
-        description: "desc2",
-        reference: "ref",
-        active: true,
-      },
-      {
-        description: "desc3",
-        reference: "ref",
-        active: true,
-      },
-    ]}
-  />
+  <QueryClientWrapper>
+    <BookmarkCardList
+      {...args}
+      data={[
+        {
+          id: 1,
+          description: "desc1",
+          reference: "ref",
+          active: true,
+        },
+        {
+          id: 2,
+          description: "desc2",
+          reference: "ref",
+          active: true,
+        },
+        {
+          id: 3,
+          description: "desc3",
+          reference: "ref",
+          active: true,
+        },
+      ]}
+    />
+  </QueryClientWrapper>
 );
 
 export const Primary = Template.bind({});

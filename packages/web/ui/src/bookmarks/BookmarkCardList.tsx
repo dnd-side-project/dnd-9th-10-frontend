@@ -12,10 +12,11 @@ export function BookmarkCardList(props: BookmarkCardListProps) {
   return (
     <div className={cn(styles.wrap, className)}>
       {data?.map((item, index) => {
-        const { description, reference, active } = item;
+        const { id, description, reference, active } = item;
         return (
           <BookmarkCard
             key={index}
+            id={id}
             description={description}
             reference={reference}
             active={active}
