@@ -25,3 +25,5 @@ export const getValue = <T>(func: () => T, defaultValue: T) => {
     return defaultValue;
   }
 };
+
+export const isEmpty = (str: string) => !str;

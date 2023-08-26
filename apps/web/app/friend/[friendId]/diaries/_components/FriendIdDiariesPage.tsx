@@ -16,8 +16,7 @@ import Topbar from "@dnd9-10/webui/src/topbar/Topbar";
 import { SearchTextInput } from "@dnd9-10/webui/src/input/SearchTextInput";
 import { NewDiaryEmpty } from "@dnd9-10/webui/src/empty/NewDiaryEmpty";
 import {
-  DiaryTagDto,
-  GetDiariesResponse,
+  FriendTag,
   GetDiaryResponse,
 } from "@dnd9-10/shared/src/__generate__/member/api";
 import TagText from "@dnd9-10/webui/src/text/TagText";
@@ -26,10 +25,12 @@ import { useQuery } from "@tanstack/react-query";
 import { getDiaries } from "../../../../../apis/diary";
 import Icon from "@dnd9-10/webui/src/icon/Icon";
 import Button from "@dnd9-10/webui/src/button/Button";
+import Loading from "@dnd9-10/webui/src/icon/Loading";
+import { storage } from "../../../../../libs/local-storage";
 
 interface Props {
   friendId: number;
-  tags: DiaryTagDto["tags"];
+  tags: FriendTag[];
 }
 
 type SortType = "desc" | undefined;
@@ -39,11 +40,18 @@ export default function FriendIdDiariesPage(props: Props) {
   const router = useRouter();
 
   const [searchText, setSearchText] = useState("");
-  const [selectedTags, setSelectedTags] = useState([]);
+  const [selectedTag, setSelectedTag] = useState(undefined);
   const [sortType, setSortType] = useState<SortType>("desc");
 
-  const diaries = useQuery(["getDiaries", friendId, searchText, sortType], () =>
-    getDiaries({ id: friendId, q: searchText, order: sortType })
+  const diaries = useQuery(
+    ["getDiaries", friendId, searchText, sortType, selectedTag],
+    () =>
+      getDiaries({
+        id: friendId,
+        q: searchText,
+        order: sortType,
+        tag: selectedTag,
+      })
   );
   const totalCount = diaries?.data?.totalElements ?? 0;
   const isEmpty = totalCount === 0;
@@ -56,6 +64,7 @@ export default function FriendIdDiariesPage(props: Props) {
   );
 
   const handleNewDiary = useCallback(() => {
+    storage().setNewDiaryForm("");
     router.push(`/friend/${friendId}/diary/new`);
   }, [friendId, router]);
 
@@ -72,6 +81,18 @@ export default function FriendIdDiariesPage(props: Props) {
       router.push(`/friend/${friendId}/diary/${item.id}`);
     },
     [friendId, router]
+  );
+
+  const handleSelectedTag = useCallback(
+    (tag: string) => () => {
+      const hasTag = selectedTag === tag;
+      if (hasTag) {
+        setSelectedTag(undefined);
+        return;
+      }
+      setSelectedTag(tag);
+    },
+    [selectedTag]
   );
 
   return (
@@ -91,11 +112,17 @@ export default function FriendIdDiariesPage(props: Props) {
       />
       <div className={styles["tag-group"]}>
         {tags?.map((item, index) => {
-          const { tag } = item;
+          const { name: tag } = item;
           return (
-            <TagText key={index} className={styles.tag} size={"medium"}>
-              {tag}
-            </TagText>
+            <Button key={tag + index} onClick={handleSelectedTag(tag)}>
+              <TagText
+                className={styles.tag}
+                active={selectedTag === tag}
+                size={"medium"}
+              >
+                {tag}
+              </TagText>
+            </Button>
           );
         })}
       </div>
@@ -126,10 +153,13 @@ export default function FriendIdDiariesPage(props: Props) {
         </Button>
       </div>
       <div className={styles.content}>
-        {isEmpty ? <NewDiaryEmpty className={styles.empty} /> : null}
-        {!isEmpty
+        {diaries.isLoading && <Loading className={styles.loading} />}
+        {!diaries.isLoading && isEmpty ? (
+          <NewDiaryEmpty className={styles.empty} />
+        ) : null}
+        {!diaries.isLoading && !isEmpty
           ? diaries?.data?.diaries?.map?.((item) => {
-              const { id, date, tags, content, emojiUrl } = item;
+              const { id, date, tags, content, emoji, emojiUrl } = item;
               return (
                 <DiaryCard
                   className={styles.item}
@@ -137,6 +167,7 @@ export default function FriendIdDiariesPage(props: Props) {
                   date={date}
                   description={content}
                   tags={tags}
+                  emoji={emoji}
                   emojiUrl={emojiUrl}
                   onClick={handleClickItem(item)}
                 />

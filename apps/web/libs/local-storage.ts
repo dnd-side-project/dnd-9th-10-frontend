@@ -1,8 +1,8 @@
-import _ from "lodash";
+import { DiarySaying } from "@dnd9-10/shared/src/__generate__/member";
+import { isEmpty, isJSON } from "@dnd9-10/shared/src/utils/common";
+import { once } from "@dnd9-10/shared/src/utils/function";
 
-import { isJSON } from "@dnd9-10/shared/src/utils/common";
-
-type StorageType = "accessToken" | "memberId";
+type StorageType = "newDiaryForm" | "sayingResult";
 
 function storageFactory(
   setItem: (key: string, value: string) => void,
@@ -19,7 +19,7 @@ function storageFactory(
   ): string => {
     try {
       const itemString = getItem(key);
-      return _.isEmpty(itemString) ? defaultItem : itemString;
+      return isEmpty(itemString) ? defaultItem : itemString;
     } catch (error) {
       return defaultItem;
     }
@@ -31,7 +31,7 @@ function storageFactory(
   ): boolean => {
     try {
       const itemString = getItem(key);
-      return _.isEmpty(itemString) ? defaultItem : itemString === "true";
+      return isEmpty(itemString) ? defaultItem : itemString === "true";
     } catch (error) {
       return defaultItem;
     }
@@ -44,7 +44,7 @@ function storageFactory(
     try {
       const itemString = getItem(key);
       const num = Number(itemString);
-      return !_.isNaN(num) ? num : defaultItem;
+      return !Number.isNaN(num) ? num : defaultItem;
     } catch (error) {
       return defaultItem;
     }
@@ -64,20 +64,25 @@ function storageFactory(
   };
 
   const setStorages = {
-    setAccessToken: (accessToken: string) => {
-      setStorageItem("accessToken", accessToken);
+    setNewDiaryForm: (form: string) => {
+      setStorageItem("newDiaryForm", form);
     },
-    setMemberId: (memberId: string) => {
-      setStorageItem("memberId", memberId);
+    setSayingResult: (sayingResult: string) => {
+      setStorageItem("sayingResult", sayingResult);
     },
   };
 
   const getStorages = {
-    getAccessToken: () => {
-      return getStringWithDefault("accessToken", null);
+    getNewDiaryForm: () => {
+      const res = getJSONWithDefault("newDiaryForm", null);
+      return {
+        ...res,
+        date: res?.date ? new Date(res?.date) : new Date(),
+      };
     },
-    getMemberId: () => {
-      return getStringWithDefault("memberId", null);
+    getSayingResult: (): DiarySaying => {
+      const res = getJSONWithDefault("sayingResult", {});
+      return res;
     },
   };
 
@@ -93,7 +98,7 @@ function storageFactory(
   };
 }
 
-export const storage = _.once(() => {
+export const storage = once(() => {
   const setItem = (key: string, value: string) => {
     localStorage.setItem(key, value);
   };

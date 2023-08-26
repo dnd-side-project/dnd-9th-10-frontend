@@ -1,3 +1,5 @@
+@import "@radix-ui/colors/black-alpha.css";
+
 * {
   box-sizing: border-box;
   user-select: none;
@@ -54,4 +56,9 @@ ul {
 
 pre {
   margin: 0;
+}
+
+/* reset */
+button {
+  /* all: unset; */
 }

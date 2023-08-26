@@ -1,9 +1,18 @@
+@import "@radix-ui/colors/black-alpha.css";
+
 * {
   box-sizing: border-box;
   user-select: none;
 }
 
 body {
+}
+
+#_next {
+  position: relative;
+  max-width: 375px;
+  width: 100%;
+  height: 100%;
   margin: auto;
 }
 
@@ -57,4 +66,9 @@ pre {
 
 body > div {
   overflow: auto;
+}
+
+/* reset */
+button {
+  /* all: unset; */
 }

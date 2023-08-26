@@ -7,14 +7,15 @@ import cn from "classnames";
 import styles from "./page.module.css";
 import Topbar from "@dnd9-10/webui/src/topbar/Topbar";
 import BasedMyCheckList from "@dnd9-10/webui/src/checklist/BasedMyCheckList";
-import { GetMemberChecklistResponse } from "@dnd9-10/shared/src/__generate__/member/api";
+import { useQuery } from "@tanstack/react-query";
+import { getFriendChecklist } from "../../../apis/checklist";
 
-interface Props {
-  data: GetMemberChecklistResponse;
-}
-
-export default function ChecklistPage(props: Props) {
-  const { data } = props;
+export default function ChecklistPage() {
+  const firendChecklistResponse = useQuery(
+    ["getFriendChecklist"],
+    getFriendChecklist
+  );
+  const data = firendChecklistResponse?.data ?? {};
   const router = useRouter();
   const badChecklist = data?.badChecklist ?? [];
   const goodChecklist = data?.goodChecklist ?? [];

@@ -24,6 +24,10 @@
   padding: 0px 20px;
 }
 
+.tag {
+  margin-right: 8px;
+}
+
 .filter-group {
   display: flex;
   flex-direction: row;
@@ -54,6 +58,10 @@
   flex: 1;
   flex-direction: column;
   padding: 0px 20px;
+}
+
+.loading {
+  margin: auto;
 }
 
 .item {

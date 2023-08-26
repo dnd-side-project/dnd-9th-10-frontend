@@ -6,12 +6,12 @@ import { images } from "@dnd9-10/shared/src/libs/images";
 import { Bold20, Regular15 } from "../text/Typographies";
 import { Button } from "../button/Button";
 import SelectFriendModal from "../modal/SelectFriendModal";
-import { BbokCharacterDto } from "@dnd9-10/shared/src/__generate__/member/api";
+import { GetBbokCharacterResponse } from "@dnd9-10/shared/src/__generate__/member/api";
 
 export interface FriendEmptyProps {
   className?: string;
-  characters: BbokCharacterDto[];
-  onAddFriend: (form: { name: string; character: BbokCharacterDto }) => void;
+  characters: GetBbokCharacterResponse[];
+  onAddFriend: (form: { name: string; character: GetBbokCharacterResponse }) => void;
 }
 
 export function FriendEmpty(props: FriendEmptyProps) {

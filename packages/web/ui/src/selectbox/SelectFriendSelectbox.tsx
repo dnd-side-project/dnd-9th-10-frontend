@@ -6,11 +6,11 @@ import { images } from "@dnd9-10/shared/src/libs/images";
 import { Medium15 } from "../text/Typographies";
 import { useCallback } from "react";
 import Radiobox from "../checkbox/Radiobox";
-import { BbokCharacterDto } from "@dnd9-10/shared/src/__generate__/member/api";
+import { GetBbokCharacterResponse } from "@dnd9-10/shared/src/__generate__/member/api";
 
 export interface SelectFriendSelectboxProps {
   className?: string;
-  characters: BbokCharacterDto[];
+  characters: GetBbokCharacterResponse[];
   selectedIndex: number;
   onSelected: (index: number) => void;
 }

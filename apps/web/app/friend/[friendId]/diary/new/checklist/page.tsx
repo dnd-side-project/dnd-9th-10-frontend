@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useCallback } from "react";
+import { useCallback, useReducer } from "react";
 import { SubmitButton } from "@dnd9-10/webui/src/button/SubmitButton";
 import {
   Bold18,
@@ -17,25 +17,162 @@ import Icon from "@dnd9-10/webui/src/icon/Icon";
 import NewCheckList from "@dnd9-10/webui/src/checklist/NewCheckList";
 import Topbar from "@dnd9-10/webui/src/topbar/Topbar";
 import Button from "@dnd9-10/webui/src/button/Button";
+import { useSnackbar } from "notistack";
 
 import styles from "./page.module.css";
 import { initializeClient } from "../../../../../../libs/client";
+import { storage } from "../../../../../../libs/local-storage";
+import { createDiary } from "../../../../../../apis/diary";
+import { CreateDiaryRequestEmojiEnum } from "@dnd9-10/shared/src/__generate__/member/api";
+import { useQuery } from "@tanstack/react-query";
+import { getFriendChecklist } from "../../../../../../apis/checklist";
+import { EmojiEnumByType, EmojiType } from "@dnd9-10/shared/src/utils/emoji";
+import { toDateTimeText } from "@dnd9-10/shared/src/utils/datetime/datetime";
+import { DATE_TIME_FORMAT4 } from "@dnd9-10/shared/src/utils/datetime/datetime-format";
 
 initializeClient();
 
-export default function Page() {
+interface Props {
+  params: {
+    friendId?: string;
+  };
+  searchParams: {};
+}
+
+type FormProps = {
+  goodChecklist: Set<number>;
+  badChecklist: Set<number>;
+};
+
+const initialState: FormProps = {
+  goodChecklist: new Set(),
+  badChecklist: new Set(),
+};
+
+export default function Page(props: Props) {
   const router = useRouter();
+  const { enqueueSnackbar } = useSnackbar();
+  const friendId = Number(props.params.friendId);
+  const friendChecklistResponse = useQuery(
+    ["getFriendChecklist"],
+    getFriendChecklist,
+    {
+      suspense: false,
+    }
+  );
+  const friendChecklist = friendChecklistResponse.data ?? {
+    goodChecklist: [],
+    badChecklist: [],
+  };
+
+  const [state, setState] = useReducer(
+    (current: FormProps, update: Partial<FormProps>) => ({
+      ...current,
+      ...update,
+    }),
+    initialState
+  );
 
   const handleBackClick = useCallback(() => {
     router.back();
-  }, []);
+  }, [router]);
+
+  const handleBadChecklistChecked = useCallback(
+    (id: number) => {
+      if (state.badChecklist.has(id)) {
+        state.badChecklist.delete(id);
+        setState({
+          badChecklist: state.badChecklist,
+        });
+      }
+      setState({
+        badChecklist: state.badChecklist.add(id),
+      });
+    },
+    [state.badChecklist]
+  );
+
+  const handleGoodChecklistChecked = useCallback(
+    (id: number) => {
+      if (state.goodChecklist.has(id)) {
+        state.goodChecklist.delete(id);
+        setState({
+          goodChecklist: state.goodChecklist,
+        });
+      }
+      setState({
+        goodChecklist: state.goodChecklist.add(id),
+      });
+    },
+    [state.goodChecklist]
+  );
+
+  const handleSubmit = useCallback(async () => {
+    const newForm: {
+      content: string;
+      date: Date;
+      tags: string[];
+      emoji: EmojiType | null;
+      useFriends: boolean;
+    } = storage().getNewDiaryForm();
+    const badChecklistValues = Array.from(state.badChecklist.values());
+    const goodChecklistValues = Array.from(state.goodChecklist.values());
+
+    try {
+      const response = await createDiary({
+        friendId,
+        diaryRequestDto: {
+          content: newForm.content,
+          date: toDateTimeText(newForm.date, DATE_TIME_FORMAT4),
+          tags: newForm.tags,
+          emoji: EmojiEnumByType[newForm.emoji],
+          checklist: [
+            ...friendChecklist.badChecklist.map((item) => {
+              return {
+                id: item.id,
+                isChecked: badChecklistValues.includes(item.id),
+                isGood: false,
+              };
+            }),
+            ...friendChecklist.goodChecklist.map((item) => {
+              return {
+                id: item.id,
+                isChecked: goodChecklistValues.includes(item.id),
+                isGood: true,
+              };
+            }),
+          ],
+        },
+      });
+      storage().setSayingResult(JSON.stringify(response?.saying ?? {}));
+      router.replace(`/friend/${friendId}/diary/new/result`);
+    } catch (e) {
+      console.error(e);
+      enqueueSnackbar(e.message, {
+        variant: "error",
+        anchorOrigin: {
+          vertical: "top",
+          horizontal: "center",
+        },
+        preventDuplicate: true,
+      });
+    }
+  }, [
+    enqueueSnackbar,
+    friendChecklist.badChecklist,
+    friendChecklist.goodChecklist,
+    friendId,
+    router,
+    state.badChecklist,
+    state.goodChecklist,
+  ]);
 
   return (
     <div className={styles.wrap}>
       <Topbar
         title={<Semibold18 className={styles.title}>친구 기준</Semibold18>}
         RightComponent={
-          <Button className={styles["submit-button"]}>
+          <Button className={styles["submit-button"]} onClick={handleSubmit}>
             <Medium17 className={styles["submit-button-text"]}>완료</Medium17>
           </Button>
         }
@@ -53,24 +190,14 @@ export default function Page() {
           </Semibold17>
           <div className={styles["section-content"]}>
             <NewCheckList
-              data={[
-                {
-                  name: "기피하는 친구 유형 1",
-                  checked: true,
-                },
-                {
-                  name: "기피하는 친구 유형 2",
-                  checked: true,
-                },
-                {
-                  name: "기피하는 친구 유형 3",
-                  checked: true,
-                },
-                {
-                  name: "기피하는 친구 유형 4",
-                  checked: true,
-                },
-              ]}
+              data={friendChecklist.badChecklist?.map?.((item) => {
+                return {
+                  id: item.id,
+                  name: item.criteria ?? "",
+                  checked: false,
+                };
+              })}
+              onChecked={handleBadChecklistChecked}
             />
           </div>
         </div>
@@ -81,24 +208,14 @@ export default function Page() {
           </div>
           <div className={styles["section-content"]}>
             <NewCheckList
-              data={[
-                {
-                  name: "기피하는 친구 유형 1",
-                  checked: true,
-                },
-                {
-                  name: "기피하는 친구 유형 2",
-                  checked: true,
-                },
-                {
-                  name: "기피하는 친구 유형 3",
-                  checked: true,
-                },
-                {
-                  name: "기피하는 친구 유형 4",
-                  checked: true,
-                },
-              ]}
+              data={friendChecklist.goodChecklist?.map?.((item) => {
+                return {
+                  id: item.id,
+                  name: item.criteria ?? "",
+                  checked: false,
+                };
+              })}
+              onChecked={handleGoodChecklistChecked}
             />
           </div>
         </div>

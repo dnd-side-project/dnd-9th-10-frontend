@@ -1,9 +1,10 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect } from "react";
 import { SubmitButton } from "@dnd9-10/webui/src/button/SubmitButton";
 import { Semibold20 } from "@dnd9-10/webui/src/text/Typographies";
+import { useSnackbar } from "notistack";
 
 import styles from "./page.module.css";
 import Icon from "@dnd9-10/webui/src/icon/Icon";
@@ -13,12 +14,29 @@ import { initKakao, loginWithKakao } from "../../../libs/kakao";
 import { guestSignup } from "../../../apis/account";
 import { storage } from "../../../libs/cookie-storage";
 import { setAccessToken } from "../../../libs/axios";
+import { ERROR_MESSAGE_BY_CODE } from "../../../libs/error";
+import { Toast } from "@dnd9-10/webui/src/toast/Toast";
 
 export default function Page() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const { enqueueSnackbar } = useSnackbar();
+  const errorStatus = searchParams.get("errorStatus");
 
   useEffect(() => {
     initKakao();
+
+    if (errorStatus) {
+      const errorStatusNumber = Number(errorStatus);
+      enqueueSnackbar(ERROR_MESSAGE_BY_CODE[errorStatusNumber], {
+        variant: "error",
+        anchorOrigin: {
+          vertical: "top",
+          horizontal: "center",
+        },
+        preventDuplicate: true,
+      });
+    }
   }, []);
 
   const handleGuest = useCallback(async () => {

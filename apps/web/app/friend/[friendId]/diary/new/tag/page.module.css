@@ -1,0 +1,59 @@
+.wrap {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 100%;
+}
+
+.topbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.title {
+  color: var(--gray-80, #303636);
+}
+
+.submit-button {
+  width: 30px;
+  position: absolute;
+  right: 20px;
+}
+
+.submit-button-text {
+  color: var(--gray-50, #798787);
+}
+
+.input-group {
+  display: flex;
+  flex-direction: row;
+}
+
+.tag-input {
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.add-tag-button {
+  margin-left: 11px;
+}
+
+.add-tag-button-text {
+  color: var(--gray-40, #949f9f);
+}
+
+.tag-group {
+  margin-top: 20px;
+}
+
+.tag {
+  margin-right: 8px;
+}
+
+.bottom {
+  margin-top: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 23px;
+}

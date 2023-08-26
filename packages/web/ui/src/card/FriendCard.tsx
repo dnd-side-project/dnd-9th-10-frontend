@@ -5,6 +5,7 @@ import { Bold18, Bold19, Medium13, Medium14 } from "../text/Typographies";
 import ProfileImage from "../image/ProfileImage";
 import { images } from "@dnd9-10/shared/src/libs/images";
 import IconButton from "../button/IconButton";
+import DeleteRelationshipModal from "../modal/DeleteRelationshipModal";
 
 export interface FriendCardProps {
   className?: string;
@@ -14,6 +15,7 @@ export interface FriendCardProps {
   diaryCount: number;
   score: number;
   onClick?: () => void;
+  onDeletSubmit?: () => void;
 }
 
 export function FriendCard(props: FriendCardProps) {
@@ -25,6 +27,7 @@ export function FriendCard(props: FriendCardProps) {
     diaryCount,
     score,
     onClick,
+    onDeletSubmit,
   } = props;
   return (
     <div
@@ -55,7 +58,19 @@ export function FriendCard(props: FriendCardProps) {
             </Medium14>
           </div>
         </div>
-        <IconButton className={styles["setting-button"]} name="setting" />
+        <div
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+          }}
+        >
+          <DeleteRelationshipModal
+            TriggerComponent={
+              <IconButton className={styles["setting-button"]} name="setting" />
+            }
+            onSubmit={onDeletSubmit}
+          />
+        </div>
       </div>
       <div className={styles.bottom}>
         <div className={styles["bottom-graph"]}>{score}</div>

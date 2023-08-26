@@ -1,5 +1,6 @@
 "use client";
 
+import { useSnackbar } from "notistack";
 import { useCallback, useEffect, useState } from "react";
 import {
   BottomNavigation,
@@ -17,9 +18,9 @@ import { Carousel } from "@dnd9-10/webui/src/carousel/Carousel";
 import { FriendCard } from "@dnd9-10/webui/src/card/FriendCard";
 import { NewFriendCard } from "@dnd9-10/webui/src/card/NewFriendCard";
 import CircularIndicator from "@dnd9-10/webui/src/indicator/CircularIndicator";
-import { FriendDto } from "@dnd9-10/shared/src/__generate__/member/api";
-import { BbokCharacterDto } from "@dnd9-10/shared/src/__generate__/member/api";
-import { createFriend } from "../../apis/friend";
+import { GetFriendResponse } from "@dnd9-10/shared/src/__generate__/member/api";
+import { GetBbokCharacterResponse } from "@dnd9-10/shared/src/__generate__/member/api";
+import { createFriend, deactivateFriend } from "../../apis/friend";
 import {
   durationDaysByTime,
   parseDate,
@@ -27,21 +28,24 @@ import {
 } from "@dnd9-10/shared/src/utils/datetime/datetime";
 import { getFriends } from "../../apis/friend";
 import { useQuery } from "@tanstack/react-query";
+import { storage } from "../../libs/local-storage";
+import Loading from "@dnd9-10/webui/src/icon/Loading";
 
 interface Props {
-  characters: BbokCharacterDto[];
+  characters: GetBbokCharacterResponse[];
 }
 
 export default function MainPage(props: Props) {
   const { characters } = props;
-  const friendsResponse = useQuery(["getFriends"], getFriends, {
-    suspense: true,
-  });
-  const friends = friendsResponse?.data ?? [];
+  const { enqueueSnackbar } = useSnackbar();
+  const friendsResponse = useQuery(["getFriends"], getFriends);
+  const friends = (friendsResponse?.data ?? []).filter((item) => item.active);
+  const isEmptyFriends = friends.length === 0;
   const router = useRouter();
-  const searchParam = useSearchParams();
   const [page, setPage] = useState(0);
-  const totalCount = friends.length + 2;
+  const selectedFriend = friends[page];
+
+  const totalCount = friends.length + 1;
 
   usePwa();
 
@@ -50,26 +54,38 @@ export default function MainPage(props: Props) {
   }, []);
 
   const handleSelectedItem = useCallback(
-    (friend: FriendDto) => () => {
+    (friend: GetFriendResponse) => () => {
       router.push(`/friend/${friend.id}/diaries`);
     },
     [router]
   );
 
   const handleAddFriend = useCallback(
-    async (form: { name: string; character: BbokCharacterDto }) => {
+    async (form: { name: string; character: GetBbokCharacterResponse }) => {
       await createFriend({
         character: form.character.type,
         name: form.name,
       });
-      friendsResponse.refetch();
+      window.location.reload();
     },
-    [friendsResponse]
+    []
   );
 
   const handleAdd = useCallback(() => {
-    router.push(`/friend/${page}/diary/new`);
-  }, [page, router]);
+    if (!selectedFriend?.id) {
+      enqueueSnackbar("친구 생성 후 일화 작성 가능합니다.", {
+        variant: "info",
+        anchorOrigin: {
+          vertical: "top",
+          horizontal: "center",
+        },
+        preventDuplicate: true,
+      });
+      return;
+    }
+    storage().setNewDiaryForm("");
+    router.push(`/friend/${selectedFriend?.id}/diary/new`);
+  }, [enqueueSnackbar, router, selectedFriend?.id]);
 
   const handleSelectedTab = useCallback(
     (tab: BottomTabs) => {
@@ -85,6 +101,15 @@ export default function MainPage(props: Props) {
   const handleBasedFriend = useCallback(() => {
     router.push("/checklist");
   }, [router]);
+
+  const handleDeleteFirend = useCallback(async () => {
+    await deactivateFriend(selectedFriend?.id);
+    window.location.reload();
+  }, [selectedFriend?.id]);
+
+  if (friendsResponse.isLoading) {
+    return <Loading className={styles.loading} />;
+  }
 
   return (
     <div className={styles.wrap}>
@@ -119,16 +144,19 @@ export default function MainPage(props: Props) {
                       diaryCount={countingDiary}
                       score={score}
                       onClick={handleSelectedItem(item)}
+                      onDeletSubmit={handleDeleteFirend}
                     />
                   </div>
                 );
               })}
-              <div className={styles["friend-item"]}>
-                <FriendEmpty
-                  characters={characters}
-                  onAddFriend={handleAddFriend}
-                />
-              </div>
+              {isEmptyFriends && (
+                <div className={styles["friend-item"]}>
+                  <FriendEmpty
+                    characters={characters}
+                    onAddFriend={handleAddFriend}
+                  />
+                </div>
+              )}
               <div className={styles["friend-item"]}>
                 <NewFriendCard />
               </div>

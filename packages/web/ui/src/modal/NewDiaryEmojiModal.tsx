@@ -3,10 +3,9 @@ import styles from "./NewDiaryEmojiModal.module.css";
 import Topbar from "../topbar/Topbar";
 import IconButton from "../button/IconButton";
 import SubmitButton from "../button/SubmitButton";
-import NewDiaryEmojiSelectbox, {
-  EmojiType,
-} from "../selectbox/NewDiaryEmojiSelectbox";
+import NewDiaryEmojiSelectbox from "../selectbox/NewDiaryEmojiSelectbox";
 import { useCallback, useState } from "react";
+import { EmojiType } from "@dnd9-10/shared/src/utils/emoji";
 
 export interface NewDiaryEmojiModalProps {
   className?: string;

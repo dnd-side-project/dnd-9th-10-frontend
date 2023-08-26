@@ -15,6 +15,11 @@ export const getMember = async () => {
   return response.data?.data;
 };
 
+export const checkValidToken = async () => {
+  const response = await memberFactory.getMemberUsingGET();
+  return response.data?.data;
+};
+
 export const kakaoLogin = async (code: string) => {
   const response = await factory.kakaoLoginUsingGET(code);
   return response.data;

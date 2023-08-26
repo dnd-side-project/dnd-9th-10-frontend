@@ -1,0 +1,24 @@
+.wrap {
+}
+
+.input {
+  width: 100%;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%; /* 14px */
+  background: var(--gray-7, #f2f4f5);
+  padding: 15px;
+  border-radius: 10px;
+  text-align: left;
+}
+
+.input::placeholder {
+  text-align: left; /* for Chrome, Firefox, Opera */
+}
+
+.input:focus {
+  background: #eee;
+}

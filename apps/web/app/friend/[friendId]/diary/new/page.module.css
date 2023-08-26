@@ -41,11 +41,32 @@
 }
 
 .section-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   color: var(--gray-80, #303636);
   margin-bottom: 12px;
 }
 
+.tag-info {
+  margin-left: 6px;
+}
+
 .section-content {
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+}
+
+.tag {
+  color: #299a9a;
+  border: 2px solid #299a9a;
+  background: #e9fafa;
+  margin-right: 6px;
 }
 
 .new-emoji-modal {
